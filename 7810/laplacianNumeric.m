@@ -26,8 +26,8 @@ h = 0.1;        % grid Resolution
 
 % set boundary condition voltages for the rectangle
 a = 0;        % left 
-b = 100;        % top 
-c = 0;        % right
+b = 0;        % top 
+c = 100;        % right
 d = 0;        % bottom 
 
 %% calculate number of grid point and set the grid
@@ -35,7 +35,7 @@ d = 0;        % bottom
 nx = (width/h) + 1;         % number of points in x direction
 ny = (height/h) + 1;        % number of points in y direction
 
-phi = zeros(nx, ny);    % grid/solution matrix phi(x,y) %% ones(nx-1, ny-1);
+phi = zeros(nx-1, ny-1);    % grid/solution matrix phi(x,y) %% ones(nx-1, ny-1);
 
 
 %% set boundary condition (Dirichlet B. C)

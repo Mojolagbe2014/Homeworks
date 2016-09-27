@@ -18,12 +18,12 @@ clear; clc; close all;
 %%  set variables
 
 omega = 1.5;        % over-relaxation constant / acceleration factor
-max_iter = 20;      % maximum iterations 
+max_iter = 0;      % maximum iterations 
 absolon = 1e-10;    % ralative displacement norm
 
 width = 1;      % width of the rectangle
 height = 1;     % height of the rectangle
-h = 0.1;        % grid Resolution
+h = 0.01;        % grid Resolution
 
 % set boundary condition voltages for the rectangle
 a = 0;        % left 
@@ -59,15 +59,13 @@ phi(1, ny) = (b+c)/2;
 
 %% solve the grid matrix with analytic solution
 
-for i = 1:1:nx-1
-    for j = 1:1:ny-1
+for i = 2:1:nx-1
+    for j = 2:1:ny-1
         sigma = 0;
         for n = 1:2:max_iter
             sigma = sigma + (sin((n*pi*h*i)./width) * sinh((n*pi*h*j)./width)) ./ (n * sinh((n*pi*height)./width));
         end
-        if i+1~=1 && j+1~=1 && i+1~= nx && j+1~=ny
-            phi(i+1, j+1) =  ((4 * V0)./pi) *  sigma; 
-        end
+        phi(i, j) =  ((4 * V0)./pi) *  sigma; 
     end
 end
 
