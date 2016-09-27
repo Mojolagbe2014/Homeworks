@@ -1,6 +1,7 @@
 %% laplacianAnalytic.m
 %   Calculate solve for the scalar potential,phi(x,y) 
-%   on a rectangular grid using Successive Over-Relaxation (SOR).
+%   on a rectangular grid using Analytical solution.
+%       
 %       Approach: Analytical Solution
 %        
 %       Course:     ECE 7810
@@ -23,14 +24,14 @@ absolon = 1e-10;    % ralative displacement norm
 
 width = 1;      % width of the rectangle
 height = 1;     % height of the rectangle
-h = 0.1;        % grid Resolution
+h = 0.01;        % grid Resolution
 
 % set boundary condition voltages for the rectangle
 a = 0;        % left 
 b = 0;      % top 
 c = 100;        % right
 d = 0;        % bottom        
-V0 = 100;
+V0 = c;
 
 
 %% calculate number of grid point and set the grid
