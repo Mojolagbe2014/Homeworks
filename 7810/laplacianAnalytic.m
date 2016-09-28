@@ -24,7 +24,7 @@ absolon = 1e-10;    % ralative displacement norm
 
 width = 1;      % width of the rectangle
 height = 1;     % height of the rectangle
-h = 0.01;        % grid Resolution
+h = 0.1;        % grid Resolution
 
 % set boundary condition voltages for the rectangle
 a = 0;        % left 

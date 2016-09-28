@@ -17,13 +17,13 @@ clear; clc; close all;
 
 %%  set variables
 
-omega = 1.3;        % over-relaxation constant / acceleration factor
+omega = 1.3;        % over-relaxation constant / acceleration factor (this value is not used)
 max_iter = 100;     % maximum iterations 
-absolon = 1e-10;    % ralative displacement norm
+epsolon = 1e-6;     % ralative displacement norm
 
 width = 1;      % width of the rectangle
 height = 1;     % height of the rectangle
-h = 0.01;        % grid Resolution 
+h = 0.1;        % grid Resolution 
 
 % set boundary condition voltages for the rectangle
 a = 0;        % left 
@@ -67,7 +67,7 @@ end
 iter = 1;           % counter for the number iterations
 err_norm = 99999;   % error norm for stoping the iterations
 
-while(iter < max_iter && err_norm > absolon)
+while(iter < max_iter && err_norm > epsolon)
     ph =  0;        % solution norm
     disp_norm = 0;  % displacement norm
     
