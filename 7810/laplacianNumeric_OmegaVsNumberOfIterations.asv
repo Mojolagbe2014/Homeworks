@@ -116,15 +116,16 @@ flux = os - oc - ic - is;                                                       
 
 %% find the index of optimum over-relaxation constant
 
-indexmin = find(min(iter_array) == iter_array);     % find the minimum number of iter       
+indexmin = find(min(iter_array) == iter_array);     % find the minimum number of iteration       
 omega_min = omega_array(indexmin);                  % get minimum over-relaxation value
-inter_min = iter_array(indexmin);                   % get minimum number of iterations
+itera_min = iter_array(indexmin);                   % get minimum number of iterations
 
 
 %% output the result
 disp(['Total flux: ', num2str(abs(flux))]);
 disp(' ');
-disp(['Optimum over-relaxation value (\omega): ', num2str(
+disp(['Optimum over-relaxation constant: ', num2str(omega_min), ...
+    ' [No of iterations: ', num2str(itera_min), ']']);
     
 % plot the relaxation factor againt number of iterations
 plot(omega_array, iter_array, 'b');
@@ -132,3 +133,12 @@ title('The graph of over-relaxation factor (\omega) against number of iterations
 xlabel('Over-relaxation factor (\omega)');
 ylabel('Number of iterations (k)');
 grid on
+
+% plot 
+xv = linspace(0, width, nx-1);
+yv = linspace(0, height, ny-1);
+[X,Y] = meshgrid(xv,yv);
+figure
+contour(X,Y,phi(2,:))
+
+

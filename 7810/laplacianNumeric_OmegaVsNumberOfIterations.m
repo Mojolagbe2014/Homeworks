@@ -128,8 +128,31 @@ disp(['Optimum over-relaxation constant: ', num2str(omega_min), ...
     ' [No of iterations: ', num2str(itera_min), ']']);
     
 % plot the relaxation factor againt number of iterations
+% subplot(2, 2, 1);
 plot(omega_array, iter_array, 'b');
 title('The graph of over-relaxation factor (\omega) against number of iterations (k)');
 xlabel('Over-relaxation factor (\omega)');
 ylabel('Number of iterations (k)');
 grid on
+
+% plot potential distribution with contour 
+xv = 0:10:100;
+yv = 0:10:100;
+% subplot(2, 2, 2);
+figure
+contour(xv,yv,phi,'ShowText','on');
+title('Potential Distribution (Contour)');
+xlabel('V (volts)');
+ylabel('V (volts)');
+grid on
+
+% subplot(2, 2, 3);
+figure
+grad = gradient(phi);
+mesh(xv,yv,phi,grad);
+title('Potential Distribution (Mesh)');
+xlabel('V (volts)');
+ylabel('V (volts)');
+zlabel('V (volts)');
+
+
