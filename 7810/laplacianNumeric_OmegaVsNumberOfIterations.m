@@ -75,7 +75,7 @@ for omega = omega : 0.01 : 1.9           % loop through the solver using differe
         ph =  0;        % solution norm
         disp_norm = 0;  % displacement norm
 
-        % loop over inner matrix
+       % loop over inner matrix
         for i = 2:1:nx-1
             for j = 2:1:ny-1
                 residual =  (phi(i - 1, j) +  phi(i + 1, j) +  phi(i, j - 1) + phi(i, j + 1)) ./ 4;
