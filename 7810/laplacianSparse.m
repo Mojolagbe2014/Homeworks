@@ -12,4 +12,4 @@
 %           Student ID: #7804719
 %           Email:      mojolagm@myumanitoba.ca
 
-clear; clc; close all;
+clear; clc; close all;                                

@@ -1,4 +1,4 @@
-%% laplacianNumeric.m
+%% laplacianNumberOfIterVsDispNorm.m
 %   Calculate solve for the scalar potential,phi(x,y) 
 %    on a rectangular grid using Successive Over-Relaxation (SOR).
 %       
@@ -16,18 +16,17 @@
 clear; clc; close all;
 
 %%  set variables
+epsolon_count = 1;                    % iteration counter for storing omega values 
+epsolon = 1e-2;
 
-omega = 1;                          % over-relaxation constant / acceleration factor
-omega_count = 1;                    % iteration counter for storing omega values 
-omega_array = omega : 0.01: 1.9;    % array of relaxation factors to be used for ploting
-
-for omega = omega : 0.01 : 1.9           % loop through the solver using different omega values
+while epsolon > 1e-10           % loop through the solver using different omega values
     max_iter = 1000;     % maximum iterations 
-    epsolon = 1e-6;      % ralative displacement norm
+%     epsolon = 1e-6;      % ralative displacement norm
 
     width = 1;      % width of the rectangle
     height = 1;     % height of the rectangle
     h = 0.1;        % grid Resolution 
+    omega = 1.54;   % optimum over relaxation constant
 
     % set boundary condition voltages for the rectangle
     a = 0;        % left 
@@ -75,7 +74,7 @@ for omega = omega : 0.01 : 1.9           % loop through the solver using differe
         ph =  0;        % solution norm
         disp_norm = 0;  % displacement norm
 
-        % loop over inner matrix
+       % loop over inner matrix
         for i = 2:1:nx-1
             for j = 2:1:ny-1
                 residual =  (phi(i - 1, j) +  phi(i + 1, j) +  phi(i, j - 1) + phi(i, j + 1)) ./ 4;
@@ -92,53 +91,19 @@ for omega = omega : 0.01 : 1.9           % loop through the solver using differe
         %increment the counter
         iter = iter + 1;
     end
-    
-    iter_array(omega_count) = iter;                  % store the number of iterations for each omega value
-    omega_count = omega_count + 1;                % increment the omega loop counter
+    epsolon_array(epsolon_count) = epsolon;
+    epsolon = epsolon/10;
+    iter_array(epsolon_count) = iter;                  % store the number of iterations for each omega value
+    epsolon_count = epsolon_count + 1;                % increment the omega loop counter
 end
 
 
-%% calculate the total flux emanating from the region
-% flux = 0;       % initialize total flux to zero
-% for i = 2:1:nx-2
-%     flux = flux + phi(1, i) + phi(i, 1) + phi(nx - 1, i) + phi(i, ny - 1);      % outside potential
-%     flux = flux - phi(2, i) - phi(i, 2) - phi(nx - 1, i) - phi(i, ny - 1);      % inside potential
-% end
-
-os = sum(phi(1, :)) + sum(phi(nx, :)) + sum(phi(:, 1)) + sum(phi(:, ny));                           % outside potential
-oc = sum(phi(1, 1)) + sum(phi(1, ny)) + sum(phi(nx, 1)) + sum(phi(nx, ny));                         % outside corner
-
-is = sum(phi(2, 2:ny-1)) + sum(phi(nx-1, 2:ny-1)) + sum(phi(2:nx-1, 2)) + sum(phi(2:nx-1, ny-1));   % inside potential
-ic = sum(phi(2, 2)) + sum(phi(2, ny-1)) + sum(phi(nx-1, 2)) + sum(phi(nx-1, ny-1));                 % inside corner
-
-flux = os - oc - ic - is;                                                                           % total flux
-
-
-%% find the index of optimum over-relaxation constant
-
-indexmin = find(min(iter_array) == iter_array);     % find the minimum number of iteration       
-omega_min = omega_array(indexmin);                  % get minimum over-relaxation value
-itera_min = iter_array(indexmin);                   % get minimum number of iterations
-
-
 %% output the result
-disp(['Total flux: ', num2str(abs(flux))]);
-disp(' ');
-disp(['Optimum over-relaxation constant: ', num2str(omega_min), ...
-    ' [No of iterations: ', num2str(itera_min), ']']);
-    
-% plot the relaxation factor againt number of iterations
-plot(omega_array, iter_array, 'b');
-title('The graph of over-relaxation factor (\omega) against number of iterations (k)');
-xlabel('Over-relaxation factor (\omega)');
+% plot the number of iteration againt relative displacement norm
+
+semilogx(epsolon_array), semilogy(iter_array);
+
+title('The graph of number of iterations (k) againt relative displacement norm');
+xlabel('Relative Displacement Norm');
 ylabel('Number of iterations (k)');
 grid on
-
-% plot 
-xv = linspace(0, width, nx-1);
-yv = linspace(0, height, ny-1);
-[X,Y] = meshgrid(xv,yv);
-figure
-contour(X,Y,phi(2,:))
-
-

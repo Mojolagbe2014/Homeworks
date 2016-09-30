@@ -14,10 +14,10 @@
 %           Email:      mojolagm@myumanitoba.ca
 
 clear; clc; close all;
-
+tic
 %%  set variables
 
-omega = 1.3;        % over-relaxation constant / acceleration factor (this value is not used)
+omega = 1.5;        % over-relaxation constant / acceleration factor (this value is not used)
 max_iter = 100;     % maximum iterations 
 epsolon = 1e-6;     % ralative displacement norm
 
@@ -90,20 +90,12 @@ while(iter < max_iter && err_norm > epsolon)
 end
 
 %% calculate the total flux emanating from the region
-% flux = 0;       % initialize total flux to zero
-% for i = 2:1:nx-2
-%     flux = flux + phi(1, i) + phi(i, 1) + phi(nx - 1, i) + phi(i, ny - 1);      % outside potential
-%     flux = flux - phi(2, i) - phi(i, 2) - phi(nx - 1, i) - phi(i, ny - 1);      % inside potential
-% end
-
-os = sum(phi(1, :)) + sum(phi(nx, :)) + sum(phi(:, 1)) + sum(phi(:, ny));                           % outside potential
-oc = sum(phi(1, 1)) + sum(phi(1, ny)) + sum(phi(nx, 1)) + sum(phi(nx, ny));                         % outside corner
-
-is = sum(phi(2, 2:ny-1)) + sum(phi(nx-1, 2:ny-1)) + sum(phi(2:nx-1, 2)) + sum(phi(2:nx-1, ny-1));   % inside potential
-ic = sum(phi(2, 2)) + sum(phi(2, ny-1)) + sum(phi(nx-1, 2)) + sum(phi(nx-1, ny-1));                 % inside corner
-
-flux = os - oc - ic - is;                                                                           % total flux
-
+flux = 0;       % initialize total flux to zero
+for i = 1:1:nx
+    flux = flux + phi(1, i) + phi(i, 1) + phi(nx, i) + phi(i, ny);          % outside potential
+    flux = flux - phi(2, i) - phi(i, 2) - phi(nx-1, i) - phi(i, ny-1);      % inside potential
+end
+toc
 
 %% output the result
 disp(['Total flux: ', num2str(abs(flux))]);
