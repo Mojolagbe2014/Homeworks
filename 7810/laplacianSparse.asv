@@ -15,8 +15,8 @@
 clear; clc; close all;    
 
 rhs = 0;
-xLength = 20;
-yLength = 10;
+xLength = 10;
+yLength = 20;
 hxy = 5;                      % change in x/change in y
 a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
 
@@ -142,32 +142,25 @@ a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
                     elseif (i == j + 1); phi(j, i) = 1;
                     else phi(j, i) = 0;
                     end
-				
-                elseif (currX ~= 1 && currX ~= nx) 
-                    if (i == j); bi(j) = bi(j) - (a + c); end
-                    if i == j; phi(j, i) = -4;
-                    elseif (i == j + 1) || (i == j - 1); phi(j, i) = 1;
-                    else phi(j, i) = 0;
-                    end
-				
-                elseif (currX ~= 1 && currX == nx) 
-                    if (i == j); bi(j) = bi(j) - (a + c + d); end
-                    if i == j; phi(j, i) = -4;
-                    elseif (i == j - 1); phi(j, i) = 1;
-                    else phi(j, i) = 0;
-                    end
-				
-                elseif (currX == 1 && currX == nx) 
-                    if (i == j); bi(j) = bi(j) - (a + b + c + d); end
-                    if i == j; phi(j, i) = -4;
-                    else phi(j, i) = 0;
-                    end
-                end
+					phi(j, i) = (i == j) ? -4 : ((i == j + 1) ? 1 : 0);
+				}
+				else if (currX ~= 1 && currX ~= nx) {
+					if (i == j) b(j) -= a + c;
+					phi(j, i) = (i == j) ? -4 : (i == j + 1) || (i == j - 1) ? 1 : 0;
+				}
+				else if (currX ~= 1 && currX == nx) {
+					if (i == j) b(j) -= a + c + d;
+					phi(j, i) = (i == j) ? -4 : (i == j - 1) ? 1 : 0;
+				}
+				else if (currX == 1 && currX == nx) {
+					if (i == j) b(j) -= a + b + c + d;
+					phi(j, i) = (i == j) ? -4 : 0;
+				}
 
-            end
+			}
 
-        end	
-		
+			
+		}
     end
 
     
