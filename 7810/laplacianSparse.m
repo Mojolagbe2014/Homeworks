@@ -15,9 +15,9 @@
 clear; clc; close all;    
 
 rhs = 0;
-xLength = 20;
-yLength = 10;
-hxy = 5;                      % change in x/change in y
+xLength = 6;
+yLength = 8;
+hxy = 2;                      % change in x/change in y
 a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
 
 
@@ -32,7 +32,7 @@ a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
 	bi = zeros(iNodes,1);
 
 	for j = 1:1:iNodes;
-        if currY ~= 1; currY = ceil(j / nx); 
+        if currY >= 1; currY = ceil(j / nx); 
         else currY = 1;end
         
 		currX = j; 
@@ -71,8 +71,8 @@ a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
                     end
 
                 end
-            end
-			if (currY ~= 1 && currY == ny)
+%             end
+            elseif (currY ~= 1 && currY == ny)
 				if (currX == 1 && currX ~= nx) 
                     if (i == j); bi(j) = bi(j) - (b + a); end
                     if i == j; phi(j, i) = -4;
@@ -102,9 +102,9 @@ a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
                     end
                 end
 
-            end
+%             end
 
-			if (currY ~= 1 && currY ~= ny) 
+            elseif (currY ~= 1 && currY ~= ny) 
 				if (currX == 1 && currX ~= nx) 
                     if (i == j); bi(j) = bi(j) - (b); end
                     if i == j; phi(j, i) = -4;
@@ -133,9 +133,9 @@ a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
                     end
                 end
 
-            end
+%             end
 
-			if (currY == 1 && currY == ny)
+            elseif (currY == 1 && currY == ny)
 				if (currX == 1 && currX ~= nx)
                     if (i == j); bi(j) = bi(j) - (a + b + c); end
                     if i == j; phi(j, i) = -4;
