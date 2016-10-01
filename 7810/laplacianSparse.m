@@ -1,7 +1,8 @@
 %% laplacianSparse.m
 %   Calculate solve for the scalar potential,phi(x,y) 
-%    on a rectangular grid using Successive Over-Relaxation (SOR).
-%       Approach: Numerical Solution
+%    on a rectangular grid using SPARSE MATRIX METHOD.
+%       
+%       Approach: Numerical Solution 
 %        
 %       Course:     ECE 7810
 %       Homework:   1
@@ -14,23 +15,24 @@
 
 clear; clc; close all;    
 
+%% set variables
 rhs = 0;
 xLength = 1;
 yLength = 1;
 hxy = 0.1;                      % change in x/change in y
 a = 0; b = 0; c = 0; d = 100;   % Boundary conditions
 
-
-
+%% calculate and set needed parameters 
 nx = (xLength / hxy) - 1;           % Number of lines on x-axis
 ny = (yLength / hxy) - 1;       % Number of lines on y-axis
 
 iNodes = nx * ny;                   % Total nodes which is = total number of equations and unknowns
 currX = 0; currY = 0;               % Initialize current x-axis line and y-axis line to first line
 
-phi = zeros(iNodes, iNodes);          % Phi nodes of unknowns
-bi = zeros(iNodes,1);
+phi = zeros(iNodes, iNodes);        % phi nodes of unknowns
+bi = zeros(iNodes,1);               % initialize rhs
 
+%% sparse matrix generator core
 for j = 1:1:iNodes;
     if currY >= 1; currY = ceil(j / nx); 
     else currY = 1;end
@@ -170,4 +172,17 @@ for j = 1:1:iNodes;
 
 end
 
-    
+
+% solve the resulting sparse matrix
+ph = linsolve(phi, bi);
+
+
+% fill the sparse matrix with the calculated potentials
+ph = ph';         
+ph = reshape(ph, nx, ny);
+ph = ph';
+% ph = vec2mat(phi, ny);
+
+%% output results
+
+
