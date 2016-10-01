@@ -1,6 +1,6 @@
-%% laplacianNumeric.m
+%% laplacianSymmetry.m
 %   Calculate solve for the scalar potential,phi(x,y) 
-%    on a rectangular grid using Successive Over-Relaxation (SOR).
+%    on a rectangular grid using Successive Over-Relaxation (SOR) with Symmetry.
 %       
 %       Approach: Numerical Solution
 %        
@@ -17,8 +17,8 @@ clear; clc; close all;
 tic
 %%  set variables
 
-omega = 1.54;        % over-relaxation constant / acceleration factor (this value is not used)
-max_iter = 100;     % maximum iterations 
+omega = 1.57;        % over-relaxation constant / acceleration factor (this value is not used)
+max_iter = 10;     % maximum iterations 
 epsolon = 1e-6;     % ralative displacement norm
 
 width = 1;      % width of the rectangle
@@ -36,6 +36,8 @@ d = 0;        % bottom
 nx = (width/h) + 1;         % number of points in x direction
 ny = (height/h) + 1;        % number of points in y direction
 
+ny = ceil(ny/2);            % get the plane of symmetry
+
 phi = zeros(nx, ny);    % grid/solution matrix phi(x,y) %% ones(nx-1, ny-1);
 
 
@@ -51,12 +53,12 @@ phi(nx,:)= d;      % right
 phi(1, 1) = (a+b)/2;
 phi(nx, 1) = (a+d)/2;
 phi(nx, ny) = (c+d)/2;
-phi(1, ny) = (b+c)/2;
+% phi(1, ny) = (b+c)/2;
 
 
 %% initial guess for the grid matrix, set initial value to 1.0 for non-boundary elements
 for i = 2:1:nx-1
-    for j = 2:1:ny-1
+    for j = 2:1:ny
         phi(i, j) = 1.0;
     end
 end
@@ -73,8 +75,12 @@ while(iter < max_iter && err_norm > epsolon)
     
     % loop over inner matrix
     for i = 2:1:nx-1
-        for j = 2:1:ny-1
-            residual =  (phi(i - 1, j) +  phi(i + 1, j) +  phi(i, j - 1) + phi(i, j + 1)) ./ 4;
+        for j = 2:1:ny
+            if j < ny
+                residual =  (phi(i - 1, j) +  phi(i + 1, j) +  phi(i, j - 1) + phi(i, j + 1)) ./ 4;
+            else
+                residual =  (phi(i - 1, j) +  phi(i + 1, j) +  phi(i, j - 1) + phi(i, j - 1)) ./ 4;
+            end
             acc_residual = omega * (residual - phi(i, j));
             phi(i, j) = phi(i, j) + acc_residual;
             
@@ -88,16 +94,3 @@ while(iter < max_iter && err_norm > epsolon)
     %increment the counter
     iter = iter + 1;
 end
-
-%% calculate the total flux emanating from the region
-flux = 0;       % initialize total flux to zero
-for i = 1:1:nx
-    flux = flux + phi(1, i) + phi(i, 1) + phi(nx, i) + phi(i, ny);          % outside potential
-    flux = flux - phi(2, i) - phi(i, 2) - phi(nx-1, i) - phi(i, ny-1);      % inside potential
-end
-toc
-
-%% output the result
-disp(['Total flux: ', num2str(abs(flux))]);
-                                                                      
-

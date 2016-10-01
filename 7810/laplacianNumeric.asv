@@ -17,7 +17,7 @@ clear; clc; close all;
 tic
 %%  set variables
 
-omega = 1.54;        % over-relaxation constant / acceleration factor (this value is not used)
+omega = 1.58;        % over-relaxation constant / acceleration factor (this value is not used)
 max_iter = 100;     % maximum iterations 
 epsolon = 1e-6;     % ralative displacement norm
 
