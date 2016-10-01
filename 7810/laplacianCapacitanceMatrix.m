@@ -18,7 +18,8 @@ clear; clc; close all;
 
 omega = 1.54;       % over-relaxation constant / acceleration factor (this value is not used)
 max_iter = 100;     % maximum iterations 
-epsolon = 1e-6;     % ralative displacement norm
+ep_0 = 8.85e-12;    % absolute dielectric constant
+epsilon = 1e-6;     % ralative displacement norm
 V0 = 100;           % potential on the capacitors
 
 width = 25;         % width of the rectangle
@@ -79,7 +80,7 @@ end
 iter = 1;           % counter for the number iterations
 err_norm = 99999;   % error norm for stoping the iterations
 
-while(iter < max_iter && err_norm > epsolon)
+while(iter < max_iter && err_norm > epsilon)
     ph =  0;        % solution norm
     disp_norm = 0;  % displacement norm
     
@@ -104,18 +105,43 @@ while(iter < max_iter && err_norm > epsolon)
 end
 
 %% calculate the total flux emanating from the region
-% flux = 0;       % initialize total flux to zero
-% for i = 1:1:nx
-%     flux = flux + phi(1, i) + phi(i, 1) + phi(nx, i) + phi(i, ny);          % outside potential
-%     flux = flux - phi(2, i) - phi(i, 2) - phi(nx-1, i) - phi(i, ny-1);      % inside potential
-% end
-% 
-% 
-% %% output the result
-% disp(['Total flux: ', num2str(abs(flux))]);
+% whole region flux
+flux = 0;
+flux = flux + sum(phi(1, :)) + sum(phi(:, 1)) + sum(phi(nx, :)) + sum(phi(:, ny));          % outside potential
+flux = flux - sum(phi(2, :)) - sum(phi(:, 2)) - sum(phi(nx-1, :)) - sum(phi(:, ny-1));      % inside potential
+flux = ep_0 * flux;
 
-                                                                      
-%% output results
+% capacitor 1 flux & volume charge density
+c1_flux = 0;
+c1_flux = c1_flux + sum(phi(c1_start-1, c_start_y-1:c_end_y+1)) + sum(phi(c1_end+1, c_start_y-1:c_end_y+1)) ...
+        + sum(phi(c1_start-1:c1_end+1, c_start_y-1)) + sum(phi(c1_start-1:c1_end+1, c_end_y+1));          % outside potential
+c1_flux = c1_flux - sum(phi(c1_start+1, c_start_y+1:c_end_y-1)) - sum(phi(c1_end-1, c_start_y+1:c_end_y-1)) ...
+        - sum(phi(c1_start+1:c1_end-1, c_start_y+1)) - sum(phi(c1_start+1:c1_end-1, c_end_y-1));      % inside potential
+Q1 = ep_0 * c1_flux;
+
+
+% capacitor 2 flux & volume charge density
+c2_flux = 0;
+c2_flux = c2_flux + sum(phi(c2_start-1, c_start_y-1:c_end_y+1)) + sum(phi(c2_end+1, c_start_y-1:c_end_y+1)) ...
+        + sum(phi(c2_start-1:c2_end+1, c_start_y-1)) + sum(phi(c2_start-1:c2_end+1, c_end_y+1));          % outside potential
+c2_flux = c2_flux - sum(phi(c2_start+1, c_start_y+1:c_end_y-1)) - sum(phi(c2_end-1, c_start_y+1:c_end_y-1)) ...
+        - sum(phi(c2_start+1:c2_end-1, c_start_y+1)) - sum(phi(c2_start+1:c2_end-1, c_end_y-1));      % inside potential
+Q2 = ep_0 * c2_flux;
+
+
+%% capacitant matrix
+capacitance_matrix = [7.2244e-11 9.6547e-12; 9.6548e-12 7.4871e-11];
+
+
+
+%% output the result
+disp(['Total electric flux density from the region: ', num2str((flux))]);
+disp(' ');
+disp(['Q1                                         : ', num2str((Q1))]);
+disp(['Q2                                         : ', num2str((Q2))]);
+capacitance_matrix
+
+% show the flux diagram
 figure
 imagesc(phi'),colorbar
 set(gca,'YDir','normal')
