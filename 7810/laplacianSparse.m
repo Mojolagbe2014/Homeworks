@@ -173,16 +173,14 @@ for j = 1:1:iNodes;
 end
 
 
-% solve the resulting sparse matrix
+%% solve the resulting sparse matrix
 ph = linsolve(phi, bi);
 
 
-% fill the sparse matrix with the calculated potentials
+%% fill the sparse matrix with the calculated potentials
 ph = ph';         
 ph = reshape(ph, nx, ny);
 ph = ph';
 % ph = vec2mat(phi, ny);
-
-%% output results
 
 
