@@ -1,4 +1,4 @@
-function [phi, nx, ny] = solveSOR(width, height, h, a, b, c, d, guess, omega, epsolon, max_iter)
+function [phi, iter, nx, ny] = solveSOR(width, height, h, a, b, c, d, guess, omega, epsolon, max_iter)
 %% solveSOR 
 %   Computes scalar potential,phi(x,y) on a rectangular grid
 %   using Successive Over-Relaxation (SOR).
@@ -16,6 +16,7 @@ function [phi, nx, ny] = solveSOR(width, height, h, a, b, c, d, guess, omega, ep
 %       Returns
 %           phi:    Matrix of potential distribution
 %           nx:     Number of points in x direction
+%           iter:   Number of iterations
 %           ny:     Number of points in y direction
 %        
 %       Course:     ECE 7810

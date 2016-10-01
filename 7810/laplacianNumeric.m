@@ -16,7 +16,7 @@
 clear; clc; close all;
 
 %% solve with SOR
-[phi, nx, ny] = solveSOR(1, 1, 0.1, 0, 0, 100, 0, 1, 1.54, 1e-6, 100);
+[phi, iter, nx, ny] = solveSOR(1, 1, 0.1, 0, 0, 100, 0, 1, 1.54, 1e-6, 100);
 
 
 %% calculate the total flux emanating from the region
