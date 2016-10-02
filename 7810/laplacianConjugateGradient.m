@@ -19,11 +19,11 @@ clear; clc; close all;
 [phi, bi, nx, ny] = computeSparse(1,1,0.1,0,0,0,100,0);
 
 
-%% solve the resulting sparse matrix
-ph = linsolve(phi, bi);
+%% solve the resulting sparse matrix with conjugate gradient
+ph = cgs(phi, bi);
 
 
-%% fill the sparse matrix with the calculated potentials
+% fill the sparse matrix with the calculated potentials
 ph = ph';         
 ph = reshape(ph, nx, ny);
 ph = ph';
