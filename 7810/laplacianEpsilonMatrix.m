@@ -24,8 +24,11 @@ ep_1 = 10.0;
 ep_2 = 4.7;
 ep_  = 10.0;
 
-epsilon = 1e-6;     % ralative displacement norm
-V0 = 100;           % potential on the capacitors
+ep_1 = ep_1 * ep_0; % relative dieletric constant 1
+ep_2 = ep_2 * ep_0; % relative dieletric constant 2
+ep_ = ep_ * ep_0;   % relative dieletric constant for ep_
+epsilon = 1e-6;     % relative displacement norm
+V0 = 100;           % potential on the conductors
 
 width = 30;         % width of the rectangle
 height = 5;         % height of the rectangle
@@ -109,9 +112,25 @@ while(iter < max_iter && err_norm > epsilon)
             elseif i ~= (c1_start - (0.5/h)) && i ~= (c2_start - (0.5/h)) && i ~= (c1_end + (0.5/h)) && i ~= (c2_end + (0.5/h)) && j == c_start_y
                 ep_av = (ep_)./2; ep_avc = (2*ep_av + ep_ + 1)./4;
                 residual = (phi(i,j+1) + ep_av*phi(i+1,j) + ep_*phi(i,j-1) + ep_av*phi(i-1,j) - 4*ep_avc*phi(i,j))./4*ep_avc;
+            elseif i == (c1_start - (0.5/h)) && j == c_start_y
+                ep1 = ep_/2; ep2 = ep_1/2; ep_av = (ep_+ep_1)./2; ep_avc = (ep_av + 1);
+                residual = (phi(i,j+1) + ep2*phi(i+1,j) + ep_av*phi(i,j-1) + ep_1*phi(i-1,j) - ep_avc*phi(i,j))./ep_avc;
+            elseif i == (c1_end + (0.5/h)) && j == c_start_y
+                ep1 = ep_/2; ep2 = ep_1/2; ep_av = (ep_+ep_1)./2; ep_avc = (ep_av + 1);
+                residual = (phi(i,j+1) + ep1*phi(i+1,j) + ep_av*phi(i,j-1) + ep_2*phi(i-1,j) - ep_avc*phi(i,j))./ep_avc;
+            elseif i == (c2_start - (0.5/h)) && j == c_start_y
+                ep1 = ep_/2; ep2 = ep_2/2; ep_av = (ep_+ep_2)./2; ep_avc = (ep_av + 1);
+                residual = (phi(i,j+1) + ep2*phi(i+1,j) + ep_av*phi(i,j-1) + ep_1*phi(i-1,j) - ep_avc*phi(i,j))./ep_avc;
+            elseif i == (c2_end + (0.5/h)) && j == c_start_y
+                ep1 = ep_/2; ep2 = ep_2/2; ep_av = (ep_+ep_2)./2; ep_avc = (ep_av + 1);
+                residual = (phi(i,j+1) + ep1*phi(i+1,j) + ep_av*phi(i,j-1) + ep_2*phi(i-1,j) - ep_avc*phi(i,j))./ep_avc;
+            elseif i > (c1_start - (0.5/h)) && i < (c1_end + (0.5/h)) && j == c_start_y
+                ep_av = (ep_1)./2; ep_avc = (2*ep_av + ep_1 + 1)./4;
+                residual = (phi(i,j+1) + ep_av*phi(i+1,j) + ep_1*phi(i,j-1) + ep_av*phi(i-1,j) - 4*ep_avc*phi(i,j))./4*ep_avc;
+            elseif i > (c2_start - (0.5/h)) && i < (c2_end + (0.5/h)) && j == c_start_y
+                ep_av = (ep_2)./2; ep_avc = (2*ep_av + ep_2 + 1)./4;
+                residual = (phi(i,j+1) + ep_av*phi(i+1,j) + ep_2*phi(i,j-1) + ep_av*phi(i-1,j) - 4*ep_avc*phi(i,j))./4*ep_avc;
             end
-            
-            
             
             acc_residual = omega * (residual);
             phi(i, j) = phi(i, j) + acc_residual;
@@ -142,7 +161,7 @@ c1_flux = c1_flux + sum(phi(c1_start-1, c_start_y-1:c_end_y+1)) + sum(phi(c1_end
         + sum(phi(c1_start-1:c1_end+1, c_start_y-1)) + sum(phi(c1_start-1:c1_end+1, c_end_y+1));          % outside potential
 c1_flux = c1_flux - sum(phi(c1_start+1, c_start_y+1:c_end_y-1)) - sum(phi(c1_end-1, c_start_y+1:c_end_y-1)) ...
         - sum(phi(c1_start+1:c1_end-1, c_start_y+1)) - sum(phi(c1_start+1:c1_end-1, c_end_y-1));      % inside potential
-Q1 = ep_0 * c1_flux;
+Q1 = ep_0*c1_flux;
 
 
 % capacitor 2 flux & volume charge density
@@ -151,7 +170,7 @@ c2_flux = c2_flux + sum(phi(c2_start-1, c_start_y-1:c_end_y+1)) + sum(phi(c2_end
         + sum(phi(c2_start-1:c2_end+1, c_start_y-1)) + sum(phi(c2_start-1:c2_end+1, c_end_y+1));          % outside potential
 c2_flux = c2_flux - sum(phi(c2_start+1, c_start_y+1:c_end_y-1)) - sum(phi(c2_end-1, c_start_y+1:c_end_y-1)) ...
         - sum(phi(c2_start+1:c2_end-1, c_start_y+1)) - sum(phi(c2_start+1:c2_end-1, c_end_y-1));      % inside potential
-Q2 = ep_0 * c2_flux;
+Q2 = ep_0*c2_flux;
 
 
 %% capacitant matrix
@@ -165,13 +184,3 @@ disp(' ');
 disp(['Q1                                         : ', num2str((Q1))]);
 disp(['Q2                                         : ', num2str((Q2))]);
 capacitance_matrix
-
-% show the flux diagram
-figure
-imagesc(phi'),colorbar
-set(gca,'YDir','normal')
-rectangle('Position',[c1_start c_start_y c_width c_height])
-rectangle('Position',[c2_start c_start_y c_width c_height])
-[px,py]=gradient(phi');
-hold
-quiver(px,py)
