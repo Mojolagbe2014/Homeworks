@@ -134,8 +134,8 @@ while(iter < max_iter && err_norm > epsilon)
             
             acc_residual = omega * (residual);
             phi(i, j) = phi(i, j) + acc_residual;
-            phi(c1_start:c1_end, c_start_y:c_end_y) = V0;           % set capacitor 1 potential
-            phi(c2_start:c2_end, c_start_y:c_end_y) = -V0;          % set capacitor 2 potential
+            phi(c1_start:c1_end, c_start_y:c_end_y) = 0;           % set capacitor 1 potential
+            phi(c2_start:c2_end, c_start_y:c_end_y) = 1;          % set capacitor 2 potential
             
             ph = abs(ph) + abs(phi(i, j));                          % calculate current solution norm
             disp_norm = abs(disp_norm) + abs(acc_residual);         % calculate displacement norm
@@ -174,7 +174,7 @@ Q2 = ep_0*c2_flux;
 
 
 %% capacitant matrix
-capacitance_matrix = [7.2244e-11 9.6547e-12; 9.6548e-12 7.4871e-11];
+capacitance_matrix = [3.8488e-11 1.7146e-12; 1.748e-12 3.8488e-11];
 
 
 

@@ -16,7 +16,7 @@
 clear; clc; close all;    
 
 %% compute sparse matrix
-[phi, bi, nx, ny] = computeSparse(1,1,0.1,0,0,0,100,0);
+[phi, bi, nx, ny] = computeSparse(1,1,0.1,0,0,100,0,0);
 
 %% solve the resulting sparse matrix
 ph = linsolve(phi, bi);

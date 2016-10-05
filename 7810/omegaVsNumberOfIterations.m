@@ -1,9 +1,7 @@
-%% laplacianNumeric.m
-%   Calculate solve for the scalar potential,phi(x,y) 
-%    on a rectangular grid using Successive Over-Relaxation (SOR).
-%       
-%       Approach: Numerical Solution
-%        
+%% omegaVsNumberOfIterations.m
+%   Calculates the optimum over relaxation constant
+%   by computing number of iterations against different relaxation constants  
+%
 %       Course:     ECE 7810
 %       Homework:   1
 %       Sub. Date:  October 4, 2016
@@ -23,7 +21,7 @@ omega_array = omega : 0.01: 1.9;    % array of relaxation factors to be used for
 
 for omega = omega : 0.01 : 1.9           % loop through the solver using different omega values
     %% solve with SOR
-    [phi, iter, nx, ny] = solveSOR(1, 1, 0.1, 0, 0, 100, 0, 1, omega, 1e-6, 100);
+    [phi, iter, nx, ny] = solveSOR(1, 1, 0.1, 0, 0, 0, 100, 1, omega, 1e-6, 100);
     
     iter_array(omega_count) = iter;               % store the number of iterations for each omega value
     omega_count = omega_count + 1;                % increment the omega loop counter
@@ -71,12 +69,12 @@ ylabel('V (volts)');
 grid on
 
 % subplot(2, 2, 3);
-figure
-grad = gradient(phi);
-mesh(xv,yv,phi,grad);
-title('Potential Distribution (Mesh)');
-xlabel('V (volts)');
-ylabel('V (volts)');
-zlabel('V (volts)');
+% figure
+% grad = gradient(phi);
+% mesh(xv,yv,phi,grad);
+% title('Potential Distribution (Mesh)');
+% xlabel('V (volts)');
+% ylabel('V (volts)');
+% zlabel('V (volts)');
 
 
