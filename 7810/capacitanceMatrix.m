@@ -21,7 +21,7 @@ max_iter = 1000;    % maximum iterations
 ep_0 = 8.85e-12;    % absolute dielectric constant
 epsilon = 1e-6;     % ralative displacement norm
 V0 = 100;           % potential on the capacitors
-V1 = -100;
+V1 = 0;
 
 width = 15;         % width of the rectangle
 height = 25;        % height of the rectangle
@@ -86,22 +86,22 @@ flux = -ep_0*flux;
 
 % capacitor 1 flux & volume charge density
  c1_flux = 0;
-Q1=-ep_0*(sum(phi(7,6:11))+sum(phi(10,6:11))+phi(8,5)+phi(9,5)+phi(8,12)+phi(9,12)-...
+Q1 = -ep_0*(sum(phi(7, 6:11))+sum(phi(10,6:11))+phi(8,5)+phi(9,5)+phi(8,12)+phi(9,12)-...
     sum(phi(8,6:11))-sum(phi(9,6:11)));
-Q2=-ep_0*(sum(phi(7,16:21))+sum(phi(10,16:21))+phi(8,15)+phi(9,15)+phi(8,22)+phi(9,22)-...
+Q2 = -ep_0*(sum(phi(7,16:21))+sum(phi(10,16:21))+phi(8,15)+phi(9,15)+phi(8,22)+phi(9,22)-...
     sum(phi(8,16:21))-sum(phi(9,16:21)));
 
 %% output the result
-disp(['Total electric flux density from the region: ', num2str((flux))]);
+disp(['Total electric flux from the region: ', num2str((flux))]);
 disp(' ');
-disp(['Q1                                         : ', num2str((Q1))]);
-disp(['Q2                                         : ', num2str((Q2))]);
+disp(['Q1                                  : ', num2str((Q1))]);
+disp(['Q2                                  : ', num2str((Q2))]);
 
 C11 = Q1/V0;
 C21 = Q2/V0;
-C22=C11;                        %due to symmetry
-C12=C21;                        %due to symmetry
-capacitance_matrix = [C11 C12;C21 C22]
+C22=C11;                        % because of symmetry
+C12=C21;                        % because of symmetry
+capacitance_matrix = [C11 C12;C21 C22] % capacitance matrix
 
 % show the flux diagram
 figure
