@@ -17,8 +17,8 @@ clear; clc; close all;
 tic
 %%  set variables
 
-omega = 1.57;        % over-relaxation constant / acceleration factor (this value is not used)
-max_iter = 10;     % maximum iterations 
+omega = 1.54;        % over-relaxation constant / acceleration factor (this value is not used)
+max_iter = 100;     % maximum iterations 
 epsolon = 1e-6;     % ralative displacement norm
 
 width = 1;      % width of the rectangle

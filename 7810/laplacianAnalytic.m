@@ -15,10 +15,18 @@
 
 clear; clc; close all;
 
+%%  set variables
+V0 = 100;           % applied potential
+h = 0.1;            % grid resolution/discretization
+omega = 1.54;       % over relaxation constant
+width = 1;          % grid width
+height = 1;         % grid height
+guess = 1;          % initial guess 
+max_iter = 10;   % maximum number of iteration
 
 %%  call solveAnalytic function
-[phi, nx, ny] = solveAnalytic(1, 1, 0.1, 0, 0, 100, 0, 100, 10);
-
+[phi, nx, ny] = solveAnalytic(width, height, h, 0, 0, V0, 0, V0, max_iter);
+phi = phi';
 %% output the result
 % phi
 
