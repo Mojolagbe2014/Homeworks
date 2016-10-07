@@ -20,8 +20,8 @@ omega = 1.54;       % over-relaxation constant / acceleration factor (this value
 max_iter = 1000;    % maximum iterations 
 ep_0 = 8.85e-12;    % absolute dielectric constant
 epsilon = 1e-6;     % ralative displacement norm
-V0 = 100;           % potential on the capacitors
-V1 = 0;
+V0 = 100;           % potential on capacitor 1
+V1 = 0;             % voltage on capacitor 2
 
 width = 15;         % width of the rectangle
 height = 25;        % height of the rectangle

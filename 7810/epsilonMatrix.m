@@ -18,7 +18,7 @@ clear; clc; close all;
 %%  set variables
 
 omega = 1.54;       % over-relaxation constant / acceleration factor (this value is not used)
-max_iter = 100;     % maximum iterations 
+max_iter = 8000;     % maximum iterations 
 ep_0 = 8.85e-12;    % absolute dielectric constant
 ep_1 = 10.0;
 ep_2 = 4.7;
@@ -29,6 +29,7 @@ ep_2 = ep_2 * ep_0; % relative dieletric constant 2
 ep_ = ep_ * ep_0;   % relative dieletric constant for ep_
 epsilon = 1e-6;     % relative displacement norm
 V0 = 100;           % potential on the conductors
+V1 = 0;
 
 width = 30;         % width of the rectangle
 height = 5;         % height of the rectangle
@@ -62,29 +63,8 @@ phi = zeros(nx, ny);    % grid/solution matrix phi(x,y) %% ones(nx-1, ny-1);
 
 
 %% set boundary condition (Dirichlet B. C)
-
-% non-corner elemets at the boundary
-phi(:,1) = a;        % bottom
-phi(:,ny) = c;     % top
-phi(1,:) = b;        % left
-phi(nx,:)= d;      % right
-
-% corner elements at the boundary
-phi(1, 1) = (a+b)/2;
-phi(nx, 1) = (a+d)/2;
-phi(nx, ny) = (c+d)/2;
-phi(1, ny) = (b+c)/2;
-
-
-%% initial guess for the grid matrix, set initial value to 0 for non-boundary elements
-for i = 2:1:nx-1
-    for j = 2:1:ny-1
-        phi(i, j) = 0;
-    end
-end
-
-% phi(2 : nx - 2, 2 : ny - 2) = 1.0;
-
+ phi(c1_start:c1_end, c_start_y:c_end_y) = V0;           % set capacitor 1 potential
+ phi(c2_start:c2_end, c_start_y:c_end_y) = V1;          % set capacitor 2 potential
 %% solve the grid matrix with SOR
 iter = 1;           % counter for the number iterations
 err_norm = 99999;   % error norm for stoping the iterations
@@ -134,8 +114,8 @@ while(iter < max_iter && err_norm > epsilon)
             
             acc_residual = omega * (residual);
             phi(i, j) = phi(i, j) + acc_residual;
-            phi(c1_start:c1_end, c_start_y:c_end_y) = 0;           % set capacitor 1 potential
-            phi(c2_start:c2_end, c_start_y:c_end_y) = 1;          % set capacitor 2 potential
+            phi(c1_start:c1_end, c_start_y:c_end_y) = V0;           % set capacitor 1 potential
+            phi(c2_start:c2_end, c_start_y:c_end_y) = V1;          % set capacitor 2 potential
             
             ph = abs(ph) + abs(phi(i, j));                          % calculate current solution norm
             disp_norm = abs(disp_norm) + abs(acc_residual);         % calculate displacement norm
@@ -153,7 +133,7 @@ end
 flux = 0;
 flux = flux + sum(phi(1, :)) + sum(phi(:, 1)) + sum(phi(nx, :)) + sum(phi(:, ny));          % outside potential
 flux = flux - sum(phi(2, :)) - sum(phi(:, 2)) - sum(phi(nx-1, :)) - sum(phi(:, ny-1));      % inside potential
-flux = ep_0 * flux;
+flux = -ep_0 * flux;
 
 % capacitor 1 flux & volume charge density
 c1_flux = 0;
@@ -172,15 +152,15 @@ c2_flux = c2_flux - sum(phi(c2_start+1, c_start_y+1:c_end_y-1)) - sum(phi(c2_end
         - sum(phi(c2_start+1:c2_end-1, c_start_y+1)) - sum(phi(c2_start+1:c2_end-1, c_end_y-1));      % inside potential
 Q2 = ep_0*c2_flux;
 
-
-%% capacitant matrix
-capacitance_matrix = [3.8488e-11 1.7146e-12; 1.748e-12 3.8488e-11];
-
-
-
 %% output the result
 disp(['Total electric flux density from the region: ', num2str((flux))]);
 disp(' ');
 disp(['Q1                                         : ', num2str((Q1))]);
 disp(['Q2                                         : ', num2str((Q2))]);
-capacitance_matrix
+
+C11 = Q1/V0;
+C21 = Q2/V0;
+C22=C11;                                % because of symmetry
+C12=C21;                                % because of symmetry
+capacitance_matrix = [C11 C12;C21 C22]  % capacitance matrix
+phi=phi';
