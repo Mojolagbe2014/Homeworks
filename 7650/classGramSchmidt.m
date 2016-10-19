@@ -14,7 +14,7 @@ function [q] = classGramSchmidt(varargin)
     for j = 2:1:m
        q{j} =  varargin{j};                     % start with the current vector
        for i = 1:1:j-1                          % for each previously normalized vectors
-           r(i, j) = dot(varargin{j}, q{j});    % compute projections on each orthonormal vector
+           r(i, j) = dot(varargin{j}, q{i});    % compute projections on each orthonormal vector
            q{j} = q{j} - r(i, j)*q{i};          % make q(j) orthogonal to all previous q
        end
        r(j, j) = norm(q{j});
