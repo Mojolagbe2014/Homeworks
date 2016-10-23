@@ -17,10 +17,10 @@ function [Q, R] = givensOrthonormalize(A)
                 s = 0;
             elseif R(j, j) == 0
                 c = 0;
-                s = R(i, j)'/abs(A(i, j));
+                s = conj(R(i, j))/abs(A(i, j));
             else
                 c = abs(R(j, j))./sqrt((abs(R(j, j)).^2) + (abs(R(i, j)).^2));
-                s = (R(j, j) /abs(R(j, j))) * (R(i, j)' / sqrt((abs(R(j, j)).^2) + (abs(R(i, j)).^2)));
+                s = (R(j, j) /abs(R(j, j))) * (conj(R(i, j)) / sqrt((abs(R(j, j)).^2) + (abs(R(i, j)).^2)));
             end
             % Obtain Given rotation
             givens = eye(n, n);
@@ -30,7 +30,7 @@ function [Q, R] = givensOrthonormalize(A)
             givens(j, i) = s;
             
             R = givens * R;         % Apply rotation 
-            Q = Q * givens';
+            Q = Q * ctranspose(givens);
         end
     end
 end

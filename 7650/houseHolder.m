@@ -24,14 +24,14 @@ function [q, r] = houseHolder(A)
         end
         
         w(:, j) = z/norm(z);                      % get w vector
-        omega(j) = (r(:, j)'*w(:, j)) / (w(:, j)'*r(:, j));            % get omega 
+        omega(j) = (r(:, j)'*w(:, j)) / dot(w(:, j), r(:, j));            % get omega 
         
-        r(:, j) = r(:, j) - (1 + omega(j)) * w(:, j) * (w(:, j)' * r(:, j));
-        q(:, j) = I(:, j) - (1 + omega(j)) * w(:, j)* (w(:, j)' * I(:, j));
+        r(:, j) = r(:, j) - (1 + omega(j)) * w(:, j) * dot(w(:, j), r(:, j));
+        q(:, j) = I(:, j) - (1 + omega(j)) * w(:, j)* dot(w(:, j), I(:, j));
         
         if j > 1
             for ii = j - 1: -1: 1
-                q(:, j) = q(:, j) - (1 + omega(ii)) * w(:, ii)* (w(:, ii)' * q(:, j));
+                q(:, j) = q(:, j) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), q(:, j));
             end
         end
         
