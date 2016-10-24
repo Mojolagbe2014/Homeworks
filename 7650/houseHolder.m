@@ -1,6 +1,8 @@
 function [q, r] = houseHolder(A)
 %% houseHolder
 %   Solves matrix with householder transformation technique
+%       
+%       Author: Jamiu Mojolagbe
 
     [n, m] = size(A);
     I = eye(n, n);
@@ -9,7 +11,7 @@ function [q, r] = houseHolder(A)
         if j > 1 
             for ii = 1 : j - 1
                 if ii == 1; r(:, j) = a; end
-                r(:, j) = r(:, j) - (1 + omega(ii)) * w(:, ii)* (w(:, ii)' * r(:, j));
+                r(:, j) = r(:, j) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), r(:, j));
             end 
         else
             r(:, 1) = a;
@@ -23,17 +25,14 @@ function [q, r] = houseHolder(A)
             end
         end
         
-        w(:, j) = z/norm(z);                      % get w vector
+        w(:, j) = z/norm(z);                                              % get w vector
         omega(j) = (r(:, j)'*w(:, j)) / dot(w(:, j), r(:, j));            % get omega 
         
         r(:, j) = r(:, j) - (1 + omega(j)) * w(:, j) * dot(w(:, j), r(:, j));
         q(:, j) = I(:, j) - (1 + omega(j)) * w(:, j)* dot(w(:, j), I(:, j));
         
-        if j > 1
-            for ii = j - 1: -1: 1
-                q(:, j) = q(:, j) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), q(:, j));
-            end
+        for ii = j - 1: -1: 1
+            q(:, j) = q(:, j) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), q(:, j));
         end
-        
     end
 end
