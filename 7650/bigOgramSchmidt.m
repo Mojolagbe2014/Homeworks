@@ -15,7 +15,7 @@ clear; clc; close all;
 %% set input variable n 
 nmax = 200;                             % maximum input n 
 nmin = 1;                               % minimum input n
-narr = linspace(nmin, nmax, nmax);      % set up input array for plotting
+narr = nmin:nmax;                       % set up input array for plotting
 
 %% calculate f(n) and cg(n)
 for n = nmin:nmax
@@ -25,7 +25,7 @@ end
 
 
 %% output results
-plot(narr, f, narr, cg)
+plot(narr, f(nmin:nmax), narr, cg(nmin:nmax))
 title('Big "O" complexity of Gram Schmidt Algorithm');
 xlabel('Input (n)');
 ylabel('Gram-Schmidt function');
