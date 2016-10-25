@@ -19,8 +19,8 @@ narr = nmin:nmax;                       % set up input array for plotting
 
 %% calculate f(n) and cg(n)
 for n = nmin:nmax
-    f(n) = 3*(n.^3) - 2*(n.^2) + 8;
-    cg(n) = 9*(n.^3);
+    f(n) = 2*(n.^3) + (n.^2) + (5*n) + 10;
+    cg(n) = 18*(n.^3);
 end
 
 
