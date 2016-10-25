@@ -1,6 +1,10 @@
 function [q, r] = houseHolder(r)
 %% houseHolder
 %   Solves matrix with householder transformation technique
+% 
+%   Input: r (a matrix)
+%   Returns: q, r (q is a set of orthonormal vectors and r is upper
+%            triangular matrix)
 %       
 %       Author: Jamiu Mojolagbe
 
