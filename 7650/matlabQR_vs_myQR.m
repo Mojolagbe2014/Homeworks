@@ -14,7 +14,7 @@
 clear; clc; close all;
 
 %% set parameters
-n = [10, 100, 1000, 2000];                    % set various dimensions as a row vector
+n = [10, 100, 1000, 2000, 3000];                    % set various dimensions as a row vector
 [n_siz, n_size] = size(n);                          % get the number of total elements in the n vector
 
 for j = 1:n_size
@@ -24,7 +24,7 @@ for j = 1:n_size
 %% decompose matrix A
     tic
     [q, r] = qr(A);                                 % decompose matrix A using built-in matlab routine
-    tarr(j) = toc                                   % store the timetaken in a row vector (tar) for each dimensional loop of A
+    tar(j) = toc                                   % store the timetaken in a row vector (tar) for each dimensional loop of A
     clear q r;                                      % free up the space used for next function
     tic
     [q, r] = modifiedGS(A);                         % decompose matrix A using modified Gram-Schmidt method
