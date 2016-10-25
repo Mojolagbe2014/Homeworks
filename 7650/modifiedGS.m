@@ -1,6 +1,10 @@
 function [q, r] = modifiedGS(A)
-%% Orthonormalize vectors using 
+%% modifiedGS.m Orthonormalize vectors using 
 %   Modified Gram-Schmidt Method
+%   
+%   Input: A (a matrix)
+%   Returns: q, r (q is a set of orthonormal vectors and r is upper
+%            triangular mtrix)
 %       
 %       Author: Jamiu Mojolagbe
 
