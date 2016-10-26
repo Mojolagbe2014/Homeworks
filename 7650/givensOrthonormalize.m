@@ -26,7 +26,7 @@ function [Q, R] = givensOrthonormalize(A)
             givens = eye(n, n);
             givens(i, i) = c;
             givens(j, j) = c;
-            givens(i, j) = -s;
+            givens(i, j) = -s';
             givens(j, i) = s;
             
             R = givens * R;         % Apply rotation 
