@@ -24,11 +24,14 @@ for j = 1:n_size
 %% decompose matrix A
     tic
     [q, r] = modifiedGS(A);                         % decompose matrix A using modified Gram-Schmidt method
-    tarr(j) = toc                                   % store the timetaken in a row vector (tarr) for each dimensional loop of A
-
+    tarr(j) = toc;                                  % store the timetaken in a row vector (tarr) for each dimensional loop of A
+    proofs(j, 1) = norm(q*r - A);                   % proof that the QR decomposition works
 end
 
 %% output the results
+disp(' ============ norm(Q*R - A) for the input dimensions ============');
+proofs
+
 plot(n, tarr)
 title('Computational Time for Various Matrix Dimensions (MGS)');
 xlabel('Input Matrix A^{n x n}');
