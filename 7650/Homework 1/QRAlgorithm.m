@@ -18,7 +18,7 @@ n = 5;                                      % matrix dimension
 k = 30;                                     % number of iterations
 
 %% create matrix A
-A = vander(1:5);                         
+A = vander(1:n);                         
 A_copy = A;                                 % keep a copy of a for comparism
 
 %% implement QR algorithm 

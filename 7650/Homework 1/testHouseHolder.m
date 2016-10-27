@@ -32,7 +32,23 @@ end
 disp(' ============ norm(Q*R - A) for the input dimensions ============');
 proofs
 
-plot(n, tarr)
-title('Computational Time (Householder QR)');
+data = polyfit(n, tarr, 3);
+minDim = min(n);
+maxDim = max(n);
+datax = [minDim: (maxDim-minDim)/100000:maxDim];
+datay = polyval(data, datax);
+plot(datax,datay, 'r');
+hold on
+
+plot(n, tarr, 'k*', 'MarkerSize', 5);
+
+% calculate complexity of theoritical result
+n = 1:3000;
+f = 4*(n.^3) + 11*(n.^2) + 12*(n) + 3;
+f = f*(13.995e-9);
+
+plot(n, f);
+title('Complexity of Modified Gram Schmidt');
 xlabel('Input Matrix A^{n x n}');
 ylabel('Timetaken (s) ');
+legend('Algorithmic Complexity', 'Actual Points ', 'Theoritical Complexity');

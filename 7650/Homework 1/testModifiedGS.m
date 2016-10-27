@@ -28,11 +28,28 @@ for j = 1:n_size
     proofs(j, 1) = norm(q*r - A);                   % proof that the QR decomposition works
 end
 
+
 %% output the results
 disp(' ============ norm(Q*R - A) for the input dimensions ============');
 proofs
 
-plot(n, tarr)
-title('Computational Time for Various Matrix Dimensions (MGS)');
+data = polyfit(n, tarr, 3);
+minDim = min(n);
+maxDim = max(n);
+datax = [minDim: (maxDim-minDim)/100000:maxDim];
+datay = polyval(data, datax);
+plot(datax,datay, 'r');
+hold on
+
+plot(n, tarr, 'k*', 'MarkerSize', 5);
+
+% calculate complexity of theoritical result
+n = 1:3000;
+f = 2*(n.^3) + (n.^2) + (5*n) + 10;
+f = f*(11.553e-9);
+
+plot(n, f);
+title('Complexity of Modified Gram Schmidt');
 xlabel('Input Matrix A^{n x n}');
 ylabel('Timetaken (s) ');
+legend('Algorithmic Complexity', 'Actual Points ', 'Theoritical Complexity');
