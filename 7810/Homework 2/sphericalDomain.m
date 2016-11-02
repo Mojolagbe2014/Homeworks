@@ -11,7 +11,7 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Use GmshreadM to read the Gmsh mesh file
-MeshData = GmshReadM('plain_domain.msh');
+MeshData = GmshReadM('mesh_files/sphere.msh');
 
 nodes = MeshData.nNodes;    % the number of nodes
 x = MeshData.xNodes;        % the x-coordinate of the nodes
@@ -39,18 +39,18 @@ constr(MeshData.BdNodes) = 1;
 % get the lines having LinePhysics == 100
 % and store the list of points on the line in ProbePoints
 % tmp = find(MeshData.LinePhysics == 100);
-tmp = find((MeshData.LinePhysics == 102)  | (MeshData.LinePhysics == 104));
+tmp = find((MeshData.LinePhysics == 102)  | (MeshData.LinePhysics == 103));
 ProbePoints = unique(MeshData.LineMatrix(tmp,:));
 
 % Grounded Points
 % get the lines having LinePhysics == 101 and 102
 % and store the list of points on the line in GroundPoints
 % tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 102));
-tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 103));
+tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 104));
 GroundPoints = unique(MeshData.LineMatrix(tmp,:));
 
 % Set the value of the potential appropriately
-potent(ProbePoints) =  0.1;
+potent(ProbePoints) =  1;
 potent(GroundPoints) = 0;   
 
 % Allocate memory

@@ -11,7 +11,7 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Use GmshreadM to read the Gmsh mesh file
-MeshData = GmshReadM('plain_domain.msh');
+MeshData = GmshReadM('probe.msh');
 
 nodes = MeshData.nNodes;    % the number of nodes
 x = MeshData.xNodes;        % the x-coordinate of the nodes
@@ -50,7 +50,7 @@ tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 103));
 GroundPoints = unique(MeshData.LineMatrix(tmp,:));
 
 % Set the value of the potential appropriately
-potent(ProbePoints) = 100;
+potent(ProbePoints) =  0.1;
 potent(GroundPoints) = 0;   
 
 % Allocate memory
@@ -88,10 +88,6 @@ for n = 1:nelements
         ll = ii;        ii = jj;        jj = kk;        kk = ll;
     end
     
-    
-    rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n));
-    Pe(n, 1) = (rho*area)./ (3*epsilon);
-    
     % Assemble the Global S Matrix
     for l = 1:3
         irow = nelematrix(n,l);
@@ -111,20 +107,6 @@ for n = 1:nelements
         end % if constr(irow) == 1
     end
 end
-
-
-%% calculate Poisson's RHS
-P = zeros(nodes, 1);                                               % initialize Poisson's RHS
-for gnode = 1:nodes                                                % loop through the global nodes
-    [eleID, localID] = getElementIndices(MeshData, gnode);         % get list of elements that share a node
-    totalEle = length(eleID);                                      % number of element
-    for ei = 1:totalEle
-        P(gnode) = P(gnode) + Pe(eleID(ei));
-    end
-end
-
-%% add Poisson's RHS to already calculated RHS (boundary conditions)
-RHS = RHS + P;
 
 %% Invert using the backslash operator
 final_solution = S\RHS;
