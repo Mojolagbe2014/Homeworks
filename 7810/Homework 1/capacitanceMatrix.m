@@ -63,8 +63,8 @@ while(iter < max_iter && err_norm > epsilon)
             phi(i, j) = phi(i, j) + acc_residual;
             phi(c_start_y, c1_start:c1_end)=V0;                     % top of left conducter
             phi(c_end_y, c1_start:c1_end)=V0;                     % bottom of left conducter
-            phi(c_start_y, c2_start:c2_end)=V1;                    % top of right conducter
-            phi(c_end_y, c2_start:c2_end)=V1;                    % bottom of right conducter
+            phi(c_start_y, c2_start:c2_end)=-V0;                    % top of right conducter
+            phi(c_end_y, c2_start:c2_end)=-V0;                    % bottom of right conducter
             
             ph = abs(ph) + abs(phi(i, j));                          % calculate current solution norm
             disp_norm = abs(disp_norm) + abs(acc_residual);         % calculate displacement norm
