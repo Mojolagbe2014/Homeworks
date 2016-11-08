@@ -11,7 +11,7 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
 % Use GmshreadM to read the Gmsh mesh file
-MeshData = GmshReadM('probe.msh');
+MeshData = GmshReadM('mesh_files/probe.msh');
 
 nodes = MeshData.nNodes;    % the number of nodes
 x = MeshData.xNodes;        % the x-coordinate of the nodes

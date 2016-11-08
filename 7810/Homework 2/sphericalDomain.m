@@ -1,57 +1,37 @@
-close all
-clear all
-clc
+%% flatPlate.m
+%   Calculate and demonstrate potential distribution
+%       on a square plate with source of excitation.
+%
+%       Problem: Poisson's Equation on a Flat Plate
+%       Method:  Numerical Solution
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Problem Description                         %%
-% -------------------                         %%
-% 2D FEM for a simple electrostatic           %%
-% problem based on Laplace's Equation         %%
-%                                             %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+close all; clear; clc;
+
+%% set parameters 
+V0 = 0;                                                     % ground potential
+V1 = 0.001;                                                   % probe potential
+rhoType = 4;                                                % source excitation variations has values [0|1|2|3|4]
+MeshData = GmshReadM('mesh_files/sphere.msh');              % Use GmshreadM to read the Gmsh mesh file
+nodes = MeshData.nNodes;                                    % the number of nodes
+x = MeshData.xNodes;                                        % the x-coordinate of the nodes
+y = MeshData.yNodes;                                        % the y-coordinate of the nodes
+epsilon = 10.0;                                             % permittivity of the dielectric material
+nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];             % create the nodes matrix
+nelements = MeshData.nElements;                             % obtain the total number of elements
+nelematrix = MeshData.EleMatrix;                            % elements with corresponding 3 global nodes
+
+constr = zeros(nodes,1);                                    % Constraint identification vector, will be set
+                                                            % to 1 if the node is a Dirichlet node
+potent = zeros(nodes,1);                                    % Solution vector, this is what is solved for
+constr(MeshData.BdNodes) = 1;                               % Set constraint vector equal to one for boundary values
  
-% Use GmshreadM to read the Gmsh mesh file
-MeshData = GmshReadM('mesh_files/sphere.msh');
-
-nodes = MeshData.nNodes;    % the number of nodes
-x = MeshData.xNodes;        % the x-coordinate of the nodes
-y = MeshData.yNodes;        % the y-coordinate of the nodes
-epsilon = 10.0;
-
-% create the nodes matrix
-nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];
-
-% create
-nelements = MeshData.nElements;
-nelematrix = MeshData.EleMatrix;
-
-% Constraint and Potential Vector for the boundary nodes
- 
-constr = zeros(nodes,1);  % Constraint identification vector, will be set
-                          % to 1 if the node is a Dirichlet node
-potent = zeros(nodes,1);  % Solution vector, this is what is solved for
- 
-% Setting the constraint vector equal to one for boundary values
-% MeshData.BdNodes contains the indices of the boundary nodes
-constr(MeshData.BdNodes) = 1;
- 
-% Setting the boundary conditions based on the Line Physics
-% get the lines having LinePhysics == 100
-% and store the list of points on the line in ProbePoints
-% tmp = find(MeshData.LinePhysics == 100);
 tmp = find((MeshData.LinePhysics == 102)  | (MeshData.LinePhysics == 103));
-ProbePoints = unique(MeshData.LineMatrix(tmp,:));
-
-% Grounded Points
-% get the lines having LinePhysics == 101 and 102
-% and store the list of points on the line in GroundPoints
-% tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 102));
+ProbePoints = unique(MeshData.LineMatrix(tmp,:));           % set probe points
 tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 104));
-GroundPoints = unique(MeshData.LineMatrix(tmp,:));
+GroundPoints = unique(MeshData.LineMatrix(tmp,:));          % set ground points
 
-% Set the value of the potential appropriately
-potent(ProbePoints) =  1;
-potent(GroundPoints) = 0;   
+potent(ProbePoints) =  V1;                                  % set  boundary condition for probe points
+potent(GroundPoints) = V0;                                  % set  boundary condition for ground points
 
 % Allocate memory
 telm =  zeros(3,3);
@@ -59,7 +39,9 @@ selm = zeros(3,3);
 RHS = zeros(nodes,1);
 S = zeros(nodes,nodes);
 S = sparse(S);
- 
+
+
+%% obtain stiffness matrices as a Laplacian Problem and calculate Poisson's RHS for each element 
 for n = 1:nelements
     % Form stiffness and mass matrices, selm and telm, for each element    
     % Allocate memory
@@ -88,9 +70,8 @@ for n = 1:nelements
         ll = ii;        ii = jj;        jj = kk;        kk = ll;
     end
     
-    
-    rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n));
-    Pe(n, 1) = (rho*area)./ (3*epsilon);
+    rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n), rhoType);
+    Pe(n, 1) = (rho*area)./ (3*epsilon);                     % calculate Poisson's RHS for each element
     
     % Assemble the Global S Matrix
     for l = 1:3
@@ -113,17 +94,17 @@ for n = 1:nelements
 end
 
 
-%% calculate Poisson's RHS
-P = zeros(nodes, 1);                                               % initialize Poisson's RHS
-for gnode = 1:nodes                                                % loop through the global nodes
-    [eleID, localID] = getElementIndices(MeshData, gnode);         % get list of elements that share a node
-    totalEle = length(eleID);                                      % number of elements sharing a node
-    for ei = 1:totalEle                                            % loop through each element sharing the node
-        P(gnode) = P(gnode) + Pe(eleID(ei));                       % add the element Poisson's RHS already calculated
+%% calculate global Poisson's RHS from global nodes
+P = zeros(nodes, 1);                                         % initialize Poisson's RHS
+for gnode = 1:nodes                                          % loop through the global nodes
+    [eleID, localID] = getElementIndices(MeshData, gnode);   % get list of elements that share a node
+    totalEle = length(eleID);                                % number of elements sharing a node
+    for ei = 1:totalEle                                      % loop through each element sharing the node
+        P(gnode) = P(gnode) + Pe(eleID(ei));                 % add element's Poisson's RHS already calculated together
     end
 end
 
-%% add Poisson's RHS to already calculated RHS (boundary conditions)
+%% add global Poisson's RHS to already calculated RHS of the Laplacian solutions
 RHS = RHS + P;
 
 %% Invert using the backslash operator

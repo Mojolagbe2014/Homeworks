@@ -10,6 +10,7 @@ close all; clear; clc;
 %% set parameters 
 V0 = 0;                                                     % ground potential
 V1 = 100;                                                   % probe potential
+rhoType = 1;                                                % source excitation variations - has values [0|1|2|3|4]
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 nodes = MeshData.nNodes;                                    % the number of nodes
 x = MeshData.xNodes;                                        % the x-coordinate of the nodes
@@ -24,9 +25,9 @@ constr = zeros(nodes,1);                                    % Constraint identif
 potent = zeros(nodes,1);                                    % Solution vector, this is what is solved for
 constr(MeshData.BdNodes) = 1;                               % Set constraint vector equal to one for boundary values
  
-tmp = find((MeshData.LinePhysics == 101)  | (MeshData.LinePhysics == 103));
+tmp = find((MeshData.LinePhysics == 102) );
 ProbePoints = unique(MeshData.LineMatrix(tmp,:));           % set probe points
-tmp = find((MeshData.LinePhysics == 102) | (MeshData.LinePhysics == 104));
+tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 104) | (MeshData.LinePhysics == 103));
 GroundPoints = unique(MeshData.LineMatrix(tmp,:));          % set ground points
 
 potent(ProbePoints) =  V1;                                  % set  boundary condition for probe points
@@ -40,7 +41,7 @@ S = zeros(nodes,nodes);
 S = sparse(S);
 
 
-%% obtain stiffness matrices as a Laplacian Problem and Calculate Poisson's RHS for each element 
+%% obtain stiffness matrices as a Laplacian Problem and calculate Poisson's RHS for each element 
 for n = 1:nelements
     % Form stiffness and mass matrices, selm and telm, for each element    
     % Allocate memory
@@ -69,7 +70,7 @@ for n = 1:nelements
         ll = ii;        ii = jj;        jj = kk;        kk = ll;
     end
     
-    rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n));
+    rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n), rhoType);
     Pe(n, 1) = (rho*area)./ (3*epsilon);                     % calculate Poisson's RHS for each element
     
     % Assemble the Global S Matrix
@@ -107,15 +108,18 @@ end
 RHS = RHS + P;
 
 %% Invert using the backslash operator
-final_solution = S\RHS;
+phi = S\RHS;
+E = -gradient(phi);
 
 
 %% Plot the solution
 figure(1)
-trisurf(nelematrix,x,y,final_solution)
+trisurf(nelematrix,x,y,phi)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
 view(2);
 colorbar;
-shading interp; set(gcf,'render','zbuffer');
+shading interp; 
+hold
+set(gcf,'render','zbuffer');
