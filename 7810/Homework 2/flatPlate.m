@@ -100,7 +100,9 @@ for gnode = 1:nodes                                          % loop through the 
     [eleID, localID] = getElementIndices(MeshData, gnode);   % get list of elements that share a node
     totalEle = length(eleID);                                % number of elements sharing a node
     for ei = 1:totalEle                                      % loop through each element sharing the node
+        if constr(gnode) ~= 1
         P(gnode) = P(gnode) + Pe(eleID(ei));                 % add element's Poisson's RHS already calculated together
+        end
     end
 end
 

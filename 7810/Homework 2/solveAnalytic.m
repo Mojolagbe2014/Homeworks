@@ -56,9 +56,7 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
                 sigma2 = sigma2 + A*sin((n*pi*x(ni))/width)*sin((n*pi*x(ni))/height)*sin((n*pi*y(ni))/height);
             end
         end
-        if constr(ni) == 1
-            phi(ni) =   phi(ni) + sigma2; 
-        else
+        if constr(ni) ~= 1
             phi(ni) = (((4 * V1)./pi) *  sigma) + sigma2;
         end
     end
