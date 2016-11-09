@@ -8,7 +8,7 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
 %           height:  Height of the domain
 %           h:       Grid resolution
 %           a,b,c,d: Boundary voltages in B|L|T|R
-%           V0:      Applied potential
+%           V1:      Applied potential
 %           max_iter:Maximum number of odds itmes to be added
 %       
 %       Returns
@@ -46,10 +46,10 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
     %% solve the grid matrix with analytic solution
     for ni = 1:MeshData.nNodes
         sigma = 0;
-        for m = 1:1:maxIter
+        for m = 1:2:maxIter
             sigma = sigma + (sin((m*pi*x(ni))./width) * sinh((m*pi*y(ni))./width)) ./ (m * sinh((m*pi*height)./width));
             sigma2 = 0;
-            for n = 1:1:maxIter
+            for n = 1:2:maxIter
                 A = (1/(((m*pi/width).^2) + ((n*pi/height).^2))) *  (((((-1).^(m+n))*144*width*height)/(m*n*pi))*(1-(1/height)*(1-(-1).^n)));
                 sigma2 = sigma2 + A*sin((n*pi*x(ni))/width)*sin((n*pi*x(ni))/height)*sin((n*pi*y(ni))/height);
             end

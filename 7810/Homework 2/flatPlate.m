@@ -9,13 +9,13 @@ close all; clear; clc;
 
 %% set parameters 
 V0 = 0;                                                     % ground potential
-V1 = 100;                                                   % probe potential
-rhoType = 1;                                                % source excitation variations - has values [0|1|2|3|4]
+V1 = 1;                                                   % probe potential
+rhoType = 5;                                                % source excitation variations - has values [0|1|2|3|4]
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 nodes = MeshData.nNodes;                                    % the number of nodes
 x = MeshData.xNodes;                                        % the x-coordinate of the nodes
 y = MeshData.yNodes;                                        % the y-coordinate of the nodes
-epsilon = 10.0;                                             % permittivity of the dielectric material
+epsilon = 1.0;                                             % permittivity of the dielectric material
 nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];             % create the nodes matrix
 nelements = MeshData.nElements;                             % obtain the total number of elements
 nelematrix = MeshData.EleMatrix;                            % elements with corresponding 3 global nodes

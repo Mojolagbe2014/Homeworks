@@ -5,6 +5,7 @@ function density = getDensity(x, y, type)
         case 2; density = 1 + 4*(x.^2);
         case 3; density = ((exp(-x))*(y.^(ceil(abs(x))))/factorial((floor(abs(x)))));
         case 4; density = (((exp(-x))*(y.^(ceil(abs(x)))) + ((exp(-y))*(x.^(ceil(abs(y))))))/factorial((floor(abs(x)))));
+        case 5; density = x*(y-1);
     end
         
 end
