@@ -9,8 +9,8 @@ close all; clear; clc;
 
 %% set parameters 
 V0 = 0;                                                     % ground potential
-V1 = 1;                                                   % probe potential
-rhoType = 5;                                                % source excitation variations - has values [0|1|2|3|4]
+V1 = 0.04;                                                   % probe potential
+rhoType = ;                                                % source excitation variations - has values [0|1|2|3|4]
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 nodes = MeshData.nNodes;                                    % the number of nodes
 x = MeshData.xNodes;                                        % the x-coordinate of the nodes
