@@ -30,6 +30,6 @@ function [l, d] = ldlhImproved(A)
             d(i) = d(i) - l(i,k)*ctranspose(l(i,k))*d(k);
         end
     end
-    d = sparse(1:n, 1:n, d);                            % return d as a sparse matrix
+%     d = sparse(1:n, 1:n, d);                            % return d as a sparse matrix
 end
 
