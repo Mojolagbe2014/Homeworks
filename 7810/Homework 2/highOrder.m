@@ -73,9 +73,9 @@ for n  = 1:nelements
     
      
    % Calculate angle of each vertex
-   d1 = sqrt(abs(x(ii)-x(jj))^2+abs(y(ii)-y(jj))^2);%find the distance between two  points(ii,jj)
-   d2 = sqrt(abs(x(ii)-x(kk))^2+abs(y(ii)-y(kk))^2);%find the distance between two  points (ii,kk)
-   d3 = sqrt(abs(x(kk)-x(jj))^2+abs(y(kk)-y(jj))^2);%find the distance between two  points (jj,kk)
+   d1 = sqrt(abs(x(ii)-x(jj))^2+abs(y(ii)-y(jj))^2);
+   d2 = sqrt(abs(x(ii)-x(kk))^2+abs(y(ii)-y(kk))^2);
+   d3 = sqrt(abs(x(kk)-x(jj))^2+abs(y(kk)-y(jj))^2);
    d  = [d1 d2 d3];
    b  = max(d);
    a  = min(d);
