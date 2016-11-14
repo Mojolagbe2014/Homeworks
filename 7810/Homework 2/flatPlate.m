@@ -9,7 +9,7 @@ close all; clear; clc;
 
 %% set parameters 
 V0 = 0;                                                     % ground potential
-V1 = 1;                                                   % probe potential
+V1 = 100;                                                   % probe potential
 rhoType = 5;                                                % source excitation variations - has values [0|1|2|3|4]
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 nodes = MeshData.nNodes;                                    % the number of nodes
@@ -97,7 +97,7 @@ end
 %% calculate global Poisson's RHS from global nodes
 P = zeros(nodes, 1);                                         % initialize Poisson's RHS
 for gnode = 1:nodes                                          % loop through the global nodes
-    [eleID, localID] = getElementIndices(MeshData, gnode);   % get list of elements that share a node
+    [eleID, localID] = getElementIndices(nelematrix, gnode);   % get list of elements that share a node
     totalEle = length(eleID);                                % number of elements sharing a node
     for ei = 1:totalEle                                      % loop through each element sharing the node
         if constr(gnode) ~= 1

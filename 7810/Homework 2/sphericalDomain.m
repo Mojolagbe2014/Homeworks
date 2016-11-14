@@ -9,13 +9,13 @@ close all; clear; clc;
 
 %% set parameters 
 V0 = 0;                                                     % ground potential
-V1 = 0.001;                                                   % probe potential
-rhoType = 4;                                                % source excitation variations has values [0|1|2|3|4]
-MeshData = GmshReadM('mesh_files/sphere.msh');              % Use GmshreadM to read the Gmsh mesh file
+V1 = 1;                                                   % probe potential
+rhoType = 5;                                                % source excitation variations - has values [0|1|2|3|4]
+MeshData = GmshReadM('mesh_files/sphere.msh');          % Use GmshreadM to read the Gmsh mesh file
 nodes = MeshData.nNodes;                                    % the number of nodes
 x = MeshData.xNodes;                                        % the x-coordinate of the nodes
 y = MeshData.yNodes;                                        % the y-coordinate of the nodes
-epsilon = 10.0;                                             % permittivity of the dielectric material
+epsilon = 1.5;                                             % permittivity of the dielectric material
 nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];             % create the nodes matrix
 nelements = MeshData.nElements;                             % obtain the total number of elements
 nelematrix = MeshData.EleMatrix;                            % elements with corresponding 3 global nodes
@@ -25,9 +25,9 @@ constr = zeros(nodes,1);                                    % Constraint identif
 potent = zeros(nodes,1);                                    % Solution vector, this is what is solved for
 constr(MeshData.BdNodes) = 1;                               % Set constraint vector equal to one for boundary values
  
-tmp = find((MeshData.LinePhysics == 102)  | (MeshData.LinePhysics == 103));
+tmp = find((MeshData.LinePhysics == 102)  | (MeshData.LinePhysics == 104));
 ProbePoints = unique(MeshData.LineMatrix(tmp,:));           % set probe points
-tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 104));
+tmp = find((MeshData.LinePhysics == 101) | (MeshData.LinePhysics == 103));
 GroundPoints = unique(MeshData.LineMatrix(tmp,:));          % set ground points
 
 potent(ProbePoints) =  V1;                                  % set  boundary condition for probe points
@@ -100,7 +100,9 @@ for gnode = 1:nodes                                          % loop through the 
     [eleID, localID] = getElementIndices(MeshData, gnode);   % get list of elements that share a node
     totalEle = length(eleID);                                % number of elements sharing a node
     for ei = 1:totalEle                                      % loop through each element sharing the node
+        if constr(gnode) ~= 1
         P(gnode) = P(gnode) + Pe(eleID(ei));                 % add element's Poisson's RHS already calculated together
+        end
     end
 end
 
@@ -108,15 +110,18 @@ end
 RHS = RHS + P;
 
 %% Invert using the backslash operator
-final_solution = S\RHS;
+phi = S\RHS;
+E = -gradient(phi);
 
 
 %% Plot the solution
 figure(1)
-trisurf(nelematrix,x,y,final_solution)
+trisurf(nelematrix,x,y,phi)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
 view(2);
 colorbar;
-shading interp; set(gcf,'render','zbuffer');
+shading interp; 
+hold
+set(gcf,'render','zbuffer');
