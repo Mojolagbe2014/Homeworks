@@ -1,6 +1,5 @@
-%% choleskyDriver.m
-%    Shows the cholesky factorization of 
-%       a random hermitian/symmetric positive definite matrix
+%% ldlhImprovedDriver.m
+%    Shows the LDLH factorization of a matrix A
 %        
 %       Course:     ECE 7650
 %       Homework:   2
@@ -14,24 +13,27 @@
 clear; clc; close all;
 
 %% set parameters
-n = [10, 100, 500, 1000];                           % set various dimensions as a row vector
+n = [10, 100, 500, 1000];                     % set various dimensions as a row vector
 [n_siz, n_size] = size(n);                          % get the number of total elements in the n vector
 
 for j = 1:n_size
-    A = spd(n(j));                                   % generate random Hermitian positive definite matrix of nxn dimension
+    A = rherm(n(j));                                   % generate random Hermitian matrix of nxn dimension
     
     
 %% decompose matrix A
     tic
-    [l] = cholesky(A);                              % factorize A using cholesky algorithm
+    [l,dv] = ldlhImproved(A);                       % factorize A using ldlh algorithm
     tarr(j) = toc;                                  % store the timetaken in a row vector (tarr) for each dimensional loop of A
-    
-    proofs(j, 1) = norm(A - (l*ctranspose(l)));     % proof that the cholesky decomposition works
+    d = sparse(1:n(j), 1:n(j), dv);
+    proofs(j, 1) = norm(A - (l*d*ctranspose(l)));   % proof that the LDLH decomposition works
+    proofs_2(j, 1:2) = [real(det(A))  prod(dv)];    % show that determinant of A is the same as product of diagonal entries D
 end
 
 %% output the results
-disp(' ============ norm(A - LLH) for the input dimensions ============');
+disp(' ============ norm(A - LDLH) for the input dimensions ============');
 proofs
+disp(' ============ Determinant A and Product of D for the input dimensions ============');
+proofs_2
 
 data = polyfit(n, tarr, 3);
 minDim = min(n);
@@ -46,10 +48,10 @@ plot(n, tarr, 'k*', 'MarkerSize', 5);
 % calculate complexity of theoritical result
 n = 1:1000;
 f = 2*(n.^3)/3;
-f = f*(2040e-9);
+f = f*(2078e-9);
 
 plot(n, f);
-title('Complexity of Cholesky Factorization');
+title('Complexity of LDLH Factorization');
 xlabel('Input Matrix A^{n x n}');
 ylabel('Timetaken (s) ');
 legend('Algorithmic Complexity', 'Actual Points ', 'Theoritical Complexity');
