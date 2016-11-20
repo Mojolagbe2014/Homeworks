@@ -24,6 +24,65 @@ nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];             % create the nodes m
 nelements = MeshData.nElements;                             % obtain the total number of elements
 nelematrix = MeshData.EleMatrix;                            % elements with corresponding 3 global nodes
 
+
+
+for n = 1:nelements
+    ii = nelematrix(n,1);
+    jj = nelematrix(n,2);
+    kk = nelematrix(n,3);
+    
+    addNod1X = (x(ii) + x(jj))/2;
+    addNod1Y = (y(ii) + y(jj))/2;
+    addNod2X = (x(jj) + x(kk))/2;
+    addNod2Y = (y(jj) + y(kk))/2;
+    addNod3X = (x(ii) + x(kk))/2;
+    addNod3Y = (y(ii) + y(kk))/2;
+    
+    pt = [addNod1X, addNod1Y];
+    xyofnmatrix = nodes_matrix(:, 2:3);
+    [~,index] = ismember(pt,xyofnmatrix,'rows');
+    if index ~= 0
+        temp = nelematrix(n,2);
+        nelematrix(n,2) = index;
+        nelematrix(n,4) = temp;
+    else
+        temp = nelematrix(n,2);
+        nodes = nodes + 1;
+        nelematrix(n,2) = nodes;
+        nelematrix(n,4) = temp;
+        x(nodes) = addNod1X;
+        y(nodes) = addNod1Y;
+        nodes_matrix = [nodes_matrix; [nodes pt]];
+    end
+    
+    pt = [addNod2X, addNod2Y];
+    xyofnmatrix = nodes_matrix(:, 2:3);
+    if index ~= 0
+        nelematrix(n,5) = index;
+    else
+        nodes = nodes + 1;
+        nelematrix(n,5) = nodes;
+        x(nodes) = addNod2X;
+        y(nodes) = addNod2Y;
+        nodes_matrix = [nodes_matrix; [nodes pt]];
+    end
+    
+    pt = [addNod3X, addNod3Y];
+    xyofnmatrix = nodes_matrix(:, 2:3);
+    if index ~= 0
+        temp = nelematrix(n,3);
+        nelematrix(n,3) = index;
+        nelematrix(n,6) = temp;
+    else
+        temp = nelematrix(n,3); nodes = nodes + 1;
+        nelematrix(n,3) = nodes;
+        nelematrix(n,6) = temp;
+        x(nodes) = addNod3X;
+        y(nodes) = addNod3Y;
+        nodes_matrix = [nodes_matrix; [nodes pt]];
+    end
+end  
+
 constr = zeros(nodes,1);                                    % Constraint identification vector, will be set
                                                             % to 1 if the node is a Dirichlet node
 potent = zeros(nodes,1);                                    % Solution vector, this is what is solved for
@@ -43,43 +102,47 @@ selm = zeros(3,3);
 RHS = zeros(nodes,1);
 S = zeros(nodes,nodes);
 S = sparse(S);
-Te = zeros(nodes,nodes);
-Te = sparse(Te);
-
+Tg = zeros(nodes,nodes);
+Tg = sparse(Tg);
 
 %% obtain stiffness matrices as a Laplacian Problem and calculate Poisson's RHS for each element 
 for n = 1:nelements
     ii = nelematrix(n,1);
-    jj = nelematrix(n,2);
-    kk = nelematrix(n,3);
-    
-    ij = nelements + nelematrix(n,1);
-    jk = nelements + nelematrix(n,2);
-    ki = nelements + nelematrix(n,3);
-    nelematrix(n,4) = ij; nelematrix(n,5) = jk; nelematrix(n,6) = ki;
-    
-    ll = 0;
+    ij = nelematrix(n,2);
+    ki = nelematrix(n,3);
+    jj = nelematrix(n,4);
+    jk = nelematrix(n,5);
+    kk = nelematrix(n,6);
     
     % Calculate the area current element
-    area = ((x(jj)-x(ii)).*(y(kk)-y(ii)) - (x(kk)-x(ii)).*(y(jj)-y(ii)))/ 2.0;
+    area = MeshData.TriangleArea(n);
     
     theta = TRIangles([x(ii) y(ii); x(jj) y(jj); x(kk) y(kk)]);
-        
     % Calculate S-element for an individual element
+    iarr1 = [1, 4, 6]; iarr2 = [1, 2, 6]; iarr3 = [3, 4, 1];
     for i = 1:6
        for j = 1:6
-           temp =0;
-           for q = 1:3
-               if  q == 1; Qt(1:6, 1:6, q) = (1/6).*Q(1:6, 1:6, 1);
-               else Qt(1:6, 1:6, q) = R * Qt(1:6, 1:6, (q-1)) * R';
-               end
-               Qtemp = Qt(1:6, 1:6, q);
-               temp = temp + Qtemp(i,j)*cotd(theta(q));
+           if ~isempty(find(iarr1, i)) && ~isempty(find(iarr1, j)) 
+               theta = TRIangles([x(ii) y(ii); x(jj) y(jj); x(kk) y(kk)]);
            end
-           selm(i,j) = temp;
+           if ~isempty(find(iarr2, i)) && ~isempty(find(iarr2, j)) 
+               theta = TRIangles([x(ii) y(ii); x(ij) y(ij); x(kk) y(kk)]);
+           end
+           if ~isempty(find(iarr3, i)) && ~isempty(find(iarr3, j)) 
+               theta = TRIangles([x(jj) y(jj); x(ki) y(ki); x(kk) y(kk)]);
+           end
+           selm(i,j) =0;
+           for q = 1:3
+               if  q == 1; Qt = (1/6).*Q;
+               else Qt(1:6, 1:6, q) = R * (Qt(1:6, 1:6, (q-1)) * R');
+               end
+               selm(i,j) = selm(i,j) + Qt(i,j, q)*cotd(theta(q));
+           end
+           
        end       
    end
-
+    
+    
     
     rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n), rhoType);
     Pe(n, 1) = (rho*area)./ (3*epsilon);                     % calculate Poisson's RHS for each element
@@ -88,25 +151,18 @@ for n = 1:nelements
     % Assemble the Global RHS for BC
     for l = 1:6
         irow = nelematrix(n,l);
-        if irow>nelements
-            irow = irow - nelements;
-        end
         if constr(irow) == 1                            % If it is a constrainted node
             S(irow,irow) = 1;                           % add a 1 to the diagonal on the irow row
             RHS(irow) = potent(irow);                   % RHS will be the potential
         else                                            % If it is a free node       
             for m = 1:6                                 % go around the other nodes if it is a free node
                 icol = nelematrix(n,m);
-                if icol <4 && constr(icol) == 1
+                if constr(icol) == 1
                     RHS(irow) = RHS(irow) - selm(l,m).*potent(icol);
+                    Tg(irow,icol) = Tg(irow,icol) + telm(l,m);
                 else
-                    if icol <= nelements 
-                        S(irow,icol) = S(irow,icol) + selm(l,m); 
-                        Te(irow,icol) = Te(irow,icol) + telm(l,m);
-                    else
-                        S(irow,icol-nelements) = S(irow,icol-nelements) + selm(l,m);
-                        Te(irow,icol-nelements) = Te(irow,icol-nelements) + telm(l,m);
-                    end
+                    S(irow,icol) = S(irow,icol)+selm(l,m); 
+                    Tg(irow,icol) = Tg(irow,icol) + telm(l,m);
                 end % if constr(icol) == 1
             end % For m
         end % if constr(irow) == 1
@@ -114,7 +170,7 @@ for n = 1:nelements
 end
 
 
-%% calculate global Poisson's RHS from global nodes
+% calculate global Poisson's RHS from global nodes
 P = zeros(nodes, 1);                                         % initialize Poisson's RHS
 for gnode = 1:nodes                                          % loop through the global nodes
     [eleID, localID] = getElementIndices(nelematrix, gnode);   % get list of elements that share a node
@@ -127,7 +183,7 @@ for gnode = 1:nodes                                          % loop through the 
 end
 
 %% add global Poisson's RHS to already calculated RHS of the Laplacian solutions
-RHS = RHS + (Te*P);
+RHS = RHS + (Tg*P);
 
 %% Invert using the backslash operator
 phi = S\RHS;

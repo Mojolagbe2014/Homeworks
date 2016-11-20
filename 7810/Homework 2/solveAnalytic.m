@@ -32,6 +32,7 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
     constr(MeshData.BdNodes) = 1;   
     x = MeshData.xNodes;                                        
     y = MeshData.yNodes;
+    if mod(maxIter, 2) ~= 0; maxIter = maxIter - 1; end
  
     tmp = find((MeshData.LinePhysics == side(4)));
     probePoints = unique(MeshData.LineMatrix(tmp, :));           
