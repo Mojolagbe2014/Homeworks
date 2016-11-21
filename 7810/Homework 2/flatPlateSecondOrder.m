@@ -1,9 +1,9 @@
-%% sphericalDomain.m
+%% flatPlateSecondOrder.m
 %   Calculate and demonstrate potential distribution
-%       on a spherical plate with source of excitation.
+%       on a flat plate with source of excitation.
 %
-%       Problem: Poisson's Equation on a Spherical Plate
-%       Method:  Numerical Solution
+%       Problem: Poisson's Equation on a Flat Plate
+%       Method:  Numerical Solution (High Order)
 %        
 %       Course:     ECE 7810
 %       Homework:   2
@@ -20,15 +20,15 @@ sides = [101 104 103 102];
 V1 = 100; 
 rhoType = 5;
 epsilon = 1.5;
-MeshData = GmshReadM('mesh_files/sphere.msh');          % Use GmshreadM to read the Gmsh mesh file
 
-%% solve the Poisson's problem in First Order
-[phi] = solveFirstOrder(MeshData,V1, rhoType, epsilon, sides);
+MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 
+%% solve the Poisson's problem in Second Order
+[phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides, 'data/Q.mat', 'data/R.mat', 'data/T.mat');
 
 %% Plot the solution
 figure(1)
-trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
+trisurf(MeshData.EleMatrix1,MeshData.xNodes,MeshData.yNodes,phi)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');

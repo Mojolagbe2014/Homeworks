@@ -13,8 +13,6 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
 %       
 %       Returns
 %           phi:    Matrix of potential distribution
-%           nx:     Number of points in x direction
-%           ny:     Number of points in y direction
 %        
 %       Course:     ECE 7810
 %       Homework:   1

@@ -4,9 +4,9 @@ sides = [101 104 103 102];
 V1 = 100; 
 width = 1;
 height = 1;
-maxIter = 100;
+maxIter = 150;
 
-MeshData = GmshReadM('mesh_files/flat_plate1.msh');          % Use GmshreadM to read the Gmsh mesh file
+MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, sides);
 
 %% Plot the solution
