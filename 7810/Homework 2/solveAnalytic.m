@@ -4,19 +4,19 @@ function [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, side)
 %   using Analytical Solution (Poisson's Problem)
 %
 %       Parameters
-%           width:   Width of the domain
-%           height:  Height of the domain
-%           h:       Grid resolution
-%           a,b,c,d: Boundary voltages in B|L|T|R
-%           V1:      Applied potential
-%           max_iter:Maximum number of odds itmes to be added
+%           width:      Width of the domain
+%           height:     Height of the domain
+%           MeshData:   Returned object from ReadGMSH function
+%           V1:         Applied potential
+%           maxIter:    Maximum number of iterations for fourier expansion
+%           side:       Boundaries line physics
 %       
 %       Returns
-%           phi:    Matrix of potential distribution
+%           phi:        Potential distribution as column vector
 %        
 %       Course:     ECE 7810
-%       Homework:   1
-%       Sub. Date:  November 4, 2016
+%       Homework:   2
+%       Sub. Date:  November 3, 2016
 %
 %           Author:     Jamiu Babatunde Mojolagbe
 %           Department: Electrical and Computer Engineering
