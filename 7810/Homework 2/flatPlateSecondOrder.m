@@ -16,11 +16,10 @@
 close all; clear; clc;
 
 %% set parameters 
-sides = [101 104 103 102];
-V1 = 100; 
-rhoType = 5;
-epsilon = 1.5;
-
+sides = [101 104 103 102];                                  % line physics for the domain (probe point comes last)
+V1 = 100;                                                   % apply potential to the probe point
+rhoType = 5;                                                % set the type of excitation used (1-5)
+epsilon = 1.5;                                              % dielectric constant of the domain
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 
 %% solve the Poisson's problem in Second Order
