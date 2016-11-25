@@ -1,7 +1,7 @@
 close all; clear; clc;
 
 %% set parameters 
-pt = [0.601520508819592, 0.302588842619159];
+pt = [0.701520508819592, 0.602588842619159];
 sides = [101 104 103 102];                                  % line physics for the domain (probe point comes last)
 V1 = 100;                                                   % apply potential to the probe point
 rhoType = 5;                                                % set the type of excitation used (1-5)
@@ -71,10 +71,15 @@ for m = 1:1:maxIter
 end
     phin = (((4 * V1)./pi) *  sigma) + sigma2;
 
-err = abs(phi1 - phi2(1:568));
+err = abs(phi - phi1);
 for i = 1:length(err)
     if err(i) ~= 0; err(i) = err(i)/abs(phi1(i)); end
 end
+err2 = abs(phi - phi2(1:length(err)));
+for i = 1:length(err2)
+    if err2(i) ~= 0; err2(i) = err2(i)/abs(phi2(i)); end
+end
+
 figure(1)
 trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,err)
 zlabel('Potential (V)');
@@ -85,3 +90,10 @@ colorbar;
 shading interp; 
 hold
 set(gcf,'render','zbuffer');
+
+figure(2)
+plot(1:length(err), err, 1:length(err), err2);
+title('Comparing Accuracy of 1^{st} Order Against 2^{nd} Elements');
+ylabel('Errors in the Numerical Solution');
+xlabel('Node Numbers');
+legend('Error in the 1^{st} Order Elements', 'Error in the 2^{nd} Order Elements');
