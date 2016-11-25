@@ -28,7 +28,10 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% Plot the solution
 figure(1)
-trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
+% trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
+tri = delaunay(MeshData.xNodes,MeshData.yNodes);
+tr = triangulation(tri,MeshData.xNodes,MeshData.yNodes,phi);
+trisurf(tr)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
