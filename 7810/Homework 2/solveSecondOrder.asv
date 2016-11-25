@@ -80,7 +80,7 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nelematrix(n,5) = index;
         else
             nodes = nodes + 1;
-            if (~isempty(find(MeshData.BdNodes==jj)) && ~isempty(find(MeshData.BdNodes==kk)))
+            if (kk <= max(MeshData.BdNodes) && jj <= max(MeshData.BdNodes))
                 [~,idx] = ismember([kk jj], MeshData.LineMatrix,'rows');
                 if idx == 0; [~,idx] = ismember([jj kk], MeshData.LineMatrix,'rows'); end
                 linePhy = MeshData.LinePhysics(idx);
@@ -103,7 +103,7 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nelematrix(n,6) = temp;
         else
             nodes = nodes + 1;
-            if (~isempty(find(MeshData.BdNodes==kk)) && ~isempty(find(MeshData.BdNodes==ii)))
+            if (kk <= max(MeshData.BdNodes) && ii <= max(MeshData.BdNodes))
                 [~,idx] = ismember([kk ii], MeshData.LineMatrix,'rows');
                 if idx == 0; [~,idx] = ismember([ii kk], MeshData.LineMatrix,'rows'); end
                 linePhy = MeshData.LinePhysics(idx);

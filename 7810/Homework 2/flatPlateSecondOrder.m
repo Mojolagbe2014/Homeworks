@@ -27,7 +27,7 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% Plot the solution
 figure(1)
-trisurf(MeshData.EleMatrix1,MeshData.xNodes,MeshData.yNodes,phi)
+trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');

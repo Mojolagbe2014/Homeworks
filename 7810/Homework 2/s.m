@@ -1,4 +1,4 @@
-function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides, Qpath, Rpath, Tpath)
+function [phi, MeshData] = s(MeshData,V1, rhoType, epsilon, sides, Qpath, Rpath, Tpath)
 %solveFirstOrder.m 
 %   Computes scalar potential,phi(x,y) on a rectangular grid
 %   using Second Order Solution (Poisson's Problem)
@@ -28,13 +28,14 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
     load(Rpath);
     load(Tpath);
     
-    %% set parameters
+    %% set parameters 
     nodes = MeshData.nNodes;                                    % the number of nodes
     x = MeshData.xNodes;                                        % the x-coordinate of the nodes
     y = MeshData.yNodes;                                        % the y-coordinate of the nodes
+    nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];             % create the nodes matrix
     nelements = MeshData.nElements;                             % obtain the total number of elements
     nelematrix = MeshData.EleMatrix;                            % elements with corresponding 3 global nodes
-    nodes_matrix = [MeshData.NodesID(:) x(:) y(:)];
+
     %% create extra points (second order points) on each of the elements
     for n = 1:nelements
         ii = nelematrix(n,1);
@@ -57,13 +58,12 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nelematrix(n,4) = temp;
         else
             nodes = nodes + 1;
-            if (~isempty(find(MeshData.BdNodes==ii)) && ~isempty(find(MeshData.BdNodes==jj)))
+            if (ii <= max(MeshData.BdNodes) && jj <= max(MeshData.BdNodes))
                 [~,idx] = ismember([ii jj], MeshData.LineMatrix,'rows');
                 if idx == 0; [~,idx] = ismember([jj ii], MeshData.LineMatrix,'rows'); end
                 linePhy = MeshData.LinePhysics(idx);
                 MeshData.LinePhysics = [MeshData.LinePhysics; linePhy];
                 MeshData.LineMatrix = [MeshData.LineMatrix; [nodes, nodes]];
-                MeshData.BdNodes = [MeshData.BdNodes; nodes];
             end
             temp = nelematrix(n,2);
             nelematrix(n,2) = nodes;
@@ -80,13 +80,12 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nelematrix(n,5) = index;
         else
             nodes = nodes + 1;
-            if (~isempty(find(MeshData.BdNodes==jj)) && ~isempty(find(MeshData.BdNodes==kk)))
+            if (kk <= max(MeshData.BdNodes) && jj <= max(MeshData.BdNodes))
                 [~,idx] = ismember([kk jj], MeshData.LineMatrix,'rows');
                 if idx == 0; [~,idx] = ismember([jj kk], MeshData.LineMatrix,'rows'); end
                 linePhy = MeshData.LinePhysics(idx);
                 MeshData.LinePhysics = [MeshData.LinePhysics; linePhy];
                 MeshData.LineMatrix = [MeshData.LineMatrix; [nodes, nodes]];
-                MeshData.BdNodes = [MeshData.BdNodes; nodes];
             end
             nelematrix(n,5) = nodes;
             x(nodes) = addNod2X; 
@@ -103,13 +102,12 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nelematrix(n,6) = temp;
         else
             nodes = nodes + 1;
-            if (~isempty(find(MeshData.BdNodes==kk)) && ~isempty(find(MeshData.BdNodes==ii)))
+            if (kk <= max(MeshData.BdNodes) && ii <= max(MeshData.BdNodes))
                 [~,idx] = ismember([kk ii], MeshData.LineMatrix,'rows');
                 if idx == 0; [~,idx] = ismember([ii kk], MeshData.LineMatrix,'rows'); end
                 linePhy = MeshData.LinePhysics(idx);
                 MeshData.LinePhysics = [MeshData.LinePhysics; linePhy];
                 MeshData.LineMatrix = [MeshData.LineMatrix; [nodes, nodes]];
-                MeshData.BdNodes = [MeshData.BdNodes; nodes];
             end
             temp = nelematrix(n,3); 
             nelematrix(n,3) = nodes;
@@ -119,7 +117,8 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
             nodes_matrix = [nodes_matrix; [nodes pt]];
         end
     end  
-
+    
+    %%  set other parameters after second order points are added
     constr = zeros(nodes,1);                                    % Constraint identification vector, will be set
                                                                 % to 1 if the node is a Dirichlet node
     potent = zeros(nodes,1);                                    % Solution vector, this is what is solved for
@@ -132,7 +131,7 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
 
     potent(ProbePoints) =  V1;                                  % set  boundary condition for probe points
     potent(GroundPoints) = 0;                                   % set  boundary condition for ground points
-    
+
     %% Allocate memory
     RHS = zeros(nodes,1);
     S = zeros(nodes,nodes);
@@ -144,10 +143,11 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
         kk = nelematrix(n,6);
 
         % Calculate the area current element
-        area = ((x(jj)-x(ii)).*(y(kk)-y(ii)) - (x(kk)-x(ii)).*(y(jj)-y(ii)))/ 2.0;
+        area = MeshData.TriangleArea(n);
 
         theta = TRIangles([x(ii) y(ii); x(jj) y(jj); x(kk) y(kk)]);
-        selm = zeros(6, 6);
+        theta = TRIangles([x(ii) y(ii); x(jj) y(jj); x(kk) y(kk)]);
+        % Calculate S-element for an individual element
         for i = 1:6
            for j = 1:6
                selm(i,j) =0;
@@ -163,12 +163,12 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
 
 
         rho = getDensity(MeshData.xCentroids(n), MeshData.yCentroids(n), rhoType);
-        Pe(n, 1) = (rho*area)./ (3*epsilon);                     % calculate Poisson's RHS for each element
+        rho = rho/epsilon;
+        telm(1:6, 1:6) = (area/180) .* T;
 
-        % Assemble the Global S Matrix
+        % Assemble the Global RHS for BC
         for l = 1:6
             irow = nelematrix(n,l);
-
             if constr(irow) == 1                            % If it is a constrainted node
                 S(irow,irow) = 1;                           % add a 1 to the diagonal on the irow row
                 RHS(irow) = potent(irow);                   % RHS will be the potential
@@ -178,34 +178,21 @@ function [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides
                     if constr(icol) == 1
                         RHS(irow) = RHS(irow) - selm(l,m).*potent(icol);
                     else
-                        S(irow,icol) = S(irow,icol) + selm(l,m); 
+                        S(irow,icol) = S(irow,icol)+selm(l,m); 
+%                         RHS(irow) = RHS(irow) - telm(l,m)*rho;
                     end % if constr(icol) == 1
                 end % For m
             end % if constr(irow) == 1
         end
     end
-
+    
     S = sparse(S);
     MeshData.EleMatrix1 = MeshData.EleMatrix;               % backup old element matrix
     MeshData.EleMatrix = nelematrix;                        % store the new element matrix (second other ones)
     MeshData.xNodes = nodes_matrix(:, 2);
     MeshData.yNodes = nodes_matrix(:, 3);
     MeshData.NodesID = nodes_matrix(:, 1);
-
-    %% calculate global Poisson's RHS from global nodes
-    P = zeros(nodes, 1);                                         % initialize Poisson's RHS
-    for gnode = 1:nodes                                          % loop through the global nodes
-        [eleID, localID] = getElementIndices(nelematrix, gnode);   % get list of elements that share a node
-        totalEle = length(eleID);                                % number of elements sharing a node
-        for ei = 1:totalEle                                      % loop through each element sharing the node
-            if constr(gnode) ~= 1
-            P(gnode) = P(gnode) + Pe(eleID(ei));                 % add element's Poisson's RHS already calculated together
-            end
-        end
-    end
-
-    %% add global Poisson's RHS to already calculated RHS of the Laplacian solutions
-    RHS = RHS + P;
+    
 
     %% Invert using the backslash operator
     phi = S\RHS;
