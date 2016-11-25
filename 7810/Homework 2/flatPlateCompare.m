@@ -71,9 +71,12 @@ for m = 1:1:maxIter
 end
     phin = (((4 * V1)./pi) *  sigma) + sigma2;
 
-ans = abs(phi1 - phi2(1:568))./abs(phi1);
+err = abs(phi1 - phi2(1:568));
+for i = 1:length(err)
+    if err(i) ~= 0; err(i) = err(i)/abs(phi1(i)); end
+end
 figure(1)
-trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,ans)
+trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,err)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
