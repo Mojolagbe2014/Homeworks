@@ -27,7 +27,9 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% Plot the solution
 figure(1)
-trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
+tri = delaunay(MeshData.xNodes,MeshData.yNodes);
+tr = triangulation(tri,MeshData.xNodes,MeshData.yNodes,phi);
+trisurf(tr);
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
@@ -36,3 +38,8 @@ colorbar;
 shading interp; 
 hold
 set(gcf,'render','zbuffer');
+
+figure(2)
+pointsize = 10;
+scatter3(MeshData.xNodes,MeshData.yNodes,phi,pointsize, 'filled')
+
