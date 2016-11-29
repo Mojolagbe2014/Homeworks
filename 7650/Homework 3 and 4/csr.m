@@ -5,7 +5,6 @@ function [IA, JA] = csr(A)
 %
 %       Parameters:
 %           A:      A matrix
-%           retA:   0|1 value corresponding to returning A as a vector
 %
 %       Returns:
 %            IA:    Row indices in CSR
