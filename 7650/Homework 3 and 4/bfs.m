@@ -1,7 +1,7 @@
 function [Pi] = bfs(A, i)
 %% bfs.m 
-%   Implements Breadth First Search for re-ordering 
-%       entries and unknowns of an input matrix A 
+%   Implements Breadth First Search for 
+%       adjacency graph traversal reordering permutation 
 %
 %       Parameters:
 %           A:      A sparse matrix in compressed-row format with each row sorted
@@ -23,7 +23,7 @@ function [Pi] = bfs(A, i)
     while count < n 
         Snew = [];                                      % new empty level set
         
-        for i = S                                 % for each node in current level set
+        for i = S                                       % for each node in current level set
             row_start = IA(i);
             row_stop = IA(i+1);
             
