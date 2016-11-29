@@ -1,9 +1,9 @@
-%% flatPlateCompare.m
+%% flatPlateCompareAnalyticVsFOrder.m
 %   Demonstrate relative errors in potential distribution
-%       on a flat plate using 1st and 2nd Order Solutions.
+%       on a flat plate comparing results of 1st Order and Analytic Solutions.
 %
 %       Problem: Poisson's Equation on a Flat Plate
-%       Method:  Analytic & Numerical Solutions (First and Second Order)
+%       Method:  Analytic & Numerical Solutions (First Order)
 %        
 %       Course:     ECE 7810
 %       Homework:   2
@@ -27,20 +27,13 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% solve the grid using  both first and second order
 [phi] = solveAnalytic(width, height, MeshData,V1, maxIter, sides);                                                      % obtain the analytic solution
-[phi1] = solveFirstOrder(MeshData,V1, rhoType, epsilon, sides);                                                         % obtain the 1st order solution
-[phi2, MeshData2] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides, 'data/Q.mat', 'data/R.mat', 'data/T.mat');   % obtain the 2nd order solution
-
+[phi1] = solveFirstOrder(MeshData,V1, rhoType, epsilon, sides); 
 
 %% calculate the relative errors for both the 1st and 2nd order solutions
 err = abs(phi - phi1);
 for i = 1:length(err)
     if err(i) ~= 0; err(i) = err(i)/abs(phi1(i)); end
 end
-err2 = abs(phi - phi2(1:length(err)));                      % use the length of error 1 since there are additional nodes in 2nd order
-for i = 1:length(err2)
-    if err2(i) ~= 0; err2(i) = err2(i)/abs(phi2(i)); end
-end
-
 
 %% output the results
 figure(1)
@@ -62,28 +55,3 @@ title('Relative Errors in 1^{st} Order Solution Against Nodes');
 ylabel('Errors in the Numerical Solution');
 xlabel('Node Numbers');
 
-figure(2)
-subplot(1, 2, 1)
-trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,err2)
-zlabel('Potential (V)');
-ylabel('y-axis');
-xlabel('x-axis');
-title('Error Over the Entire Domain in 2^{nd} Order Solution');
-view(3);
-colorbar;
-shading interp; 
-hold
-set(gcf,'render','zbuffer');
-
-subplot(1, 2, 2)
-plot(1:length(err2), err2);
-title('Relative Errors in 2^{nd} Order Solutions Against Nodes');
-ylabel('Errors in the Numerical Solution (2^{nd})');
-xlabel('Node Numbers');
-
-figure(3)
-plot(1:length(err), err, 1:length(err), err2);
-title('Relative Errors in 1^{st} Order and 2^{nd} Solutions Against Nodes');
-ylabel('Errors in the Numerical Solution');
-xlabel('Node Numbers');
-legend('Error in the 1^{st} Order Solutions', 'Error in the 2^{nd} Order Solutions');

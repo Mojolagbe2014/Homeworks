@@ -28,15 +28,33 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% Plot the solution
 figure(1)
-% trisurf(MeshData.EleMatrix,MeshData.xNodes,MeshData.yNodes,phi)
+subplot(1, 2, 1)
 tri = delaunay(MeshData.xNodes,MeshData.yNodes);
 tr = triangulation(tri,MeshData.xNodes,MeshData.yNodes,phi);
 trisurf(tr)
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
+title('Potential Distribution Over Entire Domain');
 view(2);
 colorbar;
 shading interp; 
 hold
 set(gcf,'render','zbuffer');
+
+subplot(1, 2, 2)
+trisurf(tr);
+zlabel('Potential (V)');
+ylabel('y-axis');
+xlabel('x-axis');
+title('Potential Distribution Over Entire Domain');
+view(3);
+colorbar;
+shading interp; 
+hold
+set(gcf,'render','zbuffer');
+
+figure(2)
+pointsize = 20;
+scatter3(MeshData.xNodes,MeshData.yNodes,phi,pointsize, 'filled');
+title('Scatter Plot of Potential Distribution');

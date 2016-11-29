@@ -16,15 +16,15 @@
 close all; clear; clc;
 
 %% set parameters 
-sides = [101 104 103 102];
-V1 = 100; 
-rhoType = 5;
-epsilon = 1.5;
-MeshData = GmshReadM('mesh_files/sphere.msh');          % Use GmshreadM to read the Gmsh mesh file
+sides = [101 104 103 102];                                  % line physics for the domain (probe point comes last)
+V1 = 100;                                                   % apply potential to the probe point
+rhoType = 5;                                                % set the type of excitation used (1-5)
+epsilon = 1.0;                                              % dielectric constant of the domain
+MeshData = GmshReadM('mesh_files/sphere.msh');              % Use GmshreadM to read the Gmsh mesh file
 
 %% solve the Poisson's problem in First Order
 [phi] = solveFirstOrder(MeshData,V1, rhoType, epsilon, sides);
-
+E = -gradient(phi);
 
 %% Plot the solution
 figure(1)

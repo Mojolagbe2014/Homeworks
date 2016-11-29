@@ -19,7 +19,7 @@ close all; clear; clc;
 sides = [101 104 103 102];                                  % line physics for the domain (probe point comes last)
 V1 = 100;                                                   % apply potential to the probe point
 rhoType = 5;                                                % set the type of excitation used (1-5)
-epsilon = 1.5;                                              % dielectric constant of the domain
+epsilon = 1.0;                                              % dielectric constant of the domain
 MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
 
 %% solve the Poisson's problem in Second Order
@@ -27,19 +27,35 @@ MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to r
 
 %% Plot the solution
 figure(1)
+subplot(1, 2, 1);
 tri = delaunay(MeshData.xNodes,MeshData.yNodes);
 tr = triangulation(tri,MeshData.xNodes,MeshData.yNodes,phi);
 trisurf(tr);
 zlabel('Potential (V)');
 ylabel('y-axis');
 xlabel('x-axis');
+
+title('Potential Distribution Over Entire Domain');
 view(2);
 colorbar;
 shading interp; 
 hold
 set(gcf,'render','zbuffer');
 
+subplot(1, 2, 2)
+trisurf(tr);
+zlabel('Potential (V)');
+ylabel('y-axis');
+xlabel('x-axis');
+title('Potential Distribution Over Entire Domain');
+view(3);
+colorbar;
+shading interp; 
+hold
+set(gcf,'render','zbuffer');
+
 figure(2)
-pointsize = 10;
-scatter3(MeshData.xNodes,MeshData.yNodes,phi,pointsize, 'filled')
+pointsize = 20;
+scatter3(MeshData.xNodes,MeshData.yNodes,phi,pointsize, 'filled');
+title('Scatter Plot of Potential Distribution');
 
