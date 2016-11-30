@@ -2,8 +2,8 @@ close all
 clear all
 clc
 
-nx = 5;
-ny = 5;
+nx = 3;
+ny = 3;
 
 xmin = 0;
 xmax = 1;
