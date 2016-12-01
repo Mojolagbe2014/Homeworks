@@ -65,7 +65,8 @@ function [x, itr, err] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol)
             rhs = bi - sigma1 - sigma2;                                     % obtain the rhs 
             x((row - blockSize + 1):rowe, itr + 1) = Di\rhs;                % solve the equation with backslash operator
         end
-        err = ((norm(x(:, itr+1) - x(:, itr))).^2)/((norm(x(:, itr))).^2);  % calculate the error norm
+        %err = ((norm(x(:, itr+1) - x(:, itr))).^2)/((norm(x(:, itr))).^2); % calculate the error norm
+        err = ((norm((A*x(:, itr)) - b)).^2)/((norm(b)).^2);                % calculate the error norm
         itr = itr + 1;                                                      % increment the counter
     end
     x = x(1:bm, itr);                                                       % return the value of the last iteration
