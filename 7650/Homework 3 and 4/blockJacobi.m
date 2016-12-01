@@ -4,11 +4,16 @@ function [x, itr, err] = blockJacobi(A, b, blockSize, guess, maxIter, tol)
 %       iterative technique for solving linear algera equations
 %
 %       Parameters:
-%           A:      A sparse matrix in compressed-row format with each row sorted
-%           i:      An index of the first vertex (row) to start at
+%           A:          A matrix
+%           b:          The right hand side of A
+%           blockSize:  Minimum size of each block that A is splitted into
+%           guess:      Initial guess
+%           maxIter:    Maximum number of iterations expected
+%           tol:        Expected minimum relative error 
 %       Returns:
-%            P:     A permutation matrix
-%            pi:    A permutation list based on the ordering of the vertices traversed
+%            x:     	Solution vector 
+%            itr:    	Number of iterations done to reach the solution
+%            err:       Relative error norm 
 %
 %   Author: Jamiu Babatunde Mojolagbe
 
