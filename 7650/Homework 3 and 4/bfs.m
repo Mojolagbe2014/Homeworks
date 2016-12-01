@@ -46,6 +46,6 @@ function [P, pi] = bfs(A, i)
     for i = 1:n
         P(i, pi(i)) = 1;
     end
-    P = sparse(P);
+%     P = sparse(P);
 end
 
