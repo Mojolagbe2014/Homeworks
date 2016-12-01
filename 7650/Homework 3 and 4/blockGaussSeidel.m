@@ -6,7 +6,7 @@ function [x, itr, err] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol)
 %       Parameters:
 %           A:          A matrix
 %           b:          The right hand side of A
-%           blockSize:  Minimum size of each block that A is splitted into
+%           blockSize:  Minimum dimension/size of each block that A is splitted into
 %           guess:      Initial guess
 %           maxIter:    Maximum number of iterations expected
 %           tol:        Expected minimum relative error 
@@ -23,6 +23,7 @@ function [x, itr, err] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol)
     itr = 1;                                                                % initialize iteration counter
     err = 99999;                                                            % set error to a certain maximum
     x(1:bm, itr) = guess;                                                   % set solution to the initial guess
+    assert(blockSize <= bn, 'Error! Required block size is greater than A');% confirm blockSize is not greater than A itself
     
     %% solve the matrix A using iterative Gauss-Siedel 
     while itr < maxIter && err > tol
