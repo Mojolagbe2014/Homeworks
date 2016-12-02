@@ -9,7 +9,7 @@ y = 0:dy:1;
 T = reshape(T,nx,ny);
 T = T.';
 
-fontsize = 18;
+fontsize = 12;
 figure(fig_no);
 imagesc(x,y,T);
 set(gca,'YDir','normal');
