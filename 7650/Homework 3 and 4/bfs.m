@@ -1,4 +1,4 @@
-function [P, pi] = bfs(A, i)
+function [P, pi] = bfs(A, i, retSparse)
 %% bfs.m 
 %   Implements Breadth First Search for 
 %       adjacency graph traversal reordering permutation 
@@ -6,6 +6,7 @@ function [P, pi] = bfs(A, i)
 %       Parameters:
 %           A:      A sparse matrix in compressed-row format with each row sorted
 %           i:      An index of the first vertex (row) to start at
+%           retSparse: Boolean value whether to return P as sparse matrix 
 %       Returns:
 %            P:     A permutation matrix
 %            pi:    A permutation list based on the ordering of the vertices traversed
@@ -14,6 +15,7 @@ function [P, pi] = bfs(A, i)
 
     %% obtain the dimension of A inorder to obtain number of rows
     [n, m] = size(A);                                   % obtain the number of rows and cols of A
+    assert(i <= n, 'Specified vertex does not exist');  % confirm chosen index is not more than the matrix size
     pi = [i];                                           % permutation with starting vertex
     count = 1;                                          % initialize counter for the visited nodes
     marked = zeros(n, 1);                               % keep track of the visited nodes
@@ -46,6 +48,6 @@ function [P, pi] = bfs(A, i)
     for i = 1:n
         P(i, pi(i)) = 1;
     end
-%     P = sparse(P);
+    if retSparse; P = sparse(P); end
 end
 

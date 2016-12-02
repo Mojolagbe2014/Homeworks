@@ -1,13 +1,14 @@
-function [P, pi] = rcm(A)
+function [P, pi] = rcm(A, retSparse)
 %% rcm.m 
 %   Implements Reverse Cuthill-McKee (RCM) Ordering of
 %       adjacency graph traversal reordering permutation 
 %
 %       Parameters:
-%           A:      A sparse matrix in compressed-row format with each row sorted
+%           A:          A sparse matrix in compressed-row format with each row sorted
+%           retSparse:  Boolean value whether to return P as sparse matrix 
 %       Returns:
-%            P:     A permutation matrix
-%            pi:    A permutation list based on the ordering of the vertices traversed
+%            P:         A permutation matrix
+%            pi:        A permutation list based on the ordering of the vertices traversed
 %
 %   Author: Jamiu Babatunde Mojolagbe
 
@@ -46,6 +47,6 @@ function [P, pi] = rcm(A)
     for i = 1:n
         P(i, pi(i)) = 1;
     end
-    P = sparse(P);
+    if retSparse; P = sparse(P); end
 end
 
