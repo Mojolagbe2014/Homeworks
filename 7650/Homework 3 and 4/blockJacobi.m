@@ -21,12 +21,12 @@ function [x, itr, err] = blockJacobi(A, b, blockSize, guess, maxIter, tol)
     [bn, bm] = size(A);                                                     % obtain the dimension of A
     p = bn/blockSize;                                                       % obtain block matrix dimension
     itr = 1;                                                                % initialize iteration counter
-    err = 99999;                                                            % set error to a certain maximum
+    errNorm = 99999;                                                            % set error to a certain maximum
     x(1:bm, itr) = guess;                                                   % set solution to the initial guess
     assert(blockSize <= bn, 'Error! Required block size is greater than A');% confirm blockSize is not greater than A itself
     
     %% solve the matrix A using iterative Jacobi 
-    while itr < maxIter && err > tol
+    while itr < maxIter && errNorm > tol
         for i = 1:p
             % cal. the row count stop value
             % and avoid overlapping of blocks
@@ -59,8 +59,9 @@ function [x, itr, err] = blockJacobi(A, b, blockSize, guess, maxIter, tol)
             x((row - blockSize + 1):rowe, itr + 1) = Di\rhs;                % solve the equation with backslash operator
         end
         %err = ((norm(x(:, itr+1) - x(:, itr))).^2)/((norm(x(:, itr))).^2); % calculate the error norm
-        err = ((norm((A*x(:, itr)) - b)).^2)/((norm(b)).^2);                % calculate the error norm
+        errNorm = ((norm((A*x(:, itr+1)) - b)).^2)/((norm(b)).^2);                % calculate the error norm
+        err(itr) = errNorm;
         itr = itr + 1;                                                      % increment the counter
     end
-    x = x(1:bm, itr);                                                       % return last value of the last iteration
+    itr = itr - 1; 
 end

@@ -20,14 +20,15 @@ close all; clear; clc;
 
 
 %% set parameters
-bs = [10; 20; 30; 40; 50; 100; 200; 300; 400; 500; 600; 700; 800; 900; 1000; 1100; 1200; 1300; 1400; 1500];        
-plotSolution = false;                                                        % whether to show obtained solutions in graphs
-graphPause = 5;                                                             % graph will pause for this duration in seconds
+bs = [100 200 500 1000 1600];       % 1000; 2000
+sIdx = 1;
+showPlot = true;                                                        % whether to show obtained solutions in graphs
+graphPause = 10;                                                             % graph will pause for this duration in seconds
 guess = 0;                                                                  % initial guess
-maxIter = 10000;                                                            % maximum expected iterations
-tol = 1e-10;                                                                % relative error tolerance
-nx = 140;                                                                   % correspond to matrix dimension 19600x19600
-ny = 140;
+maxIter = 1000;                                                            % maximum expected iterations
+tol = 1e-6;                                                                % relative error tolerance
+nx = 50;                                                                   % correspond to matrix dimension 19600x19600
+ny = 50;
 xmin = 0;                                                                   
 xmax = 1;
 ymin = 0;
@@ -44,7 +45,7 @@ Ttop = 100;
 %% solve the Laplacian Problem and obtain A and RHS (b)
 [A, b] = getSystemLaplaceSparse(nx,ny, xmin, xmax, ymin, ymax, Tleft, Tright, Tbottom, Ttop);
 
-%% obtain the permutations of A using BFS and RCM
+% obtain the permutations of A using BFS and RCM
 [P, pi] = bfs(A, 1, true);                                                  % obtain BFS permutation of A
 A_bfs = P*A*P';                                                             % Breadth First Search permuted A
 
@@ -56,52 +57,54 @@ for i = 1:length(bs)
     
     %% solve the Ax = b using Block Iterative Techniques
     % block Jacobi without permutation
-    [x1, iter_ju(i), err_ju(i)] = blockJacobi(A, b, blockSize, guess, maxIter, tol);
+    [x1, iter_ju{i}, err_ju{i}] = blockJacobi(A, b, blockSize, guess, maxIter, tol);
     
     % block Gauss-Seidel without permutation
-    [x2, iter_gu(i), err_gu(i)] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol);
+    [x2, iter_gu{i}, err_gu{i}] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol);
     
     % block Jacobi with BFS & RCM permutations
-    [x3, iter_jb(i), err_jb(i)] = blockJacobi(A_bfs, b, blockSize, guess, maxIter, tol);
-    [x4, iter_jr(i), err_jr(i)] = blockJacobi(A_rcm, b, blockSize, guess, maxIter, tol);
+    [x3, iter_jb{i}, err_jb{i}] = blockJacobi(A_bfs, b, blockSize, guess, maxIter, tol);
+    [x4, iter_jr{i}, err_jr{i}] = blockJacobi(A_rcm, b, blockSize, guess, maxIter, tol);
     
     % block Gauss-Seidel with BFS & RCM permutations
-    [x5, iter_gb(i), err_gb(i)] = blockGaussSeidel(A_bfs, b, blockSize, guess, maxIter, tol);
-    [x6, iter_gr(i), err_gr(i)] = blockGaussSeidel(A_rcm, b, blockSize, guess, maxIter, tol);
-
-
-    %% output the results
-    disp(' ');
-    disp(['================== Error and Iteration Count - Block Size (', num2str(blockSize),') ============================']);
-    disp(['Unpermuted Block Jacobi:              Relative Error <<  ', num2str(err_ju(i)), ' Iteration << ', num2str(iter_ju(i)) ]);
-    disp(['Unpermuted Block Gauss-Seidel:        Relative Error <<  ', num2str(err_gu(i)), ' Iteration << ', num2str(iter_gu(i)) ]);
-    disp(['BFS Permuted Block Jacobi:            Relative Error <<  ', num2str(err_jb(i)), ' Iteration << ', num2str(iter_jb(i)) ]);
-    disp(['RCM Permuted Block Jacobi:            Relative Error <<  ', num2str(err_jr(i)), ' Iteration << ', num2str(iter_jr(i)) ]);
-    disp(['BFS Permuted Block Gauss-Seidel:      Relative Error <<  ', num2str(err_gb(i)), ' Iteration << ', num2str(iter_gb(i)) ]);
-    disp(['RCM Permuted Block Gauss-Seidel:      Relative Error <<  ', num2str(err_gr(i)), ' Iteration << ', num2str(iter_gr(i)) ]);
-    
-    if plotSolution
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x1, 1, 'No Permutation Block Jacobi Solution');
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x2, 2, 'No Permutation Block Gauss-Seidel Solution');
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x3, 3, 'Permuted Jacobi with BFS');
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x4, 4, 'Permuted Jacobi with RCM');
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x5, 5, 'Permuted Gauss-Seidel with BFS');
-        plotLaplaceSolution(nx, ny, xmin, xmax, ymin, ymax, x6, 6, 'Permuted Gauss-Seidel with RCM');
-        pause(graphPause);
-    end
+    [x5, iter_gb{i}, err_gb{i}] = blockGaussSeidel(A_bfs, b, blockSize, guess, maxIter, tol);
+    [x6, iter_gr{i}, err_gr{i}] = blockGaussSeidel(A_rcm, b, blockSize, guess, maxIter, tol);
 end
 
-%% show the convergence
-figure(10);
-plot(iter_ju, err_ju, iter_gu, err_gu);
-title('Convergence for ', num2str(dim), 'x', num2str(dim), ' Without Permutation');
+%% show the convergence plot
+figure(1);
+leg = {['Block Jacobi            - ', num2str(bs(1))], ['Block Gauss-Seidel - ', num2str(bs(1))]};
+if sIdx > length(bs) || sIdx < 1; sIdx = length(bs); end
+if sIdx == 1; semilogy(1:iter_ju{1}, err_ju{1},'LineWidth', 1.5); 
+else semilogy(1:iter_ju{1}, err_ju{1}, '--','LineWidth', 1.5);
+end
+hold on
+semilogy(1:iter_gu{1}, err_gu{1},'LineWidth', 1.5)
+for i = 2:sIdx
+    semilogy(1:iter_ju{i}, err_ju{i}, '--','LineWidth', 1.5)
+    semilogy(1:iter_gu{i}, err_gu{i}, 'LineWidth', 1.5);
+    leg = [leg ['Block Jacobi            - ', num2str(bs(i))], ['Block Gauss-Seidel - ', num2str(bs(i))]];
+end
+legend(leg);
+title(['Convergence for ', num2str(dim),'x', num2str(dim), ' Matrix (Unpermuted)']);
 xlabel('Iteration Count');
 ylabel('||Ax - b||/||b||');
-legend('Block Jacobi', 'Block Gauss-Seidel');
+set(gca,'FontSize',fontsize);
 
-figure(11);
-plot(iter_jb, err_jb, iter_jr, err_jr, iter_gb, err_gb, iter_gr, err_gr);
-title('Convergence for ', num2str(dim), 'x', num2str(dim), ' With Permutations');
+figure(2);
+leg = {['Block Jacobi (BFS)            - ', num2str(bs(1))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(1))]};
+if sIdx == 1; semilogy(1:iter_jb{1}, err_jb{1}, 'LineWidth', 1.5); 
+else semilogy(1:iter_jb{1}, err_jb{1}, '--','LineWidth', 1.5);
+end
+hold on
+semilogy(1:iter_gb{1}, err_gb{1},'LineWidth', 1.5)
+for i = 2:sIdx
+    semilogy(1:iter_jb{i}, err_jb{i}, '--', 'LineWidth', 1.5)
+    semilogy(1:iter_gb{i}, err_gb{i}, 'LineWidth', 1.5);
+    leg = [leg ['Block Jacobi (BFS)            - ', num2str(bs(i))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(i))]];
+end
+legend(leg);
+title(['Convergence for ', num2str(dim),'x', num2str(dim), ' Matrix (Permuted)']);
 xlabel('Iteration Count');
 ylabel('||Ax - b||/||b||');
-legend('Block Jacobi with BFS', 'Block Jacobi with RCM', 'Block Gauss-Seidel with BFS', 'Block Gauss-Seidel with RCM');
+set(gca,'FontSize',fontsize);

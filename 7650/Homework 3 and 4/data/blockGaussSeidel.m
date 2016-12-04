@@ -21,7 +21,7 @@ function [x, itr, err] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol)
     [bn, bm] = size(A);                                                     % obtain the dimension of A
     p = bn/blockSize;                                                       % obtain block matrix dimension
     itr = 1;                                                                % initialize iteration counter
-    errNorm = 99999;                                                            % set error to a certain maximum
+    errNorm = 99999;                                                        % set error to a certain maximum
     x(1:bm, itr) = guess;                                                   % set solution to the initial guess
     assert(blockSize <= bn, 'Error! Required block size is greater than A');% confirm blockSize is not greater than A itself
     
@@ -67,9 +67,9 @@ function [x, itr, err] = blockGaussSeidel(A, b, blockSize, guess, maxIter, tol)
             x((row - blockSize + 1):rowe, itr + 1) = Di\rhs;                % solve the equation with backslash operator
         end
         %err = ((norm(x(:, itr+1) - x(:, itr))).^2)/((norm(x(:, itr))).^2); % calculate the error norm
-        errNorm = ((norm((A*x(:, itr+1)) - b)).^2)/((norm(b)).^2);                % calculate the error norm
-        err(itr) = errNorm;
+        errNorm = ((norm((A*x(:, itr+1)) - b)))/((norm(b)));                % calculate the error norm
+        err(itr, 1) = errNorm;
         itr = itr + 1;                                                      % increment the counter
     end
-    itr = itr - 1; 
+    itr = itr - 1;                                                          % decrement the iteration by 1
 end
