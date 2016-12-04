@@ -18,7 +18,7 @@ close all; clear; clc;
 %% set parameters
 bs = [100 200 500 1000 1600];
 plotSolution = true;                                                        % whether to show obtained solutions in graphs
-graphPause = 5;                                                             % graph will pause for this duration in seconds
+graphPause = 15;                                                             % graph will pause for this duration in seconds
 guess = 0;                                                                  % initial guess
 maxIter = 2000;                                                             % maximum expected iterations
 tol = 1e-8;                                                                 % relative error tolerance

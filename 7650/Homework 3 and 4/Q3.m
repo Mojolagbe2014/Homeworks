@@ -20,15 +20,15 @@ close all; clear; clc;
 
 
 %% set parameters
-bs = [100 200 500 1000 1600];       % 1000; 2000
-sIdx = 1;
-showPlot = true;                                                        % whether to show obtained solutions in graphs
-graphPause = 10;                                                             % graph will pause for this duration in seconds
+bs = [200 500 1000 1500 2500 5000 10000];                                   % varing block sizes not neccesarily in ascending or descending order it can be random
+sIdx = 5;                                                                   % number of block sizes to plot, in order of listing above
+showPlot = true;                                                            % whether to show obtained solutions in graphs
+graphPause = 10;                                                            % graph will pause for this duration in seconds
 guess = 0;                                                                  % initial guess
-maxIter = 1000;                                                            % maximum expected iterations
-tol = 1e-6;                                                                % relative error tolerance
-nx = 50;                                                                   % correspond to matrix dimension 19600x19600
-ny = 50;
+maxIter = 1000;                                                             % maximum expected iterations
+tol = 1e-6;                                                                 % relative error tolerance
+nx = 100;                                                                   % correspond to matrix dimension 19600x19600
+ny = 100;
 xmin = 0;                                                                   
 xmax = 1;
 ymin = 0;
@@ -92,16 +92,19 @@ ylabel('||Ax - b||/||b||');
 set(gca,'FontSize',fontsize);
 
 figure(2);
-leg = {['Block Jacobi (BFS)            - ', num2str(bs(1))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(1))]};
-if sIdx == 1; semilogy(1:iter_jb{1}, err_jb{1}, 'LineWidth', 1.5); 
-else semilogy(1:iter_jb{1}, err_jb{1}, '--','LineWidth', 1.5);
+leg = {['Block Jacobi (BFS)            - ', num2str(bs(1))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(1))], ['Block Jacobi (RCM)            - ', num2str(bs(1))], ['Block Gauss-Seidel (RCM) - ', num2str(bs(1))]};
+if sIdx == 1; semilogy(1:iter_jb{1}, err_jb{1}, 'LineWidth', 1.5); hold on; semilogy(1:iter_jr{1}, err_jr{1},'LineWidth', 1.5);
+else semilogy(1:iter_jb{1}, err_jb{1}, '--','LineWidth', 1.5); hold on; semilogy(1:iter_jr{1}, err_jr{1}, '--','LineWidth', 1.5);
 end
-hold on
-semilogy(1:iter_gb{1}, err_gb{1},'LineWidth', 1.5)
+
+semilogy(1:iter_gb{1}, err_gb{1},'LineWidth', 1.5);
+semilogy(1:iter_gr{1}, err_gr{1},'LineWidth', 1.5)
 for i = 2:sIdx
     semilogy(1:iter_jb{i}, err_jb{i}, '--', 'LineWidth', 1.5)
     semilogy(1:iter_gb{i}, err_gb{i}, 'LineWidth', 1.5);
-    leg = [leg ['Block Jacobi (BFS)            - ', num2str(bs(i))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(i))]];
+    semilogy(1:iter_jr{i}, err_jr{i}, '.-', 'LineWidth', 1.5)
+    semilogy(1:iter_gr{i}, err_gr{i}, 'LineWidth', 1.5);
+    leg = [leg ['Block Jacobi (BFS)            - ', num2str(bs(i))], ['Block Gauss-Seidel (BFS) - ', num2str(bs(i))] ['Block Jacobi (RCM)            - ', num2str(bs(i))], ['Block Gauss-Seidel (RCM) - ', num2str(bs(i))]];
 end
 legend(leg);
 title(['Convergence for ', num2str(dim),'x', num2str(dim), ' Matrix (Permuted)']);
