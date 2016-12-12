@@ -1,8 +1,20 @@
-clear all
-close all
-clc
+%% QuestionD.m
+%   Demonstrate FDTD to solve shielding problem of Question E
+%
+%       Problem: 2-D Shielding Problem 
+%       Method:  Numerical Solutions
+%        
+%       Course:     ECE 7810
+%       Homework:   3
+%       Sub. Date:  November 14, 2016
+%
+%           Author:     Jamiu Babatunde Mojolagbe
+%           Department: Electrical and Computer Engineering
+%           Student ID: #7804719
+%           Email:      mojolagm@myumanitoba.ca
+close all; clear; clc;
 
-%*****Options
+%% set parameters
 plotEz = 0;  %plot scattered field (1=yes, 0=no)
 plotHx = 0;
 plotHy = 0;

@@ -37,10 +37,10 @@ current = zeros(1, num);                                                    % in
 voltage = zeros(1, num+1);                                                  % Thevenin voltage array (numerical solution)
 current_e = zeros(1, num);                                                  % initialize current array (analytic solution)
 voltage_e = zeros(1, num+1);                                                % initialize voltage array (analytic solution)
-Rt_near = 100;                                                              % first terminating  resistance 
+Rt_near = 100;                                                              % first terminating  resistance  at x=0
 Vt_near = 0;                                                                % Thevenin (terminating) voltage at x=0
 % Rt_far = sqrt(L/C);
-Rt_far = 50;                                                                % second terminating resistance
+Rt_far = 50;                                                                % second terminating resistance  at x=1
 Vt_far = 0;                                                                 % Thevenin (termination) voltage at x=1
 
 
