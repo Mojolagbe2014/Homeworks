@@ -20,7 +20,7 @@ sides = [101 104 103 102];                                  % line physics for t
 V1 = 100;                                                   % apply potential to the probe point
 rhoType = 5;                                                % set the type of excitation used (1-5)
 epsilon = 1.0;                                              % dielectric constant of the domain
-MeshData = GmshReadM('mesh_files/flat_plate.msh');          % Use GmshreadM to read the Gmsh mesh file
+MeshData = GmshReadM('mesh_files/flat_plate_0.2.msh');          % Use GmshreadM to read the Gmsh mesh file
 
 %% solve the Poisson's problem in Second Order
 [phi, MeshData] = solveSecondOrder(MeshData,V1, rhoType, epsilon, sides, 'data/Q.mat', 'data/R.mat', 'data/T.mat');
