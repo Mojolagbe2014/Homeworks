@@ -19,7 +19,8 @@ plotEz = 0;                                                                 % pl
 plotHx = 0;                                                                 % plot scattered Hx field (1=yes, 0=no)
 plotHy = 0;                                                                 % plot scattered Hy field (1=yes, 0=no)
 plotEt = 1;                                                                 % plot total field field (1=yes, 0=no)
-inputAtEachStep = 0;                                                        % pause computation and request input at each time step (1=yes, 0=no)
+stopAtTenIter = 0;                                                          % pause computation and request input at each {stopDist} time step (1=yes, 0=no)
+stopDist = 50;                                                              % stopage iteration count
 ABCorder = 2;                                                               % order of ABC (1 or 2)
 ABCapproxType = 2;                                                          % E-field only = 1, H-field = 2
 ABCcornerType = 1;                                                          % 1-first order, central difference | 2-first order, corner average | 3-diagonal derivative | 4-simple side-average | 5-no corner ABC
@@ -110,7 +111,7 @@ if plotHy; fig3 = figure; end
 if plotEt; fig4 = figure; end
 
 
-%% absorbing boundary condition (ABC) parameters
+%% set absorbing boundary condition (ABC) parameters
 factor = (c0*k-h) / (c0*k+h);  
 
 % H-field approx. constants
@@ -130,131 +131,23 @@ Cyfx = Cxfy;
 cfactor = (2*c0*k-h) / (2*c0*k+h);  
 cfactor2 = h / (2*c0*k+h);
 
-%***initial step
-% Assume all is starting at time step n = 1
-% Assume at n=1, Ez=0 everywhere and set PEC boundary
-n = 1;
-
-%**n=1
-% set PEC boundary values in Ez matrix
-EincPEC = planewave(pecx, pecy, v, n*k, dist);
-
-[row, col] = pointMap(pecx,pecy,h,num);
-for ii = 1:length(row)
-   Ez(row(ii),col(ii)) = -EincPEC(ii);
-end
+%% calculate the fields [Assume all is starting at time step n = 1 | Assume at n=1, Ez=0 everywhere and set PEC boundary]
+n = 1;                                                                      % set initila time step
+EincPEC = planewave(pecx, pecy, v, n*k, dist);                              % set PEC boundary values in Ez matrix
+[row, col] = pointMap(pecx,pecy,h,num);                                     % convert points (x,y) to matrix indices (row,col)
+for ii = 1:length(row);  Ez(row(ii),col(ii)) = -EincPEC(ii); end
 
 %**n=1+1/2
 % compute first iteration of Hx and Hy then Ez
-Hx = -k/h/2/m0*(Ez(1:end-1,:) - Ez(2:end,:)); %remember that y=0 is last row for Ez
+Hx = -k/h/2/m0*(Ez(1:end-1,:) - Ez(2:end,:));                               % remember that y=0 is last row for Ez
 Hy = -k/h/2/m0*(Ez(:,1:end-1) - Ez(:,2:end));
 %**n=2
 Ebrev = Eprev;
 Eprev = Ez;
 Ez(2:end-1,2:end-1) = Ez(2:end-1,2:end-1) - k/h/e0*(Hy(2:end-1,1:end-1) - Hy(2:end-1,2:end) + Hx(1:end-1,2:end-1) - Hx(2:end,2:end-1));
-Einc = planewave(xcoords, ycoords, v, n*k, dist);
+Einc = planewave(xcoords, ycoords, v, n*k, dist);                           % compute plane wave values at given points where the waveform is a Gaussian function.
 
-%***store observation point data
-% for ii = 1:1:length(obsRows)
-%     r = obsRows(ii);
-%     c = obsCols(ii);
-%     obsStore(ii,n) = Ez(r,c) + Einc(r,c);
-% end % for ii
 
-% switch ABCapproxType
-%     case 1
-%         %set ABC on outer boundary using only E-fields (2nd order)
-%         % x = 0
-%         Ez(2:end-1,1) = -Ebrev(2:end-1,2) + Cxd*(Ez(2:end-1,2) + Ebrev(2:end-1,1)) + Cxx*(Eprev(2:end-1,1) + Eprev(2:end-1,2)) + Cxfy*(Eprev(1:end-2,1)-2*Eprev(2:end-1,1)+Eprev(3:end,1)+Eprev(1:end-2,2)-2*Eprev(2:end-1,2)+Eprev(3:end,2));
-%         % x = end
-%         Ez(2:end-1,end) = -Ebrev(2:end-1,end-1) + Cxd*(Ez(2:end-1,end-1) + Ebrev(2:end-1,end)) + Cxx*(Eprev(2:end-1,end) + Eprev(2:end-1,end-1)) + Cxfy*(Eprev(1:end-2,end)-2*Eprev(2:end-1,end)+Eprev(3:end,end)+Eprev(1:end-2,end-1)-2*Eprev(2:end-1,end-1)+Eprev(3:end,end-1));
-%         % y = 0
-%         Ez(end,2:end-1) = -Ebrev(end-1,2:end-1) + Cyd*(Ez(end-1,2:end-1) + Ebrev(end,2:end-1)) + Cyy*(Eprev(end,2:end-1) + Eprev(end-1,2:end-1)) + Cyfx*(Eprev(end,3:end)-2*Eprev(end,2:end-1)+Eprev(end,1:end-2)+Eprev(end-1,3:end)-2*Eprev(end-1,2:end-1)+Eprev(end-1,1:end-2));
-%         % y = end
-%         Ez(1,2:end-1) = -Ebrev(2,2:end-1) + Cyd*(Ez(2,2:end-1) + Ebrev(1,2:end-1)) + Cyy*(Eprev(1,2:end-1) + Eprev(2,2:end-1)) + Cyfx*(Eprev(1,3:end)-2*Eprev(1,2:end-1)+Eprev(1,1:end-2)+Eprev(2,3:end)-2*Eprev(2,2:end-1)+Eprev(2,1:end-2));
-% 
-%     case 2
-%         %set ABC on outer boundary using H-field approximation  (2nd order)
-%         %at x = 0
-%         Ez(2:end-1,1) = Eprev(2:end-1,2) + factor*(Ez(2:end-1,2)-Eprev(2:end-1,1)) - hfactor*(Hx(1:end-1,1)-Hx(2:end,1)+Hx(1:end-1,2)-Hx(2:end,2));
-%         %at x = end
-%         Ez(2:end-1,end) = Eprev(2:end-1,end-1) + factor*(Ez(2:end-1,end-1)-Eprev(2:end-1,end)) - hfactor*(Hx(1:end-1,end)-Hx(2:end,end)+Hx(1:end-1,end-1)-Hx(2:end,end-1));
-%         %at y = 0
-%         Ez(end,2:end-1) = Eprev(end-1,2:end-1) + factor*(Ez(end-1,2:end-1)-Eprev(end,2:end-1)) + hfactor*(Hy(end,2:end)-Hy(end,1:end-1)+Hy(end-1,2:end)-Hy(end-1,1:end-1));
-%         %at y = end
-%         Ez(1,2:end-1) = Eprev(2,2:end-1) + factor*(Ez(2,2:end-1)-Eprev(1,2:end-1)) + hfactor*(Hy(1,2:end)-Hy(1,1:end-1)+Hy(2,2:end)-Hy(2,1:end-1));
-%         
-% end %end switch
-% 
-% switch ABCcornerType
-%     case 1
-%         %set ABC at corners (first order central difference)
-%         Ez(1,1) = cfactor*Ez(2,2) + cfactor2*(Eprev(1,1)+Eprev(1,2)+Eprev(2,1)+Eprev(2,2)-Ez(1,2)-Ez(2,1));
-%         Ez(end,1) = cfactor*Ez(end-1,2) + cfactor2*(Eprev(end-1,1)+Eprev(end-1,2)+Eprev(end,2)+Eprev(end,1)-Ez(end,2)-Ez(end-1,1));
-%         Ez(1,end) = cfactor*Ez(2,end-1) + cfactor2*(Eprev(1,end-1)+Eprev(1,end)+Eprev(2,end-1)+Eprev(2,end)-Ez(1,end-1)-Ez(2,end));
-%         Ez(end,end) = cfactor*Ez(end-1,end-1) + cfactor2*(Eprev(end-1,end)+Eprev(end-1,end-1)+Eprev(end,end-1)+Eprev(end,end)-Ez(end-1,end)-Ez(end,end-1));
-% 
-%     case 2
-%         %ABC at corners (first order corner average)
-%         Ez(1,1) = (Eprev(1,2) + factor*(Ez(1,2)-Eprev(1,1)) + Eprev(2,1) + factor*(Ez(2,1)-Eprev(1,1))) / 2;
-%         Ez(end,1) = (Eprev(end-1,1) + factor*(Ez(end-1,1)-Eprev(end,1)) + Eprev(end,2) + factor*(Ez(end,2)-Eprev(end,1))) / 2;
-%         Ez(1,end) = (Eprev(1,end-1) + factor*(Ez(1,end-1)-Eprev(1,end)) + Eprev(2,end) + factor*(Ez(2,end)-Eprev(1,end))) / 2;
-%         Ez(end,end) = (Eprev(end,end-1) + factor*(Ez(end,end-1)-Eprev(end,end)) + Eprev(end-1,end) + factor*(Ez(end-1,end)-Eprev(end,end))) / 2;
-% 
-%     case 3
-%         %simple ABC at corners (diagonal derivative)
-%         b = sqrt(2*h^2);
-%         a = b / c0 / sqrt(2);
-%         dfactor = (2*a*c0-b) / (2*a*c0+b);
-%         % dfactor2 = (2*a*c0+b) / (2*a*c0-b);
-%         Ez(1,1) = dfactor*Ez(2,2) + b*(Eprev(1,1)+Eprev(2,2));
-%         Ez(end,1) = dfactor*Ez(end-1,2) + b*(Eprev(end,1)+Eprev(end-1,2));
-%         Ez(1,end) = dfactor*Ez(2,end-1) + b*(Eprev(1,end)+Eprev(2,end-1));
-%         Ez(end,end) = dfactor*Ez(end-1,end-1) + b*(Eprev(end,end)+Eprev(end-1,end-1));
-% 
-%     case 4
-%         %simple ABC at corners (side average)
-%         Ez(1,1) = (Ez(1,2) + Ez(2,1)) / 2;
-%         Ez(end,1) = (Ez(end,2) + Ez(end-1,1)) / 2;
-%         Ez(1,end) = (Ez(1,end-1) + Ez(2,end)) / 2;
-%         Ez(end,end) = (Ez(end,end-1) + Ez(end-1,end)) / 2;
-%         
-%     otherwise
-% 
-% end %end switch
-% 
-% if plotEz
-%     figure(fig1);    
-%     imagesc(Ez);
-%     caxis([-cbarmax cbarmax]);
-%     title(['E_z Scattered Time = ' num2str(round(k*1e13)/10) ' [psec],  n = ' num2str(n)]);
-% end
-% if plotHx
-%     figure(fig2);
-%     imagesc(Hx); 
-%     caxis([-cbarmax cbarmax]);
-%     title(['H_x Scattered Time = ' num2str(round(k/2*1e13)/10) ' [psec],  n = ' num2str(n)]);
-% end
-% if plotHy
-%     figure(fig3);
-%     imagesc(Hy); 
-%     caxis([-cbarmax cbarmax]);
-%     title(['H_y Scattered Time = ' num2str(round(k/2*1e13)/10) ' [psec],  n = ' num2str(n)]);
-% end
-% if plotEt
-%     figure(fig4);    
-%     imagesc(Ez+Einc); 
-%     caxis([-cbarmax cbarmax]);
-%     title(['Et Time = ' num2str(round(k*1e13)/10) ' [psec],  n = ' num2str(n)]);
-% end
-% 
-% 
-% if inputAtEachStep
-%     reply = input('More? y/n [y]: ', 's');
-%         if reply == 'n' 
-%             return 
-%         end;    
-% end  %end if
 
 %% Main loop
 tic;    
@@ -382,7 +275,7 @@ while stop == 0 && n < max_iteration
         pause(0.01)
     end  %if
 
-    if inputAtEachStep
+    if stopAtTenIter && mod(n, stopDist) == 0
         reply = input('More? y/n [y]: ', 's');
             if reply == 'n' 
                 return 
