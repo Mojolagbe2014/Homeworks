@@ -38,6 +38,7 @@ function [P, pi] = rcm(A, retSparse)
                 end   
             end
         end
+        Snew = sort(Snew);
         pi = [pi Snew];
         S = Snew;                                       % update level set
     end    
