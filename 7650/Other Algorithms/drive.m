@@ -19,6 +19,6 @@ m = 10;
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
 % [x, itr, err] = minres(A, b, x0, maxItr, tol);
 
-x1 = A\b;
-
-abs(x1 - x)
+% x1 = A\b;
+% 
+% abs(x1 - x)
