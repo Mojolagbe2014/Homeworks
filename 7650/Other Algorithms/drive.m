@@ -7,12 +7,13 @@ A = S;
 b = RHS;
 x0 = zeros(length(b), 1);
 maxItr = 200;
-tol = 1e-3;
-m = 70;
+tol = 1e-7;
+m = 10;
 
 
 %% solve the system of equation
-[x, H, v, j] = fomrest(A, x0, b, m, tol);
+[x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
+% [x, H, v, j] = fomrest(A, x0, b, m, tol);
 % [x, H, v] = fom(A, x0, b, m);
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
