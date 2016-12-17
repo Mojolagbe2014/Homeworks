@@ -13,9 +13,10 @@ function [x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol)
 %
 %       Returns:
 %            x:    Solution vector
+%            itr:  Total Iteration count
+%            err:  Error at each Iteration count
 %            H:    Upper Hesseberg matrix of dimension m+1xm
 %            v:    Orthonormalized vector as basis for Km
-%            itr:  Iteration counter
 %
 %   Author: Jamiu Babatunde Mojolagbe
 
