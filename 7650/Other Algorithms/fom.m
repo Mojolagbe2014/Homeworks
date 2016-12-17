@@ -29,6 +29,7 @@ function [x, H, v] = fom(A, x0, b, m)
             H(i,j) = dot(w(:,j), v(:, i));
             w(:,j) = w(:,j) - H(i,j)*v(:, i);
         end
+        H(j+1, j) = norm(w(:,j));
         v(:, j+1) = w(:,j)./H(j+1, j);
     end
     
