@@ -6,7 +6,7 @@ load('data/RHS.mat');
 A = S;
 b = RHS;
 x0 = zeros(length(b), 1);
-maxItr = 200;
+maxItr = 4;
 tol = 1e-9;
 m = 10;
 decType = 2;
