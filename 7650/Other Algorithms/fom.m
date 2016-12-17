@@ -22,7 +22,7 @@ function [x, H, v] = fom(A, x0, b, m)
     v(:, 1) = r./beta;
     H = zeros(m+1, m);
 
-    %% main iteration
+    %% arnoldi process part based on Modified Gram Schmidt 
     for j = 1 : m
         w(:,j) = A*v(:, j);
         for i = 1 : j
