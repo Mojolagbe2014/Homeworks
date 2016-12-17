@@ -1,4 +1,4 @@
-function [x, itr, err] = minres(A, b, x0, maxItr, tol)
+function [x, itr, err] = minRes(A, b, x0, maxItr, tol)
 %% minres.m 
 %   Implements Minimum Residual Iteration 1-D Projection Method 
 %       of an input (S)PD matrix A 
