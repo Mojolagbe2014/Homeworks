@@ -1,5 +1,5 @@
 function [Zh, u, v, I, J, err1] = aca(Z, tol)
-%% aca.m 
+%% aca2.m 
 %   Implements the Adaptive Cross Approximation algorithm 
 %
 %       Parameters:
@@ -22,12 +22,15 @@ function [Zh, u, v, I, J, err1] = aca(Z, tol)
     I(1) = 1;                                                               % Initialize the 1st row index
     Zh = 0;
     R(I(1), :) = Z(I(1),:);                                                 % Initialize the 1st row of the approximate error matrix
-    J(1) = 1;                                                               % choose the 1st column index J1
+    [~, J(1)] = max(abs(Z(I(1), :)));                                             % choose the 1st column index J1
     v = R(I(1), :)./R(I(1), J(1));
     R(:, J(1)) = Z(:, J(1));                                                % Initialize the 1st column of the approximate error matrix
     u = R(:, J(1));
     Zh = sqrt((norm(Zh,'fro').^2) + ((norm(u,'fro').^2)* (norm(v,'fro').^2)));
-    I(2) = I(1) + 1;                                                        % choose the 2nd row index I2
+    % choose the 2nd row index I2
+    a =  abs(Z(:, J(1)));                                                        % create temporary vector A                            
+    val = max((a(~ismember(a,a(I)))));
+    I(length(I)+1)  = find(a == val);
     
     for k = 2:min(n,m)
         sigma = 0;
@@ -35,7 +38,9 @@ function [Zh, u, v, I, J, err1] = aca(Z, tol)
             sigma =sigma + u(I(k),l).*v(l, :);
         end
         R(I(k), :) = Z(I(k), :) - sigma;
-        J(k) = J(k - 1) + 1;
+        a =  abs(Z(I(k), :));                                                        % create temporary vector A                            
+        val = max((a(~ismember(a,a(J)))));
+        J(k)  = find(a == val);
         v(k, :) = R(I(k), :)/R(I(k), J(k));
         % Update (Jk )th column of the approximate error matrix
         sigma = 0;
@@ -56,6 +61,10 @@ function [Zh, u, v, I, J, err1] = aca(Z, tol)
             v = v(1:k-1, :);
             return; 
         end
-        I(k+1) = I(k) + 1;
+        a =  abs(Z(:, J(k)));                                                        % create temporary vector A                            
+        val = max((a(~ismember(a,a(I)))));
+        if k < min(n,m)
+        I(k+1)  = find(a == val);
+        end
     end
 end
