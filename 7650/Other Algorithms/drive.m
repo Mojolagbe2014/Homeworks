@@ -7,13 +7,14 @@ A = S;
 b = RHS;
 x0 = zeros(length(b), 1);
 maxItr = 200;
-tol = 1e-7;
-m = 20;
-decType = 0;
+tol = 1e-9;
+m = 10;
+decType = 2;
 
 
 %% solve the system of equation
-[x, H, v] = gmres(A, x0, b, m, decType);
+[x, itr, err, H, v] = gmresrm(A, x0, b, m, maxItr, tol, decType);
+% [x, H, v] = gmres(A, x0, b, m, decType);
 % [x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
 % [x, H, v, j] = fomrest(A, x0, b, m, tol);
 % [x, H, v] = fom(A, x0, b, m);
