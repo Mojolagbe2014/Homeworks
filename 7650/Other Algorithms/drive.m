@@ -16,7 +16,7 @@ m = 70;
 % [x, H, v] = fom(A, x0, b, m);
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
-% [x, itr, err] = minRes(A, b, x0, maxItr, tol);
+% [x, itr, err] = minres(A, b, x0, maxItr, tol);
 
 x1 = A\b;
 
