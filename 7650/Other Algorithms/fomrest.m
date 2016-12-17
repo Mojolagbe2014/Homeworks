@@ -37,7 +37,7 @@ function [x, H, v, j] = fomrest(A, x0, b, m, tol)
         % error monitoring part
         e1 = zeros(j, 1);    e1(1) = 1;                                         % obtain ecludean basis 1
         ej = zeros(j, 1);    ej(j) = 1;                                         % obtain ecludean basis 1
-        y = inv(H(1:j,1:j))*(beta*e1);                                          % H first m rows and columns of H bar
+        y = (H(1:j,1:j))\(beta*e1);                                          % H first m rows and columns of H bar
         err = H(j+1, j)*(abs(dot(y, ej))./norm(b))
         if err < tol; break; end
     end
