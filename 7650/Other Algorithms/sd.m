@@ -1,10 +1,10 @@
-function [x, itr, err] = minRes(A, b, x0, maxItr, tol)
-%% minRes.m 
-%   Implements Minimum Residual Iteration 1-D Projection Method 
-%       of an input (S)PD matrix A 
+function [x, itr, err] = sd(A, b, x0, maxItr, tol)
+%% sd.m 
+%   Implements Steepest Descent 1-D Projection Method 
+%       of an input SPD matrix A 
 %
 %       Parameters:
-%           A:      A positive definite matrix
+%           A:      A symmetric positive definite matrix
 %           b:      Right Hand Side
 %           x0:     Initial guess
 %           maxItr: Maximum number of expected iterations
@@ -26,7 +26,7 @@ function [x, itr, err] = minRes(A, b, x0, maxItr, tol)
     
     %% main iteration block
     while itr <= maxItr && errNorm > tol
-        alpha  =  dot(r, p)/dot(p, p);
+        alpha  =  dot(r, r)/dot(p, r);
         x  =  x + alpha*r;
         r = r - alpha*p;
         p = A*r;
