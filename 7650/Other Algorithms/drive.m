@@ -12,13 +12,14 @@ m = 10;
 
 
 %% solve the system of equation
-[x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
+[x, H, v] = gmres(A, x0, b, m);
+% [x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
 % [x, H, v, j] = fomrest(A, x0, b, m, tol);
 % [x, H, v] = fom(A, x0, b, m);
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
 % [x, itr, err] = minres(A, b, x0, maxItr, tol);
 
-% x1 = A\b;
-% 
-% abs(x1 - x)
+x1 = A\b;
+
+abs(x1 - x);
