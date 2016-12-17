@@ -27,7 +27,7 @@ function [x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol)
     itr = 1;
 
     %% arnoldi process part based on Modified Gram Schmidt in restarting mode 
-    while itr < maxItr && errNorm > tol  
+    while itr <= maxItr && errNorm > tol  
         beta = norm(r);
         v(:, 1) = r./beta;
         H = zeros(m+1, m);
