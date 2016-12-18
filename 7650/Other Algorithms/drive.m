@@ -6,22 +6,35 @@ load('data/RHS.mat');
 A = S;
 b = RHS;
 x0 = zeros(length(b), 1);
-maxItr = 4;
-tol = 1e-9;
-m = 10;
-decType = 2;
+maxItr = 40;
+tol = 1e-2;
+m = 100;
+decType = 1;
 
 
 %% solve the system of equation
-[x, itr, err, H, v] = gmresrm(A, x0, b, m, maxItr, tol, decType);
+% [x, itr, err, H, v] = gmresrm(A, x0, b, m, maxItr, tol, decType);
 % [x, H, v] = gmres(A, x0, b, m, decType);
-% [x, itr, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
+% [x, itr2, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
 % [x, H, v, j] = fomrest(A, x0, b, m, tol);
 % [x, H, v] = fom(A, x0, b, m);
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
 % [x, itr, err] = minres(A, b, x0, maxItr, tol);
+% r = b - A*x0;
+% beta = norm(r);
+% x0 = r./beta;
+% [H, v] = arnoldi(A, x0, m);
+% x1 = A\b;
+% abs(x1 - x)
 
-x1 = A\b;
 
-abs(x1 - x)
+r = b - A*x0;
+beta = norm(r);
+v2(:,1) = r./beta;
+for j = 1:m
+    v2(:,j+1) = (A.^j)*r;
+end
+
+
+
