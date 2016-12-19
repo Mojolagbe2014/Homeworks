@@ -5,7 +5,7 @@ load('data/RHS.mat');
 %% set parameters 
 A = S;
 b = RHS;
-x0 = zeros(length(b), 1);
+x0 = ones(length(b), 1);
 maxItr = 40;
 tol = 1e-2;
 m = 15;
@@ -21,16 +21,23 @@ decType = 1;
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
 % [x, itr, err] = minres(A, b, x0, maxItr, tol);
-n = 10;
+n = 500;
 A = exp(1i * pi * randn(n, n));         
 A = 0.5*(A+A');
 A = A + n*eye(n);
-b = randn(10, 1); 
-m = 10; 
+b = randn(n, 1); 
+m = 115; 
 r = b;
 beta = norm(r);
 x0 = r./beta;
-[H, v] = arnoldi(A, x0, m);
+
+tic
+[a, v] = lanczos(A, x0, m);
+toc
+tic
+[H, v2] = arnoldi(A, x0, m);
+toc
+
 % x1 = A\b;
 % abs(x1 - x)
 % Hm = H(1:m,1:m);
