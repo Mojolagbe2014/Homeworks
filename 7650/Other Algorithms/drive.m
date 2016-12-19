@@ -21,23 +21,18 @@ decType = 1;
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow
 % [x, itr, err] = minres(A, b, x0, maxItr, tol);
-n = 500;
+n = 7;
 A = exp(1i * pi * randn(n, n));         
 A = 0.5*(A+A');
 A = A + n*eye(n);
 b = randn(n, 1); 
-m = 115; 
+m = 5; 
 r = b;
 beta = norm(r);
 x0 = r./beta;
 
-tic
-[a, v] = lanczos(A, x0, m);
-toc
-tic
 [H, v2] = arnoldi(A, x0, m);
-toc
-
+[a, v] = lanczos(A, x0, m);
 % x1 = A\b;
 % abs(x1 - x)
 % Hm = H(1:m,1:m);
