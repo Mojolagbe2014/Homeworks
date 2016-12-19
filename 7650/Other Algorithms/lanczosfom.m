@@ -9,9 +9,12 @@ function [x, j, err, v] = lanczosfom(A, x0, b, m, tol)
 %           x0:     Initial guess
 %           b:      An input non-zero nx1 vector
 %           m:      Desired Krylov subspace dimension
+%           tol:    Error tolerance
 %
 %       Returns:
 %            x:    Solution vector
+%            j:    Total Iteration count
+%            err:  Error at each Iteration count
 %            v:    Orthonormalized vector as basis for Km
 %
 %   Author: Jamiu Babatunde Mojolagbe
