@@ -30,9 +30,12 @@ m = 5;
 r = b;
 beta = norm(r);
 x0 = r./beta;
-
+tic
 [H, v2] = arnoldi(A, x0, m);
+toc
+tic
 [a, v] = lanczos(A, x0, m);
+toc
 % x1 = A\b;
 % abs(x1 - x)
 % Hm = H(1:m,1:m);
