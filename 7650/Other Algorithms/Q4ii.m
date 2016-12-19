@@ -15,8 +15,8 @@ close all; clear; clc;
 
 %% set parameters 
 % dim = [10 20 100 400 600 1000];
-dim = [10];
-m = 5;
+dim = [100];
+m = 10;
 useRandm = false;
 showProofs = true;
 showMatrices = false;
@@ -64,8 +64,10 @@ for c = 1:length(dim)
         disp(['Error: norm(Lanczos(Hm) - Arnoldi(Hm)):    ', num2str(norm(H - H1))]);
         disp(['Inner Product (Arnoldi): <v(m), v(m)>:     ', num2str(dot(v(:,m),v(:, m)))]);
         disp(['Inner Product (Arnoldi): <v(m), v(m-1)>:   ', num2str(dot(v(:,m),v(:, m-1)))]);
+        disp(['Inner Product (Arnoldi): <v(2), v(m)>:   ', num2str(dot(v(:,2),v(:, m)))]);
         disp(['Inner Product (Lanczos): <v(m), v(m)>:     ', num2str(dot(v1(:,m),v1(:, m)))]);
         disp(['Inner Product (Lanczos): <v1(m), v1(m-1)>: ', num2str(dot(v1(:,m),v1(:, m-1)))]);
+        disp(['Inner Product (Lanczos): <v1(2), v1(m)>: ', num2str(dot(v1(:,2),v1(:, m)))]);
     end
     disp('=============================================================================== ');
     disp(' ');
