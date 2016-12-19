@@ -1,7 +1,6 @@
-%% Q1i.m
-%    Demonstrates that the choice for V such that  
-%      V = [r; Ar; (A.^2)r... (A.^m-1)r] as basis for Km
-%      is not appropriate resulting in linear dependency in the basis
+%% Q2i.m
+%    Demonstrates that eigenvalues Hm = Hn are equal to the eigenvalues of A
+%       where m = n for a real n x n matrix A
 %        
 %       Course:     ECE 7650
 %       Homework:   Final Exam
@@ -14,25 +13,30 @@
 
 close all; clear; clc;
 
-%%  set parameters
+%% set parameters
 dim = [10 20 50 100 200 300 400];
 for c = 1:length(dim)
     A = randn(dim(c), dim(c));                                              % set matrix A 
     b = randn(length(A), 1);                                                % set vector b 
     m = dim(c) - floor(randi(dim(c), 1)/2);                                 % set the number of basis to be generated
-    
-    %% obtain the raw basis in the form V = [r; Ar; (A.^2)r... (A.^m-1)r]
+
+    %% obtain Hm from Arnoldi process
     r = b;
-    V(:,1) = r;
-    for j = 1:m
-        V(:,j+1) = (A.^j)*r;
-    end
+    beta = norm(r);
+    x0 = r./beta;
+    [H, v] = arnoldi(A, x0, m);
+    Hm = H(1:m,1:m);
+
+    %% obtain the eigen value of A and eigen of Hm
+    eA = eig(A);
+    eHm = eig(Hm);
 
 
-    %% display the results and show that for linearly independent bases
+    %% output the results
     disp(' ');
-    disp(['dim[',num2str(dim(c)),'x',num2str(dim(c)),']    m = ',num2str(m), '  Rank(V) = ', num2str(rank(V))]);
-    disp([]);
-    clear V;
+    disp([' ======= Results of A[',num2str(dim(c)),'x',num2str(dim(c)),'] and m = ',num2str(m),'  ========= ']);
+    disp(['Maximum Eigenvalue of A:        ', num2str(max(eA))]);
+    disp(['Maximum Eigenvalue of Hm:       ', num2str(max(eHm))]);
+    clear Hm Vm;
 end
 
