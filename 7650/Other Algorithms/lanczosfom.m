@@ -27,11 +27,10 @@ function [x, j, err, v] = lanczosfom(A, x0, b, m, tol)
     lambda = 0;                                                             % set lamda to zero
     B(1)=0; 
     p(:,1) = zeros(length(x0), 1);                                          % initial pm to zero vector of length chosen guess x0
-    errNorm = norm(r)/norm(b);                                              % obtain error norm
-    j = 1;                                                                
+                                                                   
     
     %% lanczos iterations with LmUm=Tm 
-    while j <= m && errNorm > tol
+    for j = 1:m
         w(:, j) = A*v(:, j);                              
         a(j) = dot(w(:, j), v(:, j));  
         % remove previous projections if j > 1
@@ -54,11 +53,10 @@ function [x, j, err, v] = lanczosfom(A, x0, b, m, tol)
         r = b - A*x;
         errNorm = norm(r)./norm(b);
         err(j) = errNorm;
-               
+        if errNorm < tol; break; end
+        
         w(:, j) = w(:,j) - a(j)*v(:, j);
         B(j+1) = norm(w(:, j));
         v(:, j+1) = w(:, j)./B(j+1);
-        j = j + 1;
     end   
-    j = j - 1;
 end
