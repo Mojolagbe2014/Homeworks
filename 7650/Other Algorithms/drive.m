@@ -14,11 +14,11 @@ decType = 1;
 
 %% solve the system of equation
 
-% [x, j, err, v] = lanczosfom(A, x0, b, m, tol);
+[x, itr, err, v] = lanczosfom(A, x0, b, m, tol);
 % [x, itr, err, H, v] = gmresrm(A, x0, b, m, maxItr, tol, decType);
 % [x, H, v] = gmres(A, x0, b, m, decType);
 % [x, itr2, err, H, v] = fomrestart(A, x0, b, m, maxItr, tol);
-[x, H, v, j] = fomrest(A, x0, b, m, tol);
+% [x, H, v, j] = fomrest(A, x0, b, m, tol);
 % [x, H, v] = fom(A, x0, b, m)        ;
 % [x, itr, err] = sd(A, b, x0, maxItr, tol);
 % [x, itr, err] = rnsd(A, b, x0, maxItr, tol);              % convergence is extremely slow

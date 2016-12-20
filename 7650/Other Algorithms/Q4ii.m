@@ -15,8 +15,8 @@ close all; clear; clc;
 
 %% set parameters 
 % dim = [10 20 100 400 600 1000];
-dim = [100];
-m = 10;
+dim = [10];
+m = 5;
 useRandm = false;
 showProofs = true;
 showMatrices = false;
