@@ -14,7 +14,7 @@
 clear; clc; close all;
 
 %% set parameters
-n = [10, 100, 1000, 2000, 3000];                    % set various dimensions as a row vector
+n = [10, 100];                    % set various dimensions as a row vector
 [n_siz, n_size] = size(n);                          % get the number of total elements in the n vector
 
 for j = 1:n_size

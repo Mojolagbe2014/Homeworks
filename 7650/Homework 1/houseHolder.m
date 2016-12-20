@@ -12,7 +12,7 @@ function [q, r] = houseHolder(r)
     I = eye(n, n);
     for j = 1:m
         for ii = 1 : j - 1
-            r(:, j) = r(:, j) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), r(:, j));
+            r(:, ii) = r(:, ii) - (1 + omega(ii)) * w(:, ii)* dot(w(:, ii), r(:, ii));
         end 
         %create z
         for k = 1:n

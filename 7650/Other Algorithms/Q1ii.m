@@ -20,7 +20,7 @@ for c = 1:length(dim)
     A = randn(dim(c), dim(c));                                              % set matrix A 
     b = randn(length(A), 1);                                                % set vector b 
     m = dim(c) - floor(randi(dim(c), 1)/2);                                 % set the number of basis to be generated
-    
+    m=10;
     %% obtain the raw basis in the form V = [r; Ar; (A.^2)r... (A.^m-1)r]
     r = b;
     V(:,1) = r;
