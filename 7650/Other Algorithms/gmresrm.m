@@ -15,7 +15,7 @@ function [x, itr, err, H, v] = gmresrm(A, x0, b, m, maxItr, tol, decType)
 %
 %       Returns:
 %            x:    Solution vector
-%            itr:  Total Iteration count
+%            itr:  Total Outer Iteration count
 %            err:  Error at each Iteration count
 %            H:    Upper Hesseberg matrix of dimension m+1xm
 %            v:    Orthonormalized vector as basis for Km
