@@ -1,4 +1,4 @@
-function [x, H, v, j] = fomrest(A, x0, b, m, tol)
+function [x, H, v, j, err] = fomrest(A, x0, b, m, tol)
 %% fomrest.m 
 %   Implements Full Orthogonalization Method 
 %       with Inner Residual Monitoring/Tracking
@@ -16,6 +16,7 @@ function [x, H, v, j] = fomrest(A, x0, b, m, tol)
 %            H:    Upper Hesseberg matrix of dimension m+1xm
 %            v:    Orthonormalized vector as basis for Km
 %            j:    value of j at which it converges to the error tolerance
+%            err:  Error at each Iteration count
 %
 %   Author: Jamiu Babatunde Mojolagbe
 
@@ -38,8 +39,8 @@ function [x, H, v, j] = fomrest(A, x0, b, m, tol)
         e1 = zeros(j, 1);    e1(1) = 1;                                         % obtain ecludean basis 1
         ej = zeros(j, 1);    ej(j) = 1;                                         % obtain ecludean basis 1
         y = (H(1:j,1:j))\(beta*e1);                                          % H first m rows and columns of H bar
-        err = H(j+1, j)*(abs(dot(y, ej))./norm(b));
-        if err < tol; break; end
+        err(j) = H(j+1, j)*(abs(dot(y, ej))./norm(b));
+        if err(j) < tol; break; end
     end
     
     %% fom additions to arnoldi process
