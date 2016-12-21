@@ -20,8 +20,8 @@ dim = 1000;                                                                  % i
 A = smatrix(dim);                                                           % set matrix A to be loaded matrix
 b = randn(dim, 1);                                                          % set b to be the loaded RHS
 x0 = randn(length(b), 1);                                                   % set initial guess
-tol = 1e-6;                                                                % set error tolerance expected
-m = 10;                                                                      % number of required Krylov basis
+tol = 1e-10;                                                                % set error tolerance expected
+m = 2;                                                                      % number of required Krylov basis
 maxItr = 40;                                                                % maximum number of iterations expected
 
 
