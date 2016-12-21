@@ -1,7 +1,7 @@
-function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol, decType)
+function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol)
 %% gmresrestart.m 
 %   Implements Restarted Generalized Minimum Residual Method (GMRES) 
-%       with Outer Residual Monitoring/Tracking
+%       with Outer Residual Monitoring/Tracking and QR by Givens
 %       with Arnoldi process based on Modified-Gram Schmidt Process
 %
 %       Parameters:
@@ -11,7 +11,6 @@ function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol, decT
 %           maxItr: Maximum number of expected iterations
 %           m:      Desired Krylov subspace dimension
 %           tol:    Error tolerance
-%           decType:Decomposition type to be used (1=Givens|2=QR |else QR)
 %
 %       Returns:
 %            x:    Solution vector
@@ -26,7 +25,10 @@ function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol, decT
     %% set parameters
     x = x0;
     r = b - A*x;
-
+    
+    %% display header for the error printing at each outer iteration
+    disp('===============   ERROR AT EACH OUTER ITERATION =================');
+    
     %% arnoldi process part based on Modified Gram Schmidt in restarting mode 
     for itr = 1: maxItr 
         beta = norm(r);
@@ -41,21 +43,11 @@ function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol, decT
             end
             H(j+1, j) = norm(w(:,j));
             v(:, j+1) = w(:,j)./H(j+1, j);
-            % error monitoring part
-        e1 = zeros(j, 1);    e1(1) = 1;                                         % obtain ecludean basis 1
-        ej = zeros(j, 1);    ej(j) = 1;                                         % obtain ecludean basis 1
-        y = (H(1:j,1:j))\(beta*e1);                                          % H first m rows and columns of H bar
-        err(j) = H(j+1, j)*(abs(dot(y, ej))./norm(b));
-        if err(j) < tol; break; end
         end
 
         %% gmres residual tracking part
         e1 = zeros(m+1, 1);    e1(1) = 1;    
-        switch(decType)
-            case 1;  [Q, R] = givens(H);
-            case 2;  [Q, R] = qr(H);
-            otherwise; [Q, R] = qr(H);
-        end
+        [Q, R] = givens(H);
         g = ctranspose(Q)*(beta*e1);
         y = R(1:m,1:m)\g(1:m);
         
@@ -63,6 +55,7 @@ function [x, itr, itri, err, H, v] = gmresrestart(A, x0, b, m, maxItr, tol, decT
         x = x + v(:, 1:m)*y;
         r = b - A*x;
         err(itr) = norm(r)./norm(b);
+        disp(['Error at outer iteration ', num2str(itr), ': ', num2str(err(itr))]);
         % if error < tolerance quit and return the return parameters
         if err(itr) < tol; itri = j; return; end
     end
