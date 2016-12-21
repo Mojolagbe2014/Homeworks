@@ -14,16 +14,16 @@
 close all; clear; clc;
 
 %% set parameters 
-% dim = [10 20 100 400 600 1000];
-dim = [10];
-m = 5;
-useRandm = false;
-showProofs = true;
-showMatrices = false;
-pauseFor = 0;
+dim = [100 400 600 1000];
+% dim = [1000];
+m = 500;                                                                      % size of Krylov subspace
+useRandm = true;                                                           % whether to use manual "m" or random one
+showProofs = true;                                                          % whether to show proofs or not
+showMatrices = false;                                                       % whether to show resulting matrices or not
+pauseFor = 0;                                                               % if show matrices is true then pause the result for pauseFor
 
 for c = 1:length(dim)
-    A = spd(dim(c));                                                        % generate random SPD matrix
+    A = smatrix(dim(c));                                                    % generate random SPD matrix
     b = randn(length(A), 1);                                                % generate random vector b 
     if useRandm; m = dim(c) - floor(randi(dim(c), 1)/2);  end               % randomly set the number of basis to be generated usually <= dimension
     
@@ -58,10 +58,9 @@ for c = 1:length(dim)
     if showProofs;
         disp(' ');
         disp('*************** Proofs of Orthogonality of Resulting Bases ****************');
-        disp(['Norm of Km from Arnoldi:                   ', num2str(norm(v))]);
-        disp(['Norm of Km from Lanczos:                   ', num2str(norm(v1))]);
-        disp(['Error: norm(Lanczos(Km) - Arnoldi(Km)):    ', num2str(norm(v1 - v))]);
-        disp(['Error: norm(Lanczos(Hm) - Arnoldi(Hm)):    ', num2str(norm(H - H1))]);
+        disp(['Norm of V from Arnoldi:                   ', num2str(norm(v))]);
+        disp(['Norm of V from Lanczos:                   ', num2str(norm(v1))]);
+        disp(['Error: norm(Lanczos(V) - Arnoldi(V)):    ', num2str(norm(v1 - v))]);
         disp(['Inner Product (Arnoldi): <v(m), v(m)>:     ', num2str(dot(v(:,m),v(:, m)))]);
         disp(['Inner Product (Arnoldi): <v(m), v(m-1)>:   ', num2str(dot(v(:,m),v(:, m-1)))]);
         disp(['Inner Product (Arnoldi): <v(2), v(m)>:   ', num2str(dot(v(:,2),v(:, m)))]);
@@ -72,3 +71,12 @@ for c = 1:length(dim)
     disp('=============================================================================== ');
     disp(' ');
 end
+
+%% plot the results
+plot(dim, tlan, '-b', dim, tarn, '--r');
+title('Time Complexity Lanczos versus Arnoldi Methods');
+xlabel('Matrix Dimension A^{nxn}');
+ylabel('Timetaken (s)');
+legend('Lanczos Method', 'Arnoldi Method');
+
+
