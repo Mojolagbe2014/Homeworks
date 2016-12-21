@@ -16,8 +16,8 @@ close all; clear; clc;
 %% set parameters 
 dim = [100 400 600 1000];
 % dim = [1000];
-m = 500;                                                                      % size of Krylov subspace
-useRandm = true;                                                           % whether to use manual "m" or random one
+m = 5;                                                                      % size of Krylov subspace
+useRandm = false;                                                           % whether to use manual "m" or random one
 showProofs = true;                                                          % whether to show proofs or not
 showMatrices = false;                                                       % whether to show resulting matrices or not
 pauseFor = 0;                                                               % if show matrices is true then pause the result for pauseFor
