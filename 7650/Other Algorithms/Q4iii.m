@@ -17,7 +17,7 @@ close all; clear; clc;
 %% load data obtained from Second Order FEM  of a problem or use random matrix
 % load('data/S.mat');
 % load('data/RHS.mat');
-dim = 500;
+dim = 100;
 S = smatrix(dim);
 RHS = randn(dim, 1);
 
@@ -27,7 +27,7 @@ A = S;                                                                      % se
 b = RHS;                                                                    % set b to be the loaded RHS
 x0 = randn(length(b), 1);                                                   % set initial guess
 tol = 1e-6;                                                                 % set error tolerance expected
-m = 50;                                                                     % number of required Krylov basis
+m = 20;                                                                     % number of required Krylov basis
 
 %% solve the system of equation
 tic
