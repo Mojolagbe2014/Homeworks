@@ -52,9 +52,9 @@ xi = (1:num)*dx-dx/2;                                                       % ve
 
 
 %% setup/specify the pulse type (Square | Gaussian)
-% pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
-% voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
-% voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
+pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
+voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
+voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
 % x=1:num+1;
 % param = num/2;
 % voltage = exp(-((x-param).^2)/param);

@@ -23,7 +23,7 @@ c0 = 1/sqrt(C*L);                                                           % sp
 Len = 1;                                                                    % length of the wire
 pauseFor = 0.15;                                                            % pause the plot for / determines the speed the lower the value the higher the speed
 totalSteps = 300;                                                           % total steps for the animation 
-CFL = 1.00;                                                                 % CFL stability factor
+CFL = 1.01;                                                                 % CFL stability factor
 num = 100;                                                                  % number of space points
 Z0 = sqrt(L/C);                                                             % p.u.l impedance
 pulseInit = 0.45;                                                           % start location of the pulse 0 - Len
@@ -51,13 +51,13 @@ xi = (1:num)*dx-dx/2;                                                       % ve
 
 
 %% setup/specify the pulse type (Square | Gaussian)
-% pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
-% voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
-% voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
-x=1:num+1;
-param = num/2;
-voltage = exp(-((x-param).^2)/param);
-voltage_e = exp(-((x-param).^2)/param);
+pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
+voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
+voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
+% x=1:num+1;
+% param = num/2;
+% voltage = exp(-((x-param).^2)/param);
+% voltage_e = exp(-((x-param).^2)/param);
 
 
 %% plot the initial voltage and current

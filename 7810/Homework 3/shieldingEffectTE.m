@@ -24,7 +24,7 @@ stopDist = 50;                                                              % st
 ABCorder = 2;                                                               % order of ABC (1 or 2)
 ABCapproxType = 1;                                                          % E-field only = 1, H-field = 2
 ABCcornerType = 1;                                                          % 1-first order, central difference | 2-first order, corner average | 3-diagonal derivative | 4-simple side-average | 5-no corner ABC
-theta = 45;                                                                 % incident field incidence angle starting from -x axis in degrees
+theta = 0;                                                                 % incident field incidence angle starting from -x axis in degrees
 dist = 0.6;                                                                 % distance of plane wave from origin (bottom-left of plot window). Each unit places it 0.3m away
 max_iteration = 700;                                                        % number of iterations
 cbarmax = 1;                                                                % plot color-bar max range

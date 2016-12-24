@@ -21,8 +21,6 @@ R = 0.0;                                                                    % p.
 G = 0.0;                                                                    % p.u.l conductance
 c0 = 1/sqrt(C*L);                                                           % speed of propagation
 Len = 1;                                                                    % length of the wire
-pauseFor = 0.15;                                                            % pause the plot for / determines the speed the lower the value the higher the speed
-totalSteps = 300;                                                           % total steps for the animation 
 CFL = 1.00;                                                                 % CFL stability factor
 num = 100;                                                                  % number of space points
 Z0 = sqrt(L/C);                                                             % p.u.l impedance
@@ -51,13 +49,13 @@ xi = (1:num)*dx-dx/2;                                                       % ve
 
 
 %% setup/specify the pulse type (Square | Gaussian)
-% pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
-% voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
-% voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
-x=1:num+1;
-param = num/2;
-voltage = exp(-((x-param).^2)/param);
-voltage_e = exp(-((x-param).^2)/param);
+pb = int16(num*pulseInit); pe = int16((num*(pulseInit+pulsewidth)));        % specify location of pulse
+voltage(pb:pe) = A0*ones(1,length(pb:pe));                                  % square pulse as initial condition
+voltage_e(pb:pe) = A0*ones(1,length(pb:pe));
+% x=1:num+1;
+% param = num/2;
+% voltage = exp(-((x-param).^2)/param);
+% voltage_e = exp(-((x-param).^2)/param);
 
 
 %% plot the initial voltage and current
@@ -113,12 +111,14 @@ xlim([min(xv), max(xv)]);
 xlabel('Length along Tx-Line [m]');
 ylabel('Current');
 title(['Time = ' num2str(round(ti*1e12)/1000) '[nsec]']);
+legend('Numerical Solution', 'Exact Solution');
 
 subplot(2,1,2);
 plot(xv, voltage, xv, voltage_e, '--');
 xlabel('Length along Tx-Line [m]')
 ylabel('Voltage')
 title(['Time = ' num2str(round(tv*1e12)/1000) '[nsec]']);
+legend('Numerical Solution', 'Exact Solution');
 
 reply = input('More? y/n [y]: ', 's');
     if reply == 'n' 
@@ -171,12 +171,14 @@ while stop == 0
     xlabel('Length along Tx-Line [m]');
     ylabel('Current');
     title(['Time = ' num2str(round(ti*1e12)/1000) ' [nsec]']);
+    legend('Numerical Solution', 'Exact Solution');
     
     subplot(2,1,2);
     plot(xv, voltage, xv, voltage_e, '--');
     xlabel('Length along Tx-Line [m]')
     ylabel('Voltage')
     title(['Time = ' num2str(round(tv*1e12)/1000) ' [nsec]']);
+    legend('Numerical Solution', 'Exact Solution');
     
     reply = input('More? y/n [y]: ', 's');
     if reply == 'n' 
