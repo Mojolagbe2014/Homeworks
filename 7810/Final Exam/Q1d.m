@@ -20,7 +20,7 @@ h = 0.25;
 % numerical parameters  
 A = [-2 1 0; 1 -2 1; 0 1 -2];
 b = [-h.^2; -h.^2; -h.^2];
-phi_n = A\b;                                                                % solve the resulting system 
+phi_n(1, :) = A\b;                                                          % solve the resulting system 
 
 % analytical parameters
 internalPts = h*[1 2 3];                                                               
@@ -34,7 +34,7 @@ end
 % numerical parameters  
 A = [-2 2 0 0; 1 -2 1 0; 0 1 -2 1; 0 0 1 -2];                               % resulting matrix
 b = [-h.^2; -h.^2; -h.^2; -h.^2];                                           % RHS
-Phi_n = A\b;                                                                  % solve the resulting system 
+Phi_n(1, :) = A\b;                                                          % solve the resulting system 
 
 % analytical parameters
 internalPts = h*[0 1 2 3];                                                               
@@ -43,3 +43,13 @@ for i = 1:length(internalPts)
     x = internalPts(i);
     Phi_e(i) = (-x.^2)/2   + 0.5;                                         % exact solution
 end
+
+
+%% output results 
+disp('Results for Boundary Conditions (A) : Numerical and Exact Respectively');
+phi_n
+phi_e
+disp(' ');
+disp('Results for Boundary Conditions (B) : Numerical and Exact Respectively');
+Phi_n
+Phi_e
