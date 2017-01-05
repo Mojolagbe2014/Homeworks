@@ -14,6 +14,8 @@ close all; clear; clc;
 
 
 %% set parameters
+A = [1 1 1 1; 1 2 4 8; 1 3 9 27; 1 4 16 64];                                % given matrix
+b = ones(4, 1);                                                             % RHS
 X = zeros(4, 1);                                                            % initial guess
 
 %% JACOBI SCHEME
@@ -45,7 +47,7 @@ x
 %% SOR (Successive Over-Relaxation) SCHEME
 % first iteration for update equation
 x = X;
-w = 1.65;                                               % overrelaxation factor
+w = 1.5;                                               % overrelaxation factor
 x(1) = w*((1 - (x(2) + x(3) + x(4))) - x(1)) + x(1);
 x(2) = w*((1 - 0.5*(x(1) + 4*x(3) + 8*x(4))) - x(2)) + x(2);
 x(3) = w*((1 - (1/9)*(x(1) + 3*x(2) + 27*x(4))) - x(3)) + x(3);
