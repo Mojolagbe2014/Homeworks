@@ -13,7 +13,10 @@
 #ifdef RUN_SECTION
 int main (){
     
-    
+    // open file for write and append
+    ofstream wafile("item2.txt", ios_base::out | ios_base::app);
+    // open file for read and write
+    fstream rwfile("item3.txt", ios_base::in | ios_base::out);
     return 0;
 }
 #endif

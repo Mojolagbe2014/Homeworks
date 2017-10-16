@@ -62,6 +62,24 @@
 		BFC862691F85A75A006F0131 /* CodeProfiling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862681F85A75A006F0131 /* CodeProfiling.cpp */; };
 		BFC8626B1F85BF53006F0131 /* SortRand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8626A1F85BF53006F0131 /* SortRand.cpp */; };
 		BFC8626D1F85D7C3006F0131 /* ConsoleArgument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8626C1F85D7C3006F0131 /* ConsoleArgument.cpp */; };
+		BFC8628C1F89785C006F0131 /* ArithmeticTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8628B1F89785C006F0131 /* ArithmeticTest.cpp */; };
+		BFC862A01F8C324A006F0131 /* StringExample1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8629F1F8C324A006F0131 /* StringExample1.cpp */; };
+		BFC862A21F8C40B7006F0131 /* StringExample2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862A11F8C40B7006F0131 /* StringExample2.cpp */; };
+		BFC862A41F8C4566006F0131 /* StringExample3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862A31F8C4566006F0131 /* StringExample3.cpp */; };
+		BFC862A61F8C4B1A006F0131 /* StringExample4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862A51F8C4B1A006F0131 /* StringExample4.cpp */; };
+		BFC862A81F8C52F4006F0131 /* StringExample5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862A71F8C52F4006F0131 /* StringExample5.cpp */; };
+		BFC862AA1F8C54BA006F0131 /* StringExample6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862A91F8C54BA006F0131 /* StringExample6.cpp */; };
+		BFC862AC1F8C57B7006F0131 /* StreamExample1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862AB1F8C57B7006F0131 /* StreamExample1.cpp */; };
+		BFC862AE1F950522006F0131 /* StreamExample2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862AD1F950522006F0131 /* StreamExample2.cpp */; };
+		BFC862B01F950AF7006F0131 /* StreamExample3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862AF1F950AF7006F0131 /* StreamExample3.cpp */; };
+		BFC862B21F9511C9006F0131 /* StreamExample4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862B11F9511C9006F0131 /* StreamExample4.cpp */; };
+		BFC862B41F95154D006F0131 /* StreamExample5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862B31F95154D006F0131 /* StreamExample5.cpp */; };
+		BFC862B61F951BB4006F0131 /* StreamExample6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862B51F951BB4006F0131 /* StreamExample6.cpp */; };
+		BFC862B81F952768006F0131 /* StreamExample7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862B71F952768006F0131 /* StreamExample7.cpp */; };
+		BFC862BA1F95399D006F0131 /* StreamExample8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862B91F95399D006F0131 /* StreamExample8.cpp */; };
+		BFC862BC1F9541F6006F0131 /* StreamExample9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */; };
+		BFC862C01F95471A006F0131 /* StreamExample10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862BF1F95471A006F0131 /* StreamExample10.cpp */; };
+		BFC862C21F954EC3006F0131 /* StreamExample11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862C11F954EC3006F0131 /* StreamExample11.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -134,6 +152,24 @@
 		BFC862681F85A75A006F0131 /* CodeProfiling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CodeProfiling.cpp; path = Chapter4/CodeProfiling.cpp; sourceTree = "<group>"; };
 		BFC8626A1F85BF53006F0131 /* SortRand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SortRand.cpp; path = Chapter4/SortRand.cpp; sourceTree = "<group>"; };
 		BFC8626C1F85D7C3006F0131 /* ConsoleArgument.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConsoleArgument.cpp; path = Chapter4/ConsoleArgument.cpp; sourceTree = "<group>"; };
+		BFC8628B1F89785C006F0131 /* ArithmeticTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArithmeticTest.cpp; path = Chapter4/ArithmeticTest.cpp; sourceTree = "<group>"; };
+		BFC8629F1F8C324A006F0131 /* StringExample1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample1.cpp; path = Chapter4/StringExample1.cpp; sourceTree = "<group>"; };
+		BFC862A11F8C40B7006F0131 /* StringExample2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample2.cpp; path = Chapter4/StringExample2.cpp; sourceTree = "<group>"; };
+		BFC862A31F8C4566006F0131 /* StringExample3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample3.cpp; path = Chapter4/StringExample3.cpp; sourceTree = "<group>"; };
+		BFC862A51F8C4B1A006F0131 /* StringExample4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample4.cpp; path = Chapter4/StringExample4.cpp; sourceTree = "<group>"; };
+		BFC862A71F8C52F4006F0131 /* StringExample5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample5.cpp; path = Chapter4/StringExample5.cpp; sourceTree = "<group>"; };
+		BFC862A91F8C54BA006F0131 /* StringExample6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StringExample6.cpp; path = Chapter4/StringExample6.cpp; sourceTree = "<group>"; };
+		BFC862AB1F8C57B7006F0131 /* StreamExample1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample1.cpp; path = Chapter4/StreamExample1.cpp; sourceTree = "<group>"; };
+		BFC862AD1F950522006F0131 /* StreamExample2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample2.cpp; path = Chapter4/StreamExample2.cpp; sourceTree = "<group>"; };
+		BFC862AF1F950AF7006F0131 /* StreamExample3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample3.cpp; path = Chapter4/StreamExample3.cpp; sourceTree = "<group>"; };
+		BFC862B11F9511C9006F0131 /* StreamExample4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample4.cpp; path = Chapter4/StreamExample4.cpp; sourceTree = "<group>"; };
+		BFC862B31F95154D006F0131 /* StreamExample5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample5.cpp; path = Chapter4/StreamExample5.cpp; sourceTree = "<group>"; };
+		BFC862B51F951BB4006F0131 /* StreamExample6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample6.cpp; path = Chapter4/StreamExample6.cpp; sourceTree = "<group>"; };
+		BFC862B71F952768006F0131 /* StreamExample7.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample7.cpp; path = Chapter4/StreamExample7.cpp; sourceTree = "<group>"; };
+		BFC862B91F95399D006F0131 /* StreamExample8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample8.cpp; path = Chapter4/StreamExample8.cpp; sourceTree = "<group>"; };
+		BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample9.cpp; path = Chapter4/StreamExample9.cpp; sourceTree = "<group>"; };
+		BFC862BF1F95471A006F0131 /* StreamExample10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample10.cpp; path = Chapter4/StreamExample10.cpp; sourceTree = "<group>"; };
+		BFC862C11F954EC3006F0131 /* StreamExample11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample11.cpp; path = Chapter4/StreamExample11.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +191,7 @@
 				BFC862021F70C73C006F0131 /* Chapter2 */,
 				BFC307351F6A129500774AA8 /* Chapter1 */,
 				BFC307341F6A129500774AA8 /* Products */,
+				BFC862901F897B44006F0131 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,8 +283,33 @@
 				BFC862681F85A75A006F0131 /* CodeProfiling.cpp */,
 				BFC8626A1F85BF53006F0131 /* SortRand.cpp */,
 				BFC8626C1F85D7C3006F0131 /* ConsoleArgument.cpp */,
+				BFC8628B1F89785C006F0131 /* ArithmeticTest.cpp */,
+				BFC8629F1F8C324A006F0131 /* StringExample1.cpp */,
+				BFC862A11F8C40B7006F0131 /* StringExample2.cpp */,
+				BFC862A31F8C4566006F0131 /* StringExample3.cpp */,
+				BFC862A51F8C4B1A006F0131 /* StringExample4.cpp */,
+				BFC862A71F8C52F4006F0131 /* StringExample5.cpp */,
+				BFC862A91F8C54BA006F0131 /* StringExample6.cpp */,
+				BFC862AB1F8C57B7006F0131 /* StreamExample1.cpp */,
+				BFC862AD1F950522006F0131 /* StreamExample2.cpp */,
+				BFC862AF1F950AF7006F0131 /* StreamExample3.cpp */,
+				BFC862B11F9511C9006F0131 /* StreamExample4.cpp */,
+				BFC862B31F95154D006F0131 /* StreamExample5.cpp */,
+				BFC862B51F951BB4006F0131 /* StreamExample6.cpp */,
+				BFC862B71F952768006F0131 /* StreamExample7.cpp */,
+				BFC862B91F95399D006F0131 /* StreamExample8.cpp */,
+				BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */,
+				BFC862BF1F95471A006F0131 /* StreamExample10.cpp */,
+				BFC862C11F954EC3006F0131 /* StreamExample11.cpp */,
 			);
 			name = Chapter4;
+			sourceTree = "<group>";
+		};
+		BFC862901F897B44006F0131 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,24 +383,34 @@
 				BFC8620A1F730A64006F0131 /* ex252.cpp in Sources */,
 				BF8C09521F6A40A4007438AD /* exercise1612.cpp in Sources */,
 				BFC862541F82F7C5006F0131 /* ErrorNo.cpp in Sources */,
+				BFC862A81F8C52F4006F0131 /* StringExample5.cpp in Sources */,
 				BFC862081F7303E4006F0131 /* ex251.cpp in Sources */,
 				BFC8625E1F857E26006F0131 /* file2.cpp in Sources */,
 				BFC862351F7B357A006F0131 /* ex3142.cpp in Sources */,
 				BFC862331F7B2DC7006F0131 /* ex3141.cpp in Sources */,
 				BFC8620C1F731395006F0131 /* ex253.cpp in Sources */,
+				BFC862B01F950AF7006F0131 /* StreamExample3.cpp in Sources */,
 				BFC8620E1F731490006F0131 /* ex254.cpp in Sources */,
+				BFC862AA1F8C54BA006F0131 /* StringExample6.cpp in Sources */,
+				BFC862AC1F8C57B7006F0131 /* StreamExample1.cpp in Sources */,
 				BFC8624C1F80A1E2006F0131 /* main.cpp in Sources */,
+				BFC862A21F8C40B7006F0131 /* StringExample2.cpp in Sources */,
 				BF8C09491F6A3BB8007438AD /* exercise167.cpp in Sources */,
 				BFC8625A1F857B20006F0131 /* ZeroInitialization.cpp in Sources */,
 				BFC862621F858450006F0131 /* file4.cpp in Sources */,
 				BFC8624A1F80A13F006F0131 /* NamespaceAlias.cpp in Sources */,
+				BFC862C01F95471A006F0131 /* StreamExample10.cpp in Sources */,
 				BFC8626D1F85D7C3006F0131 /* ConsoleArgument.cpp in Sources */,
 				BFC8626B1F85BF53006F0131 /* SortRand.cpp in Sources */,
 				BF8C09451F6A3647007438AD /* exercise165.cpp in Sources */,
 				BFC862141F732497006F0131 /* ex257.cpp in Sources */,
+				BFC862BC1F9541F6006F0131 /* StreamExample9.cpp in Sources */,
 				BFC862411F7B4AE1006F0131 /* ex3147.cpp in Sources */,
+				BFC862B81F952768006F0131 /* StreamExample7.cpp in Sources */,
 				BFC862011F70BAA0006F0131 /* exercise168.cpp in Sources */,
+				BFC862A41F8C4566006F0131 /* StringExample3.cpp in Sources */,
 				BFC862201F733B79006F0131 /* ex2513.cpp in Sources */,
+				BFC862B21F9511C9006F0131 /* StreamExample4.cpp in Sources */,
 				BFC862121F732356006F0131 /* ex256.cpp in Sources */,
 				BFC3073E1F6A16A100774AA8 /* example161.cpp in Sources */,
 				BFC8621E1F73335A006F0131 /* ex2512.cpp in Sources */,
@@ -346,8 +418,13 @@
 				BF8C09501F6A3FE8007438AD /* exercise1611.cpp in Sources */,
 				BFC862601F858431006F0131 /* file3.cpp in Sources */,
 				BFC862371F7B395A006F0131 /* ex3143.cpp in Sources */,
+				BFC862B61F951BB4006F0131 /* StreamExample6.cpp in Sources */,
 				BFC862311F7AF261006F0131 /* trapeAndSimp.cpp in Sources */,
 				BFC862391F7B3CE9006F0131 /* ex3144.cpp in Sources */,
+				BFC862BA1F95399D006F0131 /* StreamExample8.cpp in Sources */,
+				BFC862C21F954EC3006F0131 /* StreamExample11.cpp in Sources */,
+				BFC862AE1F950522006F0131 /* StreamExample2.cpp in Sources */,
+				BFC862A61F8C4B1A006F0131 /* StringExample4.cpp in Sources */,
 				BF8C094B1F6A3D75007438AD /* exercise169.cpp in Sources */,
 				BF8C093F1F6A319E007438AD /* exercise163.cpp in Sources */,
 				BFC862691F85A75A006F0131 /* CodeProfiling.cpp in Sources */,
@@ -357,10 +434,13 @@
 				BFC307401F6A1D0700774AA8 /* exercise162.cpp in Sources */,
 				BFC862271F73538D006F0131 /* test.cpp in Sources */,
 				BFC862291F7353B0006F0131 /* main.cpp in Sources */,
+				BFC862B41F95154D006F0131 /* StreamExample5.cpp in Sources */,
+				BFC862A01F8C324A006F0131 /* StringExample1.cpp in Sources */,
 				BF8C09471F6A3AB2007438AD /* exercise166.cpp in Sources */,
 				BFC862101F7317A4006F0131 /* ex255.cpp in Sources */,
 				BFC8621A1F732CE3006F0131 /* ex2510.cpp in Sources */,
 				BFC862161F7325D0006F0131 /* ex258.cpp in Sources */,
+				BFC8628C1F89785C006F0131 /* ArithmeticTest.cpp in Sources */,
 				BFC862221F733CED006F0131 /* ex2514.cpp in Sources */,
 				BFC862181F73299F006F0131 /* ex259.cpp in Sources */,
 			);
@@ -409,6 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(inherited)$(PROJECT_DIR)/Arithmetic";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -460,6 +541,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8EBBC7XXY4;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Chapter4",
+					"$(PROJECT_DIR)/Arithmetic/Arithmetic",
+					"$(PROJECT_DIR)/Arithmetic",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -468,6 +555,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 8EBBC7XXY4;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Chapter4",
+					"$(PROJECT_DIR)/Arithmetic/Arithmetic",
+					"$(PROJECT_DIR)/Arithmetic",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

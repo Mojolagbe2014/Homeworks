@@ -12,6 +12,7 @@
 		BFC8622F1F7ADB2D006F0131 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8622E1F7ADB2D006F0131 /* test.cpp */; };
 		BFC8624E1F829BC0006F0131 /* PingPongMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8624D1F829BC0006F0131 /* PingPongMethod.cpp */; };
 		BFC862501F82D2D7006F0131 /* EffectiveBandwith.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8624F1F82D2D7006F0131 /* EffectiveBandwith.cpp */; };
+		BFC8626F1F86ADB6006F0131 /* BlockDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8626E1F86ADB6006F0131 /* BlockDistribution.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		BFC8622E1F7ADB2D006F0131 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		BFC8624D1F829BC0006F0131 /* PingPongMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PingPongMethod.cpp; sourceTree = "<group>"; };
 		BFC8624F1F82D2D7006F0131 /* EffectiveBandwith.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectiveBandwith.cpp; sourceTree = "<group>"; };
+		BFC8626E1F86ADB6006F0131 /* BlockDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BlockDistribution.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				BFC8622E1F7ADB2D006F0131 /* test.cpp */,
 				BFC8624D1F829BC0006F0131 /* PingPongMethod.cpp */,
 				BFC8624F1F82D2D7006F0131 /* EffectiveBandwith.cpp */,
+				BFC8626E1F86ADB6006F0131 /* BlockDistribution.cpp */,
 			);
 			path = ParallelProgramming;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC8622D1F79A94F006F0131 /* CollectiveCommunication.cpp in Sources */,
+				BFC8626F1F86ADB6006F0131 /* BlockDistribution.cpp in Sources */,
 				BFC862501F82D2D7006F0131 /* EffectiveBandwith.cpp in Sources */,
 				BFBDBC7B1EA909ED00935D67 /* main.cpp in Sources */,
 				BFC8624E1F829BC0006F0131 /* PingPongMethod.cpp in Sources */,

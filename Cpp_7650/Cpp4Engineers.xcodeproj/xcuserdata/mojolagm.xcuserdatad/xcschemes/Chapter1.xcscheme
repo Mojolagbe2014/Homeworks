@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/mojolagm/Documents/Mac Pro Items/Source/New Projects/Chapter1"
+      customWorkingDirectory = "/Users/mojolagm/Documents/Mac Pro Items/MATLAB/Homeworks/Cpp_7650"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

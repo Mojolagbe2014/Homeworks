@@ -1,0 +1,4 @@
+The function read(p, n) reads at most n characters and
+stores them in a character array p[O] , p[l] , up to
+p[n -1] . The returned object will be converted to false
+when end of file is encountered.

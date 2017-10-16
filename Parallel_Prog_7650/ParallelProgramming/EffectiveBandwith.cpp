@@ -21,8 +21,9 @@
 #define ENDSIZE       1000000
 #define INCREMENT     100000
 #define ROUNDTRIPS    100
+//#define RUN_SECTION
 
-
+#ifdef RUN_SECTION
 int main(int argc,char *argv[]){
     int     numtasks, rank, n, i, j, rndtrps, nbytes, start, end, incr,
     src, dest, rc, tag=1, taskpairs[MAXTASKS], namelength;
@@ -148,3 +149,4 @@ int main(int argc,char *argv[]){
 
     return 0;
 }
+#endif

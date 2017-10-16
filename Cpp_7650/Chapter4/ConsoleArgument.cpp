@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#define RUN_SECTION
+//#define RUN_SECTION
 
 #ifdef RUN_SECTION
 double add(double a, double b) { return a + b; }
