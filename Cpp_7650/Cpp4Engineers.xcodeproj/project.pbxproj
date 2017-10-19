@@ -80,6 +80,9 @@
 		BFC862BC1F9541F6006F0131 /* StreamExample9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */; };
 		BFC862C01F95471A006F0131 /* StreamExample10.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862BF1F95471A006F0131 /* StreamExample10.cpp */; };
 		BFC862C21F954EC3006F0131 /* StreamExample11.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862C11F954EC3006F0131 /* StreamExample11.cpp */; };
+		BFC862C41F95552A006F0131 /* StreamExample12.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862C31F955529006F0131 /* StreamExample12.cpp */; };
+		BFC862C61F97E7D3006F0131 /* BisectionMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862C51F97E7D3006F0131 /* BisectionMethod.cpp */; };
+		BFC862C91F97EA83006F0131 /* BisectionMethodTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC862C81F97EA83006F0131 /* BisectionMethodTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -170,6 +173,10 @@
 		BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample9.cpp; path = Chapter4/StreamExample9.cpp; sourceTree = "<group>"; };
 		BFC862BF1F95471A006F0131 /* StreamExample10.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample10.cpp; path = Chapter4/StreamExample10.cpp; sourceTree = "<group>"; };
 		BFC862C11F954EC3006F0131 /* StreamExample11.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample11.cpp; path = Chapter4/StreamExample11.cpp; sourceTree = "<group>"; };
+		BFC862C31F955529006F0131 /* StreamExample12.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StreamExample12.cpp; path = Chapter4/StreamExample12.cpp; sourceTree = "<group>"; };
+		BFC862C51F97E7D3006F0131 /* BisectionMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BisectionMethod.cpp; path = Chapter4/BisectionMethod.cpp; sourceTree = "<group>"; };
+		BFC862C71F97E9AC006F0131 /* BisectionMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BisectionMethod.h; path = Chapter4/BisectionMethod.h; sourceTree = "<group>"; };
+		BFC862C81F97EA83006F0131 /* BisectionMethodTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BisectionMethodTest.cpp; path = Chapter4/BisectionMethodTest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +308,10 @@
 				BFC862BB1F9541F6006F0131 /* StreamExample9.cpp */,
 				BFC862BF1F95471A006F0131 /* StreamExample10.cpp */,
 				BFC862C11F954EC3006F0131 /* StreamExample11.cpp */,
+				BFC862C31F955529006F0131 /* StreamExample12.cpp */,
+				BFC862C71F97E9AC006F0131 /* BisectionMethod.h */,
+				BFC862C51F97E7D3006F0131 /* BisectionMethod.cpp */,
+				BFC862C81F97EA83006F0131 /* BisectionMethodTest.cpp */,
 			);
 			name = Chapter4;
 			sourceTree = "<group>";
@@ -373,6 +384,7 @@
 				BF8C093D1F6A2FE7007438AD /* exercise162b.cpp in Sources */,
 				BF8C094E1F6A3E42007438AD /* exercise1610.cpp in Sources */,
 				BF8C09431F6A337F007438AD /* exercise164.cpp in Sources */,
+				BFC862C41F95552A006F0131 /* StreamExample12.cpp in Sources */,
 				BF8C09411F6A32CE007438AD /* exercise163b.cpp in Sources */,
 				BFC307371F6A129500774AA8 /* main.cpp in Sources */,
 				BFC8623F1F7B481E006F0131 /* ex3145.cpp in Sources */,
@@ -422,6 +434,7 @@
 				BFC862311F7AF261006F0131 /* trapeAndSimp.cpp in Sources */,
 				BFC862391F7B3CE9006F0131 /* ex3144.cpp in Sources */,
 				BFC862BA1F95399D006F0131 /* StreamExample8.cpp in Sources */,
+				BFC862C91F97EA83006F0131 /* BisectionMethodTest.cpp in Sources */,
 				BFC862C21F954EC3006F0131 /* StreamExample11.cpp in Sources */,
 				BFC862AE1F950522006F0131 /* StreamExample2.cpp in Sources */,
 				BFC862A61F8C4B1A006F0131 /* StringExample4.cpp in Sources */,
@@ -433,6 +446,7 @@
 				BFC8623D1F7B4766006F0131 /* ex3146.cpp in Sources */,
 				BFC307401F6A1D0700774AA8 /* exercise162.cpp in Sources */,
 				BFC862271F73538D006F0131 /* test.cpp in Sources */,
+				BFC862C61F97E7D3006F0131 /* BisectionMethod.cpp in Sources */,
 				BFC862291F7353B0006F0131 /* main.cpp in Sources */,
 				BFC862B41F95154D006F0131 /* StreamExample5.cpp in Sources */,
 				BFC862A01F8C324A006F0131 /* StringExample1.cpp in Sources */,

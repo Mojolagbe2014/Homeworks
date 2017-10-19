@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#define RUN_SECTION
+//#define RUN_SECTION
 
 #ifdef RUN_SECTION
 int main(int argc, const char * argv[]) {
