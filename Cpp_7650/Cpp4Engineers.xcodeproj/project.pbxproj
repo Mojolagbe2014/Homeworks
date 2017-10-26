@@ -18,6 +18,13 @@
 		BF8C094E1F6A3E42007438AD /* exercise1610.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8C094C1F6A3E42007438AD /* exercise1610.cpp */; };
 		BF8C09501F6A3FE8007438AD /* exercise1611.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8C094F1F6A3FE8007438AD /* exercise1611.cpp */; };
 		BF8C09521F6A40A4007438AD /* exercise1612.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8C09511F6A40A4007438AD /* exercise1612.cpp */; };
+		BFBA08271F9955E50055DCAB /* NewtonsMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08261F9955E50055DCAB /* NewtonsMethod.cpp */; };
+		BFBA08291FA1215A0055DCAB /* ex3148.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08281FA1215A0055DCAB /* ex3148.cpp */; };
+		BFBA082B1FA126DD0055DCAB /* ex3149.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA082A1FA126DD0055DCAB /* ex3149.cpp */; };
+		BFBA082D1FA12B4A0055DCAB /* ex31410.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA082C1FA12B4A0055DCAB /* ex31410.cpp */; };
+		BFBA082F1FA149EB0055DCAB /* ex31411.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA082E1FA149EB0055DCAB /* ex31411.cpp */; };
+		BFBA08311FA150A60055DCAB /* ex31412.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08301FA150A60055DCAB /* ex31412.cpp */; };
+		BFBA08331FA166580055DCAB /* ex31413.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08321FA166580055DCAB /* ex31413.cpp */; };
 		BFC307371F6A129500774AA8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC307361F6A129500774AA8 /* main.cpp */; };
 		BFC3073E1F6A16A100774AA8 /* example161.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC3073D1F6A16A100774AA8 /* example161.cpp */; };
 		BFC307401F6A1D0700774AA8 /* exercise162.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC3073F1F6A1D0700774AA8 /* exercise162.cpp */; };
@@ -109,6 +116,13 @@
 		BF8C094C1F6A3E42007438AD /* exercise1610.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exercise1610.cpp; sourceTree = "<group>"; };
 		BF8C094F1F6A3FE8007438AD /* exercise1611.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exercise1611.cpp; sourceTree = "<group>"; };
 		BF8C09511F6A40A4007438AD /* exercise1612.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exercise1612.cpp; sourceTree = "<group>"; };
+		BFBA08261F9955E50055DCAB /* NewtonsMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NewtonsMethod.cpp; path = Chapter4/NewtonsMethod.cpp; sourceTree = "<group>"; };
+		BFBA08281FA1215A0055DCAB /* ex3148.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex3148.cpp; path = Chapter3/ex3148.cpp; sourceTree = "<group>"; };
+		BFBA082A1FA126DD0055DCAB /* ex3149.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex3149.cpp; path = Chapter3/ex3149.cpp; sourceTree = "<group>"; };
+		BFBA082C1FA12B4A0055DCAB /* ex31410.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex31410.cpp; path = Chapter3/ex31410.cpp; sourceTree = "<group>"; };
+		BFBA082E1FA149EB0055DCAB /* ex31411.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex31411.cpp; path = Chapter3/ex31411.cpp; sourceTree = "<group>"; };
+		BFBA08301FA150A60055DCAB /* ex31412.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex31412.cpp; path = Chapter3/ex31412.cpp; sourceTree = "<group>"; };
+		BFBA08321FA166580055DCAB /* ex31413.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex31413.cpp; path = Chapter3/ex31413.cpp; sourceTree = "<group>"; };
 		BFC307331F6A129500774AA8 /* Cpp4Engineers */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Cpp4Engineers; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC307361F6A129500774AA8 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BFC3073D1F6A16A100774AA8 /* example161.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = example161.cpp; sourceTree = "<group>"; };
@@ -268,6 +282,12 @@
 				BFC8623E1F7B481E006F0131 /* ex3145.cpp */,
 				BFC8623C1F7B4766006F0131 /* ex3146.cpp */,
 				BFC862401F7B4AE1006F0131 /* ex3147.cpp */,
+				BFBA08281FA1215A0055DCAB /* ex3148.cpp */,
+				BFBA082A1FA126DD0055DCAB /* ex3149.cpp */,
+				BFBA082C1FA12B4A0055DCAB /* ex31410.cpp */,
+				BFBA082E1FA149EB0055DCAB /* ex31411.cpp */,
+				BFBA08301FA150A60055DCAB /* ex31412.cpp */,
+				BFBA08321FA166580055DCAB /* ex31413.cpp */,
 				BFC862531F82F7C5006F0131 /* ErrorNo.cpp */,
 				BFC862551F83016E006F0131 /* evalHorner.cpp */,
 			);
@@ -312,6 +332,7 @@
 				BFC862C71F97E9AC006F0131 /* BisectionMethod.h */,
 				BFC862C51F97E7D3006F0131 /* BisectionMethod.cpp */,
 				BFC862C81F97EA83006F0131 /* BisectionMethodTest.cpp */,
+				BFBA08261F9955E50055DCAB /* NewtonsMethod.cpp */,
 			);
 			name = Chapter4;
 			sourceTree = "<group>";
@@ -412,8 +433,10 @@
 				BFC862621F858450006F0131 /* file4.cpp in Sources */,
 				BFC8624A1F80A13F006F0131 /* NamespaceAlias.cpp in Sources */,
 				BFC862C01F95471A006F0131 /* StreamExample10.cpp in Sources */,
+				BFBA08271F9955E50055DCAB /* NewtonsMethod.cpp in Sources */,
 				BFC8626D1F85D7C3006F0131 /* ConsoleArgument.cpp in Sources */,
 				BFC8626B1F85BF53006F0131 /* SortRand.cpp in Sources */,
+				BFBA08291FA1215A0055DCAB /* ex3148.cpp in Sources */,
 				BF8C09451F6A3647007438AD /* exercise165.cpp in Sources */,
 				BFC862141F732497006F0131 /* ex257.cpp in Sources */,
 				BFC862BC1F9541F6006F0131 /* StreamExample9.cpp in Sources */,
@@ -421,13 +444,16 @@
 				BFC862B81F952768006F0131 /* StreamExample7.cpp in Sources */,
 				BFC862011F70BAA0006F0131 /* exercise168.cpp in Sources */,
 				BFC862A41F8C4566006F0131 /* StringExample3.cpp in Sources */,
+				BFBA082B1FA126DD0055DCAB /* ex3149.cpp in Sources */,
 				BFC862201F733B79006F0131 /* ex2513.cpp in Sources */,
 				BFC862B21F9511C9006F0131 /* StreamExample4.cpp in Sources */,
 				BFC862121F732356006F0131 /* ex256.cpp in Sources */,
 				BFC3073E1F6A16A100774AA8 /* example161.cpp in Sources */,
 				BFC8621E1F73335A006F0131 /* ex2512.cpp in Sources */,
+				BFBA08331FA166580055DCAB /* ex31413.cpp in Sources */,
 				BFC862561F83016E006F0131 /* evalHorner.cpp in Sources */,
 				BF8C09501F6A3FE8007438AD /* exercise1611.cpp in Sources */,
+				BFBA082D1FA12B4A0055DCAB /* ex31410.cpp in Sources */,
 				BFC862601F858431006F0131 /* file3.cpp in Sources */,
 				BFC862371F7B395A006F0131 /* ex3143.cpp in Sources */,
 				BFC862B61F951BB4006F0131 /* StreamExample6.cpp in Sources */,
@@ -449,8 +475,10 @@
 				BFC862C61F97E7D3006F0131 /* BisectionMethod.cpp in Sources */,
 				BFC862291F7353B0006F0131 /* main.cpp in Sources */,
 				BFC862B41F95154D006F0131 /* StreamExample5.cpp in Sources */,
+				BFBA08311FA150A60055DCAB /* ex31412.cpp in Sources */,
 				BFC862A01F8C324A006F0131 /* StringExample1.cpp in Sources */,
 				BF8C09471F6A3AB2007438AD /* exercise166.cpp in Sources */,
+				BFBA082F1FA149EB0055DCAB /* ex31411.cpp in Sources */,
 				BFC862101F7317A4006F0131 /* ex255.cpp in Sources */,
 				BFC8621A1F732CE3006F0131 /* ex2510.cpp in Sources */,
 				BFC862161F7325D0006F0131 /* ex258.cpp in Sources */,

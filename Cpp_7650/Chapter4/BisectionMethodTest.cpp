@@ -1,5 +1,5 @@
 //
-//  BisectionMethodTest.cpp
+//  NewtonsMethod.cpp
 //  Cpp4Engineers
 //
 //  Created by Mojolagbe Mojolagbe on 2017-10-09.
@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "BisectionMethod.h"
 
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 using namespace NumericMethod;

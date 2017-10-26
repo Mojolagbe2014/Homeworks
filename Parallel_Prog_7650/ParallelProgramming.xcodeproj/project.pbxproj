@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFBA08251F9900B50055DCAB /* MasterSlave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08241F9900B50055DCAB /* MasterSlave.cpp */; };
 		BFBDBC7B1EA909ED00935D67 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBDBC7A1EA909ED00935D67 /* main.cpp */; };
 		BFC8622D1F79A94F006F0131 /* CollectiveCommunication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8622C1F79A94F006F0131 /* CollectiveCommunication.cpp */; };
 		BFC8622F1F7ADB2D006F0131 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8622E1F7ADB2D006F0131 /* test.cpp */; };
@@ -28,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BFBA08241F9900B50055DCAB /* MasterSlave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MasterSlave.cpp; sourceTree = "<group>"; };
 		BFBDBC771EA909EC00935D67 /* ParallelProgramming */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ParallelProgramming; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDBC7A1EA909ED00935D67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ParallelProgramming/main.cpp; sourceTree = SOURCE_ROOT; };
 		BFC8622C1F79A94F006F0131 /* CollectiveCommunication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollectiveCommunication.cpp; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				BFC8624D1F829BC0006F0131 /* PingPongMethod.cpp */,
 				BFC8624F1F82D2D7006F0131 /* EffectiveBandwith.cpp */,
 				BFC8626E1F86ADB6006F0131 /* BlockDistribution.cpp */,
+				BFBA08241F9900B50055DCAB /* MasterSlave.cpp */,
 			);
 			path = ParallelProgramming;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				BFC862501F82D2D7006F0131 /* EffectiveBandwith.cpp in Sources */,
 				BFBDBC7B1EA909ED00935D67 /* main.cpp in Sources */,
 				BFC8624E1F829BC0006F0131 /* PingPongMethod.cpp in Sources */,
+				BFBA08251F9900B50055DCAB /* MasterSlave.cpp in Sources */,
 				BFC8622F1F7ADB2D006F0131 /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,13 +10,14 @@
 #include <math.h>
 #include <mpi.h>
 #include <iostream>
-#define RUN_SECTION
+//#define RUN_SECTION
+#ifdef RUN_SECTION
 
 void para_range(int, int, int, int, int*, int* );
 
-#ifdef RUN_SECTION
+
 int main (int argc, char** argv){
-    const unsigned N = 10;
+    const unsigned N = 100;
     int myid, numprocs, ista, iend;
     
     MPI_Init(&argc, &argv);
@@ -32,7 +33,7 @@ int main (int argc, char** argv){
 
     return 0;
 }
-#endif
+
 
 
 
@@ -48,3 +49,5 @@ void para_range(int n1, int n2, int nprocs, int irank, int *ista, int* iend){
     *iend = *ista + iwork1 - 1;                     /* iend=  1,4,7,9 */
     if(iwork2 > irank) *iend += 1;                  /* iend=  2,5,7,9 */
 }
+
+#endif
