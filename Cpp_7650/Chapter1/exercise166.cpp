@@ -7,12 +7,15 @@
 //
 
 
-//#include <iostream>
-//
-//int main(int argc, const char * argv[]) {
-//    
-//    std::cout << "He said: \"I can output double quotation marks.\"" << std::endl;
-//    std::cout << "She asked: \"Do you know how to output the newline character \\n ?\"" << std::endl;
-//    
-//    return 0;
-//}
+#include <iostream>
+//#define RUN_SECTION
+
+#ifdef RUN_SECTION
+int main(int argc, const char * argv[]) {
+    
+    std::cout << "He said: \"I can output double quotation marks.\"" << std::endl;
+    std::cout << "She asked: \"Do you know how to output the newline character \\n ?\"" << std::endl;
+    
+    return 0;
+}
+#endif

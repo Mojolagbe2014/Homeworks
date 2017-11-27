@@ -9,7 +9,7 @@
 #include <math.h>
 #include <mpi.h>
 #include <iostream>
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 int slave_io(MPI_Comm, MPI_Comm);

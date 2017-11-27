@@ -13,7 +13,8 @@
 #include <sys/time.h>
 #include <time.h>
 //#define DEBG
-
+//#define RUN_SECTION
+#ifdef RUN_SECTION
 
 #define MAXTASKS     8192
 /* Change the next four parameters to suit your case */
@@ -21,19 +22,16 @@
 #define ENDSIZE       1000000
 #define INCREMENT     100000
 #define ROUNDTRIPS    100
-//#define RUN_SECTION
 
-#ifdef RUN_SECTION
 int main(int argc,char *argv[]){
-    int     numtasks, rank, n, i, j, rndtrps, nbytes, start, end, incr,
+    int numtasks, rank, n, i, j, rndtrps, nbytes, start, end, incr,
     src, dest, rc, tag=1, taskpairs[MAXTASKS], namelength;
     
     double  thistime, bw, bestbw, worstbw, totalbw, avgbw,
     bestall, avgall, worstall, timings[MAXTASKS/2][3],
     tmptimes[3], resolution, t1, t2;
     
-    char msgbuf[ENDSIZE], host[MPI_MAX_PROCESSOR_NAME],
-    hostmap[MAXTASKS][MPI_MAX_PROCESSOR_NAME];
+    char msgbuf[ENDSIZE], host[MPI_MAX_PROCESSOR_NAME], hostmap[MAXTASKS][MPI_MAX_PROCESSOR_NAME];
     
     MPI_Status status;
     

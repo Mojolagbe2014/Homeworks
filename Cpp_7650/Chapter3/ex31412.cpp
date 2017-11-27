@@ -14,15 +14,17 @@
 int main(int argc, const char * argv[]){
     int n = 4;
     double** const utm = new double*[n]; // create space for matrix
-    for (int i =0; i < n; i++) utm[i] = new double[n]; // new double[n](); fill with zeros
+    for (int i = 0; i < n; i++) utm[i] = new double[i]; // new double[n](); fill with zeros
     
     for (int i = 0; i < n; i++) // assign values to matrix
         for (int j = i; j < n; j++) utm[i][j] = 2*i + j;
     
-    for (int i = 0; i < n; i++){ // assign values to matrix
-        for (int j = 0; j < n; j++){
-            std::cout << " " << (int)utm[i][j]  << " ";
+    for (int i = 0; i < n; i++){ // print values
+        if(i != 0) for(int k = 0; k < i; k++) std::cout << "*" << " ";
+        for (int j = i; j < n; j++){
+            std::cout << (int)utm[i][j]  << " ";
         }
+        
         std::cout << std::endl;
     }
     

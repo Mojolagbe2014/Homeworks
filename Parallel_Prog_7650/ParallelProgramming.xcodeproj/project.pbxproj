@@ -7,7 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF6E560A1FC380AE00C1B46F /* InsertionSort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56091FC380AE00C1B46F /* InsertionSort.cpp */; };
+		BF8F67961FAEA541001DCCE6 /* Point2Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67951FAEA541001DCCE6 /* Point2Point.cpp */; };
+		BF8F67981FB0CAAA001DCCE6 /* Broadcast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67971FB0CAAA001DCCE6 /* Broadcast.cpp */; };
+		BF8F679A1FB0CCB7001DCCE6 /* Scatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67991FB0CCB7001DCCE6 /* Scatter.cpp */; };
+		BF8F679C1FB0D3EE001DCCE6 /* Gather.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F679B1FB0D3EE001DCCE6 /* Gather.cpp */; };
+		BF8F679E1FB0D871001DCCE6 /* Reduce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F679D1FB0D871001DCCE6 /* Reduce.cpp */; };
+		BF8F67A01FB0DED9001DCCE6 /* Scan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F679F1FB0DED9001DCCE6 /* Scan.cpp */; };
+		BF8F67A21FB0E026001DCCE6 /* AlltoAll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67A11FB0E026001DCCE6 /* AlltoAll.cpp */; };
+		BF8F67A41FB0EB42001DCCE6 /* TypeContiguous.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67A31FB0EB42001DCCE6 /* TypeContiguous.cpp */; };
+		BF8F67A61FB0F12F001DCCE6 /* TypeVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67A51FB0F12F001DCCE6 /* TypeVector.cpp */; };
+		BF8F67A81FB0F473001DCCE6 /* TypeStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67A71FB0F473001DCCE6 /* TypeStruct.cpp */; };
+		BF8F67AA1FB14045001DCCE6 /* CommGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67A91FB14045001DCCE6 /* CommGroup.cpp */; };
+		BF8F67AC1FB143AA001DCCE6 /* CommSplit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8F67AB1FB143AA001DCCE6 /* CommSplit.cpp */; };
 		BFBA08251F9900B50055DCAB /* MasterSlave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08241F9900B50055DCAB /* MasterSlave.cpp */; };
+		BFBA083D1FA7F1EA0055DCAB /* lab1a.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA08391FA7F1EA0055DCAB /* lab1a.cpp */; };
+		BFBA083E1FA7F1EA0055DCAB /* lab1b.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA083A1FA7F1EA0055DCAB /* lab1b.cpp */; };
+		BFBA083F1FA7F1EA0055DCAB /* lab1c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA083B1FA7F1EA0055DCAB /* lab1c.cpp */; };
+		BFBA08401FA7F1EA0055DCAB /* lab1d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBA083C1FA7F1EA0055DCAB /* lab1d.cpp */; };
 		BFBDBC7B1EA909ED00935D67 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFBDBC7A1EA909ED00935D67 /* main.cpp */; };
 		BFC8622D1F79A94F006F0131 /* CollectiveCommunication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8622C1F79A94F006F0131 /* CollectiveCommunication.cpp */; };
 		BFC8622F1F7ADB2D006F0131 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC8622E1F7ADB2D006F0131 /* test.cpp */; };
@@ -20,7 +37,7 @@
 		BFBDBC751EA909EC00935D67 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
 			);
@@ -29,7 +46,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF6E56091FC380AE00C1B46F /* InsertionSort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InsertionSort.cpp; sourceTree = "<group>"; };
+		BF8F67951FAEA541001DCCE6 /* Point2Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point2Point.cpp; sourceTree = "<group>"; };
+		BF8F67971FB0CAAA001DCCE6 /* Broadcast.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Broadcast.cpp; sourceTree = "<group>"; };
+		BF8F67991FB0CCB7001DCCE6 /* Scatter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scatter.cpp; sourceTree = "<group>"; };
+		BF8F679B1FB0D3EE001DCCE6 /* Gather.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gather.cpp; sourceTree = "<group>"; };
+		BF8F679D1FB0D871001DCCE6 /* Reduce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Reduce.cpp; sourceTree = "<group>"; };
+		BF8F679F1FB0DED9001DCCE6 /* Scan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scan.cpp; sourceTree = "<group>"; };
+		BF8F67A11FB0E026001DCCE6 /* AlltoAll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlltoAll.cpp; sourceTree = "<group>"; };
+		BF8F67A31FB0EB42001DCCE6 /* TypeContiguous.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeContiguous.cpp; sourceTree = "<group>"; };
+		BF8F67A51FB0F12F001DCCE6 /* TypeVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeVector.cpp; sourceTree = "<group>"; };
+		BF8F67A71FB0F473001DCCE6 /* TypeStruct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TypeStruct.cpp; sourceTree = "<group>"; };
+		BF8F67A91FB14045001DCCE6 /* CommGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommGroup.cpp; sourceTree = "<group>"; };
+		BF8F67AB1FB143AA001DCCE6 /* CommSplit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommSplit.cpp; sourceTree = "<group>"; };
 		BFBA08241F9900B50055DCAB /* MasterSlave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MasterSlave.cpp; sourceTree = "<group>"; };
+		BFBA08391FA7F1EA0055DCAB /* lab1a.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lab1a.cpp; sourceTree = "<group>"; };
+		BFBA083A1FA7F1EA0055DCAB /* lab1b.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lab1b.cpp; sourceTree = "<group>"; };
+		BFBA083B1FA7F1EA0055DCAB /* lab1c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lab1c.cpp; sourceTree = "<group>"; };
+		BFBA083C1FA7F1EA0055DCAB /* lab1d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lab1d.cpp; sourceTree = "<group>"; };
 		BFBDBC771EA909EC00935D67 /* ParallelProgramming */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ParallelProgramming; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDBC7A1EA909ED00935D67 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ParallelProgramming/main.cpp; sourceTree = SOURCE_ROOT; };
 		BFC8622C1F79A94F006F0131 /* CollectiveCommunication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollectiveCommunication.cpp; sourceTree = "<group>"; };
@@ -50,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFBA08381FA7F1370055DCAB /* Lab1 */ = {
+			isa = PBXGroup;
+			children = (
+				BFBA08391FA7F1EA0055DCAB /* lab1a.cpp */,
+				BFBA083A1FA7F1EA0055DCAB /* lab1b.cpp */,
+				BFBA083B1FA7F1EA0055DCAB /* lab1c.cpp */,
+				BFBA083C1FA7F1EA0055DCAB /* lab1d.cpp */,
+			);
+			path = Lab1;
+			sourceTree = "<group>";
+		};
 		BFBDBC6E1EA909EC00935D67 = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +114,21 @@
 		BFBDBC791EA909EC00935D67 /* ParallelProgramming */ = {
 			isa = PBXGroup;
 			children = (
+				BFBA08381FA7F1370055DCAB /* Lab1 */,
 				BFBDBC7A1EA909ED00935D67 /* main.cpp */,
+				BF8F67971FB0CAAA001DCCE6 /* Broadcast.cpp */,
+				BF8F67991FB0CCB7001DCCE6 /* Scatter.cpp */,
+				BF6E56091FC380AE00C1B46F /* InsertionSort.cpp */,
+				BF8F679B1FB0D3EE001DCCE6 /* Gather.cpp */,
+				BF8F679D1FB0D871001DCCE6 /* Reduce.cpp */,
+				BF8F679F1FB0DED9001DCCE6 /* Scan.cpp */,
+				BF8F67A11FB0E026001DCCE6 /* AlltoAll.cpp */,
+				BF8F67A31FB0EB42001DCCE6 /* TypeContiguous.cpp */,
+				BF8F67A51FB0F12F001DCCE6 /* TypeVector.cpp */,
+				BF8F67A71FB0F473001DCCE6 /* TypeStruct.cpp */,
+				BF8F67A91FB14045001DCCE6 /* CommGroup.cpp */,
+				BF8F67AB1FB143AA001DCCE6 /* CommSplit.cpp */,
+				BF8F67951FAEA541001DCCE6 /* Point2Point.cpp */,
 				BFC8622C1F79A94F006F0131 /* CollectiveCommunication.cpp */,
 				BFC8622E1F7ADB2D006F0131 /* test.cpp */,
 				BFC8624D1F829BC0006F0131 /* PingPongMethod.cpp */,
@@ -139,12 +198,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC8622D1F79A94F006F0131 /* CollectiveCommunication.cpp in Sources */,
+				BF8F67A41FB0EB42001DCCE6 /* TypeContiguous.cpp in Sources */,
+				BF8F679C1FB0D3EE001DCCE6 /* Gather.cpp in Sources */,
+				BFBA083D1FA7F1EA0055DCAB /* lab1a.cpp in Sources */,
+				BF8F67A61FB0F12F001DCCE6 /* TypeVector.cpp in Sources */,
+				BF6E560A1FC380AE00C1B46F /* InsertionSort.cpp in Sources */,
+				BF8F67A01FB0DED9001DCCE6 /* Scan.cpp in Sources */,
+				BF8F679E1FB0D871001DCCE6 /* Reduce.cpp in Sources */,
+				BF8F67961FAEA541001DCCE6 /* Point2Point.cpp in Sources */,
 				BFC8626F1F86ADB6006F0131 /* BlockDistribution.cpp in Sources */,
+				BFBA083E1FA7F1EA0055DCAB /* lab1b.cpp in Sources */,
 				BFC862501F82D2D7006F0131 /* EffectiveBandwith.cpp in Sources */,
 				BFBDBC7B1EA909ED00935D67 /* main.cpp in Sources */,
 				BFC8624E1F829BC0006F0131 /* PingPongMethod.cpp in Sources */,
+				BFBA083F1FA7F1EA0055DCAB /* lab1c.cpp in Sources */,
 				BFBA08251F9900B50055DCAB /* MasterSlave.cpp in Sources */,
+				BF8F67AA1FB14045001DCCE6 /* CommGroup.cpp in Sources */,
+				BF8F67A81FB0F473001DCCE6 /* TypeStruct.cpp in Sources */,
+				BF8F67AC1FB143AA001DCCE6 /* CommSplit.cpp in Sources */,
+				BF8F679A1FB0CCB7001DCCE6 /* Scatter.cpp in Sources */,
+				BF8F67A21FB0E026001DCCE6 /* AlltoAll.cpp in Sources */,
 				BFC8622F1F7ADB2D006F0131 /* test.cpp in Sources */,
+				BFBA08401FA7F1EA0055DCAB /* lab1d.cpp in Sources */,
+				BF8F67981FB0CAAA001DCCE6 /* Broadcast.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

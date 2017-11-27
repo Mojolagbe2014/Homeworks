@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 void multiply(double** const mx, const double* const vr, int n, double* const pt) {
@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]){
     
     double* c = new double[n];
     multiply(utm, b, n, c); // matrix-vector multiply
-    
+     
     
     
     // Printing the matrix and solution details
