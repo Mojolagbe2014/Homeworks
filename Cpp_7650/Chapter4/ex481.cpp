@@ -9,8 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
-#include <vector>
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 namespace Vec {
     const int maxsize = 100000;
@@ -165,7 +164,7 @@ int main (){
     
     
     std::cout << "\n********************* MATRIX - VECTOR OPERATIONS ********************\n";
-    int N = 3, M = 3;
+    int N = 10, M = 10;
     double** const a = new double*[N];              // create space for matrix
     for (int i =0; i <N; i++) a[i] = new double[M];
     
@@ -225,7 +224,7 @@ int main (){
     }
 
     for (int i = 0; i < N; i++) {delete[] a[i]; delete[] aa[i];}
-    delete[] a; delete[] A; delete[] b; delete[] x;  delete[] test1;  delete[] test2;
+    delete[] a; delete[] aa; delete[] A; delete[] b; delete[] x;  delete[] test1;  delete[] test2;
     
     return 0;
 }

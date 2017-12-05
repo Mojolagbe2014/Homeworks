@@ -10,7 +10,28 @@
 //#include <complex>
 #include <iostream>
 //#include "cmplx.h"
-//#define RUN_SECTION
+#define RUN_SECTION
+class Shape {
+
+public:
+    virtual void draw() = 0;
+};
+
+class A : public Shape {
+public:
+    void draw(){ std::cout << "A\n"; };
+};
+class B : public Shape {
+public:
+    void draw(){ std::cout << "B\n"; };
+
+};
+
+class C : public A, protected B {
+    
+    //void draw();
+};
+
 
 #ifdef RUN_SECTION
 
@@ -21,6 +42,20 @@ int main(){
 //    cd=cf ;
 //    //cf=cd;
 //    cf = cplx<float>(cd);
+    
+    C* p;
+    A* q1 = p;
+    A* q2 = dynamic_cast<C*>(p);
+    
+    //B* p1 = p;
+    //B q3 = *dynamic_cast<C*>(p);
+    
+    B* pb;
+    dynamic_cast<A*>(pb);
+    if(A* pa = dynamic_cast<A*>(pb))
+        std::cout << "good" << std::endl;
+    else
+        std::cout << "not good" << std::endl;
     
     char charr[7][32];
     
