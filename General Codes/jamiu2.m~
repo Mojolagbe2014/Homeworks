@@ -5,8 +5,8 @@ n = 5;
 incr = 1;
 inc = 0;
 start = 1;
-wait = 0.1;
-repeat = 5;
+wait = 2.1;
+repeat = 1;
 
 for time = 1:repeat
 col = 2*(n+1) - 1;
@@ -37,7 +37,6 @@ for i = 1:incr:n
     end
     imagesc(X),
     colormap hot
-    axis off
     pause(wait)
 end
 

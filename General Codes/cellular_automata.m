@@ -1,7 +1,7 @@
 clear; clc; close all;
 x = 300;
 t = 300;
-ruleset = 30; % 30 | 90 | 110 | 190 | 222
+ruleset = 110; % 30 | 90 | 110 | 190 | 222
 wait = 0.05;
 
 
