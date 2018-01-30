@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BFC020622010308D00143BF3 /* TetrahedronDrive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC020612010308D00143BF3 /* TetrahedronDrive.cpp */; };
+		BFC0206A201030F100143BF3 /* Tetrahedron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC02069201030F100143BF3 /* Tetrahedron.cpp */; };
+		BFC0206D2010360300143BF3 /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC0206B2010360300143BF3 /* Triangle.cpp */; };
+		BFC0206F201036AB00143BF3 /* TriangleDrive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC0206E201036AB00143BF3 /* TriangleDrive.cpp */; };
+		BFC0207220107D8E00143BF3 /* Simplex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC0207020107D8E00143BF3 /* Simplex.cpp */; };
+		BFC0207420107E9500143BF3 /* SimplexDrive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BFC0207320107E9500143BF3 /* SimplexDrive.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFC0205C2010308C00143BF3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BFC0205E2010308D00143BF3 /* QuadratureRule */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QuadratureRule; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC020612010308D00143BF3 /* TetrahedronDrive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TetrahedronDrive.cpp; sourceTree = "<group>"; };
+		BFC02068201030D400143BF3 /* Tetrahedron.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tetrahedron.h; sourceTree = "<group>"; };
+		BFC02069201030F100143BF3 /* Tetrahedron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tetrahedron.cpp; sourceTree = "<group>"; };
+		BFC0206B2010360300143BF3 /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangle.cpp; sourceTree = "<group>"; };
+		BFC0206C2010360300143BF3 /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
+		BFC0206E201036AB00143BF3 /* TriangleDrive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleDrive.cpp; sourceTree = "<group>"; };
+		BFC0207020107D8E00143BF3 /* Simplex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Simplex.cpp; sourceTree = "<group>"; };
+		BFC0207120107D8E00143BF3 /* Simplex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simplex.h; sourceTree = "<group>"; };
+		BFC0207320107E9500143BF3 /* SimplexDrive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplexDrive.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFC0205B2010308C00143BF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BFC020552010308C00143BF3 = {
+			isa = PBXGroup;
+			children = (
+				BFC020602010308D00143BF3 /* QuadratureRule */,
+				BFC0205F2010308D00143BF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BFC0205F2010308D00143BF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFC0205E2010308D00143BF3 /* QuadratureRule */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFC020602010308D00143BF3 /* QuadratureRule */ = {
+			isa = PBXGroup;
+			children = (
+				BFC020612010308D00143BF3 /* TetrahedronDrive.cpp */,
+				BFC02068201030D400143BF3 /* Tetrahedron.h */,
+				BFC02069201030F100143BF3 /* Tetrahedron.cpp */,
+				BFC0206B2010360300143BF3 /* Triangle.cpp */,
+				BFC0206C2010360300143BF3 /* Triangle.h */,
+				BFC0206E201036AB00143BF3 /* TriangleDrive.cpp */,
+				BFC0207020107D8E00143BF3 /* Simplex.cpp */,
+				BFC0207120107D8E00143BF3 /* Simplex.h */,
+				BFC0207320107E9500143BF3 /* SimplexDrive.cpp */,
+			);
+			path = QuadratureRule;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BFC0205D2010308C00143BF3 /* QuadratureRule */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFC020652010308D00143BF3 /* Build configuration list for PBXNativeTarget "QuadratureRule" */;
+			buildPhases = (
+				BFC0205A2010308C00143BF3 /* Sources */,
+				BFC0205B2010308C00143BF3 /* Frameworks */,
+				BFC0205C2010308C00143BF3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuadratureRule;
+			productName = QuadratureRule;
+			productReference = BFC0205E2010308D00143BF3 /* QuadratureRule */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFC020562010308C00143BF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "TIMCA Computers";
+				TargetAttributes = {
+					BFC0205D2010308C00143BF3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8EBBC7XXY4;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BFC020592010308C00143BF3 /* Build configuration list for PBXProject "QuadratureRule" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BFC020552010308C00143BF3;
+			productRefGroup = BFC0205F2010308D00143BF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFC0205D2010308C00143BF3 /* QuadratureRule */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BFC0205A2010308C00143BF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFC0207220107D8E00143BF3 /* Simplex.cpp in Sources */,
+				BFC0207420107E9500143BF3 /* SimplexDrive.cpp in Sources */,
+				BFC0206A201030F100143BF3 /* Tetrahedron.cpp in Sources */,
+				BFC0206D2010360300143BF3 /* Triangle.cpp in Sources */,
+				BFC0206F201036AB00143BF3 /* TriangleDrive.cpp in Sources */,
+				BFC020622010308D00143BF3 /* TetrahedronDrive.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BFC020632010308D00143BF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BFC020642010308D00143BF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BFC020662010308D00143BF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 8EBBC7XXY4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BFC020672010308D00143BF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 8EBBC7XXY4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BFC020592010308C00143BF3 /* Build configuration list for PBXProject "QuadratureRule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFC020632010308D00143BF3 /* Debug */,
+				BFC020642010308D00143BF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFC020652010308D00143BF3 /* Build configuration list for PBXNativeTarget "QuadratureRule" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFC020662010308D00143BF3 /* Debug */,
+				BFC020672010308D00143BF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFC020562010308C00143BF3 /* Project object */;
+}

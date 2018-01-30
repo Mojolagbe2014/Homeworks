@@ -1,8 +1,8 @@
 clear; clc; close all;
 x = 300;
 t = 300;
-ruleset = 110; % 30 | 90 | 110 | 190 | 222
-wait = 0.05;
+ruleset = 90; % 30 | 90 | 110 | 190 | 222
+wait = 0.01;
 
 
 gen = zeros(1, x);
@@ -22,6 +22,7 @@ gen(1, floor(x/2)) = 1;
 
 for ii = 1:t -1
     imagesc(gen)
+    axis off
     pause(wait)
     for jj = 1:x
         if(jj == 1)

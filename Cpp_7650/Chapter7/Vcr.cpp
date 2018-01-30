@@ -1,0 +1,121 @@
+//
+//  Vcr.cpp
+//  Cpp4Engineers
+//
+//  Created by Mojolagbe Mojolagbe on 2018-01-29.
+//  Copyright © 2018 TIMCA Computers. All rights reserved.
+//
+#include "Vcr.h"
+
+template<typename T> Vcr<T>::Vcr(int n, const T* const abd){  // constructor
+    vr = new T[length=n];
+    for(int i = 0; i < length; i++) vr[i] = *(abd+i);
+}
+
+template<typename T> Vcr<T>::Vcr(int n, T val){  // constructor
+    vr = new T[length=n];
+    for(int i = 0; i < length; i++) vr[i] = val;
+}
+
+
+template<typename T> Vcr<T>::Vcr(const Vcr<T>& v){  // copy constructor
+    vr = new T[length = v.length];
+    for(int i = 0; i < length; i++) vr[i] = v[i];
+}
+
+template<typename T> Vcr<T>& Vcr<T>::operator=(const Vcr<T>& v){  // copy assignment
+    if(this != &v) {
+        if(length != v.length) std::cout << "\nBad assignment of vector\n";
+        for(int i = 0; i < length; i++) vr[i] = v[i];
+    }
+    return *this;
+}
+
+template<typename T> inline Vcr<T> operator+(const Vcr<T>& v) { return v; } //unary + : u = +v
+
+template<typename T> inline Vcr<T> operator-(const Vcr<T>& v) { return Vcr<T>(v.size()) - v; } //unary - : u = -v
+
+template<typename T> Vcr<T> operator+(const Vcr<T>& v1, const Vcr<T>& v2){         // binary +, v = v1 + v2
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    Vcr<T> temp = v1;  // create temporary vector
+    temp += v2;
+    return temp;
+}
+
+template<typename T> Vcr<T> operator-(const Vcr<T>& v1, const Vcr<T>& v2){         // binary -, v = v1 - v2
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    Vcr<T> temp = v1;  // create temporary vector
+    temp -= v2;
+    return temp;
+}
+
+template<typename T> Vcr<T>& Vcr<T>::operator+=(const Vcr<T>& v){ // binary operator +=
+    if(length != v.length) {
+        std::cout << "\nVector sizes not matching!\n";
+        exit(1);
+    }
+    for(int i = 0; i < length; i++) vr[i] += v[i];
+    return *this;
+}
+
+template<typename T> Vcr<T>& Vcr<T>::operator-=(const Vcr<T>& v){ // binary operator -=
+    if(length != v.length) std::cout << "\nBad assignment of vector\n";
+    for(int i = 0; i < length; i++) vr[i] -= v[i];
+    return *this;
+}
+
+template<typename T> Vcr<T> operator*(T scalar, const Vcr<T>& v){                     // scalar-vector multiply
+    Vcr<T> tm(v.length);
+    for(int i = 0; i < v.length; i++) tm[i] = scalar * v[i];
+    return tm;
+}
+
+template<typename T> inline Vcr<T> operator*(const Vcr<T>& v, T scalar) {       // vector-scalar multiply
+    return scalar*v;
+}
+
+template<typename T> Vcr<T> operator/(const Vcr<T> & v, T scalar) {              // vector-scalar divide
+    if (!scalar) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    return (1.0/scalar)*v;
+}
+
+template<typename T> Vcr<T> operator*(const Vcr<T>& v1, const Vcr<T>& v2) {     // vector multiply
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    int n = v1.length;
+    Vcr<T> tm(n);
+    for (int i = 0; i < n; i++) tm[i] = v1[i]*v2[i];
+    return tm;
+}
+
+template<typename T> T Vcr<T>::twonorm() const { // 2 - (euclidean) norm
+    T norm = vr[0] * vr [0] ;
+    for(int i = 1; i < length; i++) norm += vr[i]*vr[i];
+    return sqrt(norm);
+}
+
+
+template<typename T> T Vcr<T>::maxnorm() const {    // maximum norm
+    T nm = abs(vr[0]);
+    for(int i = 0; i < length; i++) nm = std::max(nm, abs(vr[i]));
+    
+    return nm;
+}
+
+template<typename T> T dot(const Vcr<T>& v1, const Vcr<T>& v2) { // dot product
+    if (v1.length != v2.length) std::cout << "\nBad vector sizes\n";
+    T tm = v1[0]*v2[0];
+    
+    for(int i = 1; i < v1.length; i++) tm += v1[i] * v2[i];
+    
+    return tm;
+}
+
+template<typename T> std::ostream& operator<<(std::ostream& s, const Vcr<T>& v) {                 // output stream
+    for (int i =0; i <v.length; i++ ) {
+        s << v[i] << " ";
+        if (i%10 == 9) s << "\n"; // print 10 elements on a line
+    }
+    return s;
+}
+
+

@@ -9,12 +9,13 @@
 #include <stdio.h>
 //#include <complex>
 #include <iostream>
+#include <typeinfo>
 //#include "cmplx.h"
-#define RUN_SECTION
+//#define RUN_SECTION
 class Shape {
 
 public:
-    virtual void draw() = 0;
+    virtual void draw()=0;
 };
 
 class A : public Shape {
@@ -32,6 +33,7 @@ class C : public A, protected B {
     //void draw();
 };
 
+class myInfo{};
 
 #ifdef RUN_SECTION
 
@@ -59,7 +61,10 @@ int main(){
     
     char charr[7][32];
     
-    std::cout << sizeof(charr) << std::endl;
+    //std::cout << sizeof(charr) << std::endl;
+    
+    myInfo test; char aaa;
+    std::cout << typeid(aaa).name() << std::endl;
     
     return 0;
 }

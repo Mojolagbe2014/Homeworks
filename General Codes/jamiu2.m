@@ -1,12 +1,12 @@
 clear; close all; clc;
 
 x = 1;
-n = 5;
+n = 15;
 incr = 1;
-inc = 0;
+inc = 1;
 start = 1;
-wait = 0.1;
-repeat = 5;
+wait = 0.8;
+repeat = 100;
 
 for time = 1:repeat
 col = 2*(n+1) - 1;
