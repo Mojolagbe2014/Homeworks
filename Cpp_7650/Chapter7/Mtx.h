@@ -46,7 +46,8 @@ public:
      It returns 0 for successful return and 1 for breakdowns
      
      A:     symmetric positive definite coefficient matrix
-     x:     on entry: initial guess; on return: approximate soln b: right side vector
+     x:     on entry: initial guess; on return: approximate soln 
+     b:     right side vector
      
      eps:   on entry: stopping criterion, epsilon
             on return: absolute residual in two-norm for approximate solution
@@ -56,5 +57,51 @@ public:
     */
     int CG(Vcr<T>& x, const Vcr<T>& b, double& eps, int& iter);
 };
+
+// ******* a specialization of Mtx<T> for complex numbers ******** //
+template<typename T> class Mtx<std::complex<T>> {
+    int nrows;                                  // number of rows
+    int ncols;                                  // number of columns
+    std::complex<T>** ets;                      // entries of matrix
+    
+public:
+    Mtx(int n, int m, std::complex<T>**);       // constructor (n by m)
+    Mtx(int n, int m, std::complex<T> d = 0.);  // all entries equal d
+    Mtx(const Mtx<std::complex<T>>&);           // copy constructor
+    ~Mtx();                                     // destructor
+    
+    Mtx& operator=(const Mtx<std::complex<T>>&);                 // overload = : copy assignment
+    Mtx& operator+=(const Mtx<std::complex<T>>&);                // overload +=
+    Mtx& operator-=(const Mtx<std::complex<T>>&);                // overload -=
+    Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>&) const;         // matrix-vector multiplication
+    
+    
+    std::complex<T>* operator[](int i) const{ return ets[i]; }                                        // subscript - row
+    std::complex<T>& operator()(int i, int j) const { return ets[i][j]; }                             // subscript - (i, j)th entry
+    
+    Mtx& operator+() const;                                                             // unary +, m1 = +m2
+    Mtx operator+(const Mtx<std::complex<T>>&) const;                                   // binary +, m = m1 + m2
+    
+    template<typename S> friend Mtx<std::complex<S>> operator-(const Mtx<std::complex<S>>&);                                        // unary -, m1 = -m2;
+    template<typename S> friend Mtx<std::complex<S>> operator-(const Mtx<std::complex<S>>&, const Mtx<std::complex<S>>&);           // binary -
+    template<typename S> friend std::ostream& operator<<(std::ostream&, const Mtx<std::complex<S>>&); // output operator
+    
+    /**
+     Conjugate gradient method for Ax = b.
+     It returns 0 for successful return and 1 for breakdowns
+     
+     A:     symmetric positive definite coefficient matrix (complex)
+     x:     on entry: initial guess; on return: approximate soln 
+     b:     right side vector
+     
+     eps:   on entry: stopping criterion, epsilon
+            on return: absolute residual in two-norm for approximate solution
+     
+     iter : on entry: max number of iterations allowed;
+            on return: actual number of iterations taken.
+     */
+    int CG(Vcr<std::complex<T>>& x, const Vcr<std::complex<T>>& b, double& eps, int& iter);
+};
+
 
 #endif /* Mtx_hpp */

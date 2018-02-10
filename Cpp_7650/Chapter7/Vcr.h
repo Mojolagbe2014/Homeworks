@@ -80,9 +80,12 @@ public:
     template<typename S> friend Vcr<std::complex<S>> operator+(const Vcr<std::complex<S>>&, const Vcr<std::complex<S>>&);         // binary+, v = v1+v2
     template<typename S> friend Vcr<std::complex<S>> operator-(const Vcr<std::complex<S>>&, const Vcr<std::complex<S>>&);         // binary -, v = v1 - v2
     template<typename S> friend Vcr<std::complex<S>> operator*(S, const Vcr<std::complex<S>>&);                                   // scalar-vector multiply
+    template<typename S> friend Vcr<std::complex<S>> operator*(std::complex<S>, const Vcr<std::complex<S>>&);                     // scalar-vector multiply
     template<typename S> friend Vcr<std::complex<S>> operator*(const Vcr<std::complex<S>>&, S);                                   // vector-scalar multiply
+    template<typename S> friend Vcr<std::complex<S>> operator*(const Vcr<std::complex<S>>&, std::complex<S>);                     // vector-scalar multiply
     template<typename S> friend Vcr<std::complex<S>> operator*(const Vcr<std::complex<S>>&, const Vcr<std::complex<S>>&);         // vector multiply
     template<typename S> friend Vcr<std::complex<S>> operator/(const Vcr<std::complex<S>>&, S);                                   // vector-scalar divide
+    template<typename S> friend Vcr<std::complex<S>> operator/(const Vcr<std::complex<S>>&, std::complex<S>);                     // vector-scalar divide
 };
 
 #endif /* Vcr_h */

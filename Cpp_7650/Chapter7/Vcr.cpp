@@ -189,11 +189,27 @@ template<typename T> Vcr<std::complex<T>> operator*(T scalar, const Vcr<std::com
     return tm;
 }
 
+template<typename T> Vcr<std::complex<T>> operator*(std::complex<T> scalar, const Vcr<std::complex<T>>& v){     // scalar-vector multiply
+    Vcr<std::complex<T>> tm(v.length);
+    for(int i = 0; i < v.length; i++) tm[i] = scalar * v[i];
+    return tm;
+}
+
 template<typename T> inline Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>& v, T scalar) {       // vector-scalar multiply
     return scalar*v;
 }
 
+template<typename T> inline Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>& v, std::complex<T> scalar) {       // vector-scalar multiply
+    return scalar*v;
+}
+
+
 template<typename T> Vcr<std::complex<T>> operator/(const Vcr<std::complex<T>> & v, T scalar) {              // vector-scalar divide
+    if (!scalar) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    return (1.0/scalar)*v;
+}
+
+template<typename T> Vcr<std::complex<T>> operator/(const Vcr<std::complex<T>> & v, std::complex<T> scalar) {              // vector-scalar divide
     if (!scalar) { std::cout << "\nBad vector sizes\n"; exit(1); }
     return (1.0/scalar)*v;
 }
