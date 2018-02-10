@@ -6,16 +6,14 @@
 //  Copyright © 2018 TIMCA Computers. All rights reserved.
 //
 
+//#define RUN_SECTION
+#ifdef RUN_SECTION
+
 #include <stdio.h>
 #include <iostream>
 #include <cmath>
 #include "Vcr.cpp"
 
-
-
-#define RUN_SECTION
-
-#ifdef RUN_SECTION
 using namespace std;
 
 int main(int argc, char* argv[]){
@@ -33,10 +31,10 @@ int main(int argc, char* argv[]){
     std::cout << dv2 << std::endl;
     std::cout << dv3 << std::endl;
     
-    //for(int i = 0; i < 3; i++) std::cout << std::endl << dv3[i] << std::endl;
-    //std::cout << std::endl << dv3.twonorm() << std::endl;
-    //std::cout << std::endl << dot(dv, dv2) << std::endl;
-        
+    for(int i = 0; i < 3; i++) std::cout << std::endl << dv3[i] << std::endl;
+    std::cout << std::endl << dv3.twonorm() << std::endl;
+    std::cout << std::endl << dot(dv, dv2) << std::endl;
+    
     return 0;
 }
 #endif

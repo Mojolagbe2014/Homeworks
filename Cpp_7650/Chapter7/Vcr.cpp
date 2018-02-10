@@ -96,7 +96,7 @@ template<typename T> T Vcr<T>::twonorm() const { // 2 - (euclidean) norm
 
 template<typename T> T Vcr<T>::maxnorm() const {    // maximum norm
     T nm = abs(vr[0]);
-    for(int i = 0; i < length; i++) nm = std::max(nm, abs(vr[i]));
+    for(int i = 1; i < length; i++) nm = std::max(nm, abs(vr[i]));
     
     return nm;
 }
@@ -112,10 +112,135 @@ template<typename T> T dot(const Vcr<T>& v1, const Vcr<T>& v2) { // dot product
 
 template<typename T> std::ostream& operator<<(std::ostream& s, const Vcr<T>& v) {                 // output stream
     for (int i =0; i <v.length; i++ ) {
-        s << v[i] << " ";
-        if (i%10 == 9) s << "\n"; // print 10 elements on a line
+        s << v[i] << "\n";
+        //s << v[i] << " ";
+        //if (i%10 == 9) s << "\n"; // print 10 elements on a line
     }
     return s;
 }
+
+
+
+
+
+
+// ******* a specialization of Vcr<T> for complex numbers ******** //
+
+template<typename T> Vcr< std::complex<T> >::Vcr(int n, const std::complex<T>* const abd) { // constructor
+    vr = new std::complex<T> [length = n] ;
+    for (int i = 0; i < length; i++) vr[i] = *(abd +i);
+}
+
+template<typename T> Vcr<std::complex<T>>::Vcr(int n, std::complex<T> val){  // constructor
+    vr = new std::complex<T>[length=n];
+    for(int i = 0; i < length; i++) vr[i] = val;
+}
+
+
+template<typename T> Vcr<std::complex<T>>::Vcr(const Vcr<std::complex<T>>& vec) { // copy constructor
+    vr = new std::complex<T>[length=vec.length];
+    for (int i = 0; i < length; i++) vr[i] = vec[i];
+}
+
+template<typename T> Vcr<std::complex<T>>& Vcr<std::complex<T>>::operator=(const Vcr<std::complex<T>>& v){  // copy assignment =
+    if(this != &v) {
+        if(length != v.length) std::cout << "\nBad assignment of vector\n";
+        for(int i = 0; i < length; i++) vr[i] = v[i];
+    }
+    return *this;
+}
+
+template<typename T> Vcr<std::complex<T>>& Vcr<std::complex<T>>::operator+=(const Vcr<std::complex<T>>& v){ // binary operator +=
+    if(length != v.length) {
+        std::cout << "\nVector sizes not matching!\n";
+        exit(1);
+    }
+    for(int i = 0; i < length; i++) vr[i] += v[i];
+    return *this;
+}
+
+template<typename T> Vcr<std::complex<T>>& Vcr<std::complex<T>>::operator-=(const Vcr<std::complex<T>>& v){ // binary operator -=
+    if(length != v.length) { std::cout << "\nBad assignment of vector\n"; exit(1); }
+    for(int i = 0; i < length; i++) vr[i] -= v[i];
+    return *this;
+}
+
+template<typename T> inline Vcr<std::complex<T>> operator+(const Vcr<std::complex<T>>& v) { return v; } //unary + : u = +v
+
+template<typename T> inline Vcr<std::complex<T>> operator-(const Vcr<std::complex<T>>& v) { return Vcr<std::complex<T>>(v.size()) - v; } //unary - : u = -v
+
+template<typename T> Vcr<std::complex<T>> operator+(const Vcr<std::complex<T>>& v1, const Vcr<std::complex<T>>& v2){         // binary +, v = v1 + v2
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    Vcr<std::complex<T>> temp = v1;  // create temporary vector
+    temp += v2;
+    return temp;
+}
+
+template<typename T> Vcr<std::complex<T>> operator-(const Vcr<std::complex<T>>& v1, const Vcr<std::complex<T>>& v2){         // binary -, v = v1 - v2
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    Vcr<std::complex<T>> temp = v1;  // create temporary vector
+    temp -= v2;
+    return temp;
+}
+
+template<typename T> Vcr<std::complex<T>> operator*(T scalar, const Vcr<std::complex<T>>& v){                     // scalar-vector multiply
+    Vcr<std::complex<T>> tm(v.length);
+    for(int i = 0; i < v.length; i++) tm[i] = scalar * v[i];
+    return tm;
+}
+
+template<typename T> inline Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>& v, T scalar) {       // vector-scalar multiply
+    return scalar*v;
+}
+
+template<typename T> Vcr<std::complex<T>> operator/(const Vcr<std::complex<T>> & v, T scalar) {              // vector-scalar divide
+    if (!scalar) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    return (1.0/scalar)*v;
+}
+
+template<typename T> Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>& v1, const Vcr<std::complex<T>>& v2) {     // vector multiply
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    int n = v1.length;
+    Vcr<std::complex<T>> tm(n);
+    for (int i = 0; i < n; i++) tm[i] = v1[i]*v2[i];
+    return tm;
+}
+
+template<typename T> T Vcr<std::complex<T>>::maxnorm() const { // maximum norm
+    T nm = abs(vr[0]);
+    for(int i = 1; i < length; i++) nm = std::max(nm, abs(vr[i]));
+    return nm;
+}
+
+template<typename T> std::complex<T> dot(const Vcr<std::complex<T>>& v1, const Vcr<std::complex<T>>& v2) { // dot product
+    if (v1.length != v2.length) { std::cout << "\nBad vector sizes\n"; exit(1); }
+    std::complex<T> tm = v1[0] * conj(v2[0]);                           // conjugate of v2
+    
+    for(int i = 1; i < v1.length; i++) tm += v1[i] * conj(v2[i]);
+    
+    return tm;
+}
+
+template<typename T> std::ostream& operator<<(std::ostream& s, const Vcr<std::complex<T>>& v) {                 // output stream
+    for (int i =0; i <v.length; i++ ) {
+        s << v[i] << "\n";
+        //s << v[i] << " ";
+        //if (i%10 == 9) s << "\n"; // print 10 elements on a line
+    }
+    return s;
+}
+
+template<typename T> T Vcr<std::complex<T>>::twonorm() const { // 2 - (euclidean) norm
+    T norm = abs(vr[0]) * abs(vr [0]) ;
+    for(int i = 1; i < length; i++) norm += abs(vr[i])*abs(vr[i]);
+    return sqrt(norm);
+}
+
+
+
+
+
+
+
 
 

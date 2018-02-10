@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		BF1FA8BC1FDE0A420028DF8B /* ex5102.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF1FA8BA1FDE0A420028DF8B /* ex5102.cpp */; };
+		BF34E36E202D57750065812C /* ex7.9.3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E36D202D57750065812C /* ex7.9.3.cpp */; };
+		BF34E370202D6F380065812C /* ex7.9.15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E36F202D6F380065812C /* ex7.9.15.cpp */; };
 		BF4A8D69201FF27B002B1B6E /* ex7.9.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */; };
 		BF4A8D6C201FFA4C002B1B6E /* Vcr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */; };
+		BF4A8D6F2020E751002B1B6E /* Mtx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6D2020E751002B1B6E /* Mtx.cpp */; };
 		BF6E56071FBFADA400C1B46F /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E56061FBFADA400C1B46F /* test.cpp */; };
 		BF6E560C1FC8EDA000C1B46F /* virtual.cp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E560B1FC8EDA000C1B46F /* virtual.cp */; };
 		BF6E560E1FCCEAC900C1B46F /* ex481.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF6E560D1FCCEAC900C1B46F /* ex481.cpp */; };
@@ -117,9 +120,13 @@
 
 /* Begin PBXFileReference section */
 		BF1FA8BA1FDE0A420028DF8B /* ex5102.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex5102.cpp; path = Chapter5/ex5102.cpp; sourceTree = "<group>"; };
+		BF34E36D202D57750065812C /* ex7.9.3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.3.cpp; path = Chapter7/ex7.9.3.cpp; sourceTree = "<group>"; };
+		BF34E36F202D6F380065812C /* ex7.9.15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.15.cpp; path = Chapter7/ex7.9.15.cpp; sourceTree = "<group>"; };
 		BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.1.cpp; path = Chapter7/ex7.9.1.cpp; sourceTree = "<group>"; };
 		BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vcr.cpp; path = Chapter7/Vcr.cpp; sourceTree = "<group>"; };
 		BF4A8D6B201FFA4C002B1B6E /* Vcr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vcr.h; path = Chapter7/Vcr.h; sourceTree = "<group>"; };
+		BF4A8D6D2020E751002B1B6E /* Mtx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mtx.cpp; path = Chapter7/Mtx.cpp; sourceTree = "<group>"; };
+		BF4A8D6E2020E751002B1B6E /* Mtx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mtx.h; path = Chapter7/Mtx.h; sourceTree = "<group>"; };
 		BF6E56061FBFADA400C1B46F /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = Chapter5/test.cpp; sourceTree = "<group>"; };
 		BF6E56081FBFAE9100C1B46F /* cmplx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmplx.h; path = Chapter5/cmplx.h; sourceTree = "<group>"; };
 		BF6E560B1FC8EDA000C1B46F /* virtual.cp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = virtual.cp; path = Chapter5/virtual.cp; sourceTree = "<group>"; };
@@ -235,6 +242,10 @@
 				BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */,
 				BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */,
 				BF4A8D6B201FFA4C002B1B6E /* Vcr.h */,
+				BF34E36D202D57750065812C /* ex7.9.3.cpp */,
+				BF4A8D6D2020E751002B1B6E /* Mtx.cpp */,
+				BF4A8D6E2020E751002B1B6E /* Mtx.h */,
+				BF34E36F202D6F380065812C /* ex7.9.15.cpp */,
 			);
 			name = Chapter7;
 			sourceTree = "<group>";
@@ -467,6 +478,7 @@
 			files = (
 				BF8C093D1F6A2FE7007438AD /* exercise162b.cpp in Sources */,
 				BF8C094E1F6A3E42007438AD /* exercise1610.cpp in Sources */,
+				BF34E370202D6F380065812C /* ex7.9.15.cpp in Sources */,
 				BF8C09431F6A337F007438AD /* exercise164.cpp in Sources */,
 				BF4A8D69201FF27B002B1B6E /* ex7.9.1.cpp in Sources */,
 				BFC862C41F95552A006F0131 /* StreamExample12.cpp in Sources */,
@@ -485,6 +497,7 @@
 				BFC862A81F8C52F4006F0131 /* StringExample5.cpp in Sources */,
 				BFC862081F7303E4006F0131 /* ex251.cpp in Sources */,
 				BFC8625E1F857E26006F0131 /* file2.cpp in Sources */,
+				BF4A8D6F2020E751002B1B6E /* Mtx.cpp in Sources */,
 				BFC862351F7B357A006F0131 /* ex3142.cpp in Sources */,
 				BFC862331F7B2DC7006F0131 /* ex3141.cpp in Sources */,
 				BFC8620C1F731395006F0131 /* ex253.cpp in Sources */,
@@ -549,6 +562,7 @@
 				BF6E56121FCD37CB00C1B46F /* ex488.cpp in Sources */,
 				BFBA08371FA182BE0055DCAB /* ex31415.cpp in Sources */,
 				BFC862A01F8C324A006F0131 /* StringExample1.cpp in Sources */,
+				BF34E36E202D57750065812C /* ex7.9.3.cpp in Sources */,
 				BF8C09471F6A3AB2007438AD /* exercise166.cpp in Sources */,
 				BFBA082F1FA149EB0055DCAB /* ex31411.cpp in Sources */,
 				BFC862101F7317A4006F0131 /* ex255.cpp in Sources */,
