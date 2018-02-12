@@ -1,11 +1,5 @@
-//
 //  ex10.4.6.cpp
 //  Cpp4Engineers
-//
-//  Created by Mojolagbe Mojolagbe on 2018-02-11.
-//  Copyright © 2018 TIMCA Computers. All rights reserved.
-//
-
 //#define RUN_SECTION
 #ifdef RUN_SECTION
 
@@ -23,6 +17,7 @@ int main(){
     srand(time(0));
     for (int i = 0; i < n; i++) v.insert(rand() % 50 + 1);
     
+    std::cout << "Elements of the set are: \n";
     for (auto p = v.begin(); p != v.end(); p++) std::cout << *p << '\n';
     
     int sum = 0;

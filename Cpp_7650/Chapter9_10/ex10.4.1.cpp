@@ -1,11 +1,5 @@
-//
 //  ex10.4.1.cpp
 //  Cpp4Engineers
-//
-//  Created by Mojolagbe Mojolagbe on 2018-02-11.
-//  Copyright © 2018 TIMCA Computers. All rights reserved.
-//
-
 //#define RUN_SECTION
 #ifdef RUN_SECTION
 
@@ -37,11 +31,10 @@ int main(){
     for (int i = 0; i < n; i++) std::cout << v[i] << std::endl;
     
     sort(v.begin(), v.end(), reverseCompare); // sort in decreasing order
-    
+
     std::cout << "\n===== After Sorting =====\n";
     for (int i = 0; i < n; i++) std::cout << v[i] << std::endl;
     
     return 0;
 }
-
 #endif
