@@ -6,7 +6,7 @@
 //  Copyright © 2018 TIMCA Computers. All rights reserved.
 //
 
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ int main(){
     unsigned n = 10;
     std::set<int> v;
     
-    srand(time(NULL));
+    srand(time(0));
     for (int i = 0; i < n; i++) v.insert(rand() % 50 + 1);
     
     for (auto p = v.begin(); p != v.end(); p++) std::cout << *p << '\n';

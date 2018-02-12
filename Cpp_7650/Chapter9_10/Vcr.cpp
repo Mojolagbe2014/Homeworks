@@ -92,8 +92,8 @@ template<typename T> T Vcr<T>::twonorm() const { // 2 - (euclidean) norm
 
 
 template<typename T> T Vcr<T>::maxnorm() const {    // maximum norm
-    T nm = abs(vr[0]);
-    for(int i = 1; i < length; i++) nm = std::max(nm, abs(vr[i]));
+    T nm = std::abs(vr[0]);
+    for(int i = 1; i < length; i++) nm = std::max(nm, std::abs(vr[i]));
     
     return nm;
 }
@@ -217,8 +217,8 @@ template<typename T> Vcr<std::complex<T>> operator*(const Vcr<std::complex<T>>& 
 }
 
 template<typename T> T Vcr<std::complex<T>>::maxnorm() const { // maximum norm
-    T nm = abs(vr[0]);
-    for(int i = 1; i < length; i++) nm = std::max(nm, abs(vr[i]));
+    T nm = std::abs(vr[0]);
+    for(int i = 1; i < length; i++) nm = std::max(nm, std::abs(vr[i]));
     return nm;
 }
 
@@ -241,8 +241,8 @@ template<typename T> std::ostream& operator<<(std::ostream& s, const Vcr<std::co
 }
 
 template<typename T> T Vcr<std::complex<T>>::twonorm() const { // 2 - (euclidean) norm
-    T norm = abs(vr[0]) * abs(vr [0]) ;
-    for(int i = 1; i < length; i++) norm += abs(vr[i])*abs(vr[i]);
+    T norm = std::abs(vr[0]) * std::abs(vr [0]) ;
+    for(int i = 1; i < length; i++) norm += std::abs(vr[i])*std::abs(vr[i]);
     return sqrt(norm);
 }
 
