@@ -5,7 +5,7 @@
 //  Created by Mojolagbe Mojolagbe on 2018-02-11.
 //  Copyright © 2018 TIMCA Computers. All rights reserved.
 //
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 #include <stdio.h>

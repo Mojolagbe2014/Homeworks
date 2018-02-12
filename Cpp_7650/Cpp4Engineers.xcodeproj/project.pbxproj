@@ -15,6 +15,7 @@
 		BF34E3812030C5EA0065812C /* ex8.7.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E3802030C5EA0065812C /* ex8.7.1.cpp */; };
 		BF34E38420311ABE0065812C /* ex9.6.2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E38320311ABE0065812C /* ex9.6.2.cpp */; };
 		BF34E38720312C800065812C /* Vcr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E38520312C800065812C /* Vcr.cpp */; };
+		BF34E38A2031576E0065812C /* ex10.4.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E3892031576E0065812C /* ex10.4.1.cpp */; };
 		BF4A8D69201FF27B002B1B6E /* ex7.9.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */; };
 		BF4A8D6C201FFA4C002B1B6E /* Vcr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */; };
 		BF4A8D6F2020E751002B1B6E /* Mtx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6D2020E751002B1B6E /* Mtx.cpp */; };
@@ -134,6 +135,7 @@
 		BF34E38520312C800065812C /* Vcr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vcr.cpp; path = Chapter9_10/Vcr.cpp; sourceTree = "<group>"; };
 		BF34E38620312C800065812C /* Vcr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vcr.h; path = Chapter9_10/Vcr.h; sourceTree = "<group>"; };
 		BF34E38820312D890065812C /* Exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = Chapter9_10/Exception.h; sourceTree = "<group>"; };
+		BF34E3892031576E0065812C /* ex10.4.1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex10.4.1.cpp; path = Chapter9_10/ex10.4.1.cpp; sourceTree = "<group>"; };
 		BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.1.cpp; path = Chapter7/ex7.9.1.cpp; sourceTree = "<group>"; };
 		BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vcr.cpp; path = Chapter7/Vcr.cpp; sourceTree = "<group>"; };
 		BF4A8D6B201FFA4C002B1B6E /* Vcr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vcr.h; path = Chapter7/Vcr.h; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				BF34E38520312C800065812C /* Vcr.cpp */,
 				BF34E38620312C800065812C /* Vcr.h */,
 				BF34E38820312D890065812C /* Exception.h */,
+				BF34E3892031576E0065812C /* ex10.4.1.cpp */,
 			);
 			name = Chapter9_10;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				BFC862BA1F95399D006F0131 /* StreamExample8.cpp in Sources */,
 				BFC862C91F97EA83006F0131 /* BisectionMethodTest.cpp in Sources */,
 				BFC862C21F954EC3006F0131 /* StreamExample11.cpp in Sources */,
+				BF34E38A2031576E0065812C /* ex10.4.1.cpp in Sources */,
 				BFC862AE1F950522006F0131 /* StreamExample2.cpp in Sources */,
 				BFC862A61F8C4B1A006F0131 /* StringExample4.cpp in Sources */,
 				BF8C094B1F6A3D75007438AD /* exercise169.cpp in Sources */,
