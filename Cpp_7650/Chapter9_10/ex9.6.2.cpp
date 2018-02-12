@@ -17,23 +17,34 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+//    try {
+//        Vcr<double> dv(3, 2.);
+//        Vcr<double> dv2(3, 3.);
+//        
+//        Vcr<double> dv3 = dv * dv2;
+//        
+//        std::cout << dv3 << std::endl;
+//    } catch (IntOverflow e) {
+//        e.print();
+//    } catch (FloatOverflow e) {
+//        e.print();
+//    } catch (SmallDivisor e) {
+//        e.print();
+//    } catch (NoMatch e) {
+//        e.print();
+//    }
+    
+    
     try {
-        Vcr<double> dv(3, 2.);
+        Vcr<double> dv(2, 2.);
         Vcr<double> dv2(3, 3.);
         
         Vcr<double> dv3 = dv * dv2;
         
         std::cout << dv3 << std::endl;
-    } catch (IntOverflow e) {
-        e.print();
-    } catch (FloatOverflow e) {
-        e.print();
-    } catch (SmallDivisor e) {
-        e.print();
-    } catch (NoMatch e) {
-        e.print();
+    } catch (MVerr& m) {
+        m.print();
     }
-    
     
     return 0;
 }
