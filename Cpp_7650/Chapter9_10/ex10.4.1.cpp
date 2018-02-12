@@ -6,7 +6,7 @@
 //  Copyright © 2018 TIMCA Computers. All rights reserved.
 //
 
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 #include <stdio.h>
@@ -18,9 +18,10 @@
 #include <time.h>       /* time */
 
 bool reverseCompare(std::complex<double> a, std::complex<double> b) {
-    if (a.real() == b.real())
-        return a.imag() > b.imag();
-    return a.real() > b.real();
+//    if (a.real() == b.real())
+//        return a.imag() > b.imag();
+//    return a.real() > b.real();
+    return std::abs(a) > std::abs(b);
 }
 
 int main(){
