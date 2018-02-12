@@ -12,6 +12,9 @@
 		BF34E370202D6F380065812C /* ex7.9.15.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E36F202D6F380065812C /* ex7.9.15.cpp */; };
 		BF34E37A202F920E0065812C /* ex8.7.3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E378202F920E0065812C /* ex8.7.3.cpp */; };
 		BF34E37F2030BBDD0065812C /* ex8.7.4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E37E2030BBDD0065812C /* ex8.7.4.cpp */; };
+		BF34E3812030C5EA0065812C /* ex8.7.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E3802030C5EA0065812C /* ex8.7.1.cpp */; };
+		BF34E38420311ABE0065812C /* ex9.6.2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E38320311ABE0065812C /* ex9.6.2.cpp */; };
+		BF34E38720312C800065812C /* Vcr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF34E38520312C800065812C /* Vcr.cpp */; };
 		BF4A8D69201FF27B002B1B6E /* ex7.9.1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */; };
 		BF4A8D6C201FFA4C002B1B6E /* Vcr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */; };
 		BF4A8D6F2020E751002B1B6E /* Mtx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF4A8D6D2020E751002B1B6E /* Mtx.cpp */; };
@@ -124,11 +127,13 @@
 		BF1FA8BA1FDE0A420028DF8B /* ex5102.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex5102.cpp; path = Chapter5/ex5102.cpp; sourceTree = "<group>"; };
 		BF34E36D202D57750065812C /* ex7.9.3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.3.cpp; path = Chapter7/ex7.9.3.cpp; sourceTree = "<group>"; };
 		BF34E36F202D6F380065812C /* ex7.9.15.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.15.cpp; path = Chapter7/ex7.9.15.cpp; sourceTree = "<group>"; };
-		BF34E376202F903C0065812C /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Point.h; path = Chapter8/Point.h; sourceTree = "<group>"; };
 		BF34E378202F920E0065812C /* ex8.7.3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex8.7.3.cpp; path = Chapter8/ex8.7.3.cpp; sourceTree = "<group>"; };
-		BF34E379202F920E0065812C /* Point2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Point2D.h; path = Chapter8/Point2D.h; sourceTree = "<group>"; };
-		BF34E37C2030805A0065812C /* Point3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Point3D.h; path = Chapter8/Point3D.h; sourceTree = "<group>"; };
 		BF34E37E2030BBDD0065812C /* ex8.7.4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex8.7.4.cpp; path = Chapter8/ex8.7.4.cpp; sourceTree = "<group>"; };
+		BF34E3802030C5EA0065812C /* ex8.7.1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex8.7.1.cpp; path = Chapter8/ex8.7.1.cpp; sourceTree = "<group>"; };
+		BF34E38320311ABE0065812C /* ex9.6.2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex9.6.2.cpp; path = Chapter9_10/ex9.6.2.cpp; sourceTree = "<group>"; };
+		BF34E38520312C800065812C /* Vcr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vcr.cpp; path = Chapter9_10/Vcr.cpp; sourceTree = "<group>"; };
+		BF34E38620312C800065812C /* Vcr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vcr.h; path = Chapter9_10/Vcr.h; sourceTree = "<group>"; };
+		BF34E38820312D890065812C /* Exception.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = Chapter9_10/Exception.h; sourceTree = "<group>"; };
 		BF4A8D68201FF27B002B1B6E /* ex7.9.1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ex7.9.1.cpp; path = Chapter7/ex7.9.1.cpp; sourceTree = "<group>"; };
 		BF4A8D6A201FFA4C002B1B6E /* Vcr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vcr.cpp; path = Chapter7/Vcr.cpp; sourceTree = "<group>"; };
 		BF4A8D6B201FFA4C002B1B6E /* Vcr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vcr.h; path = Chapter7/Vcr.h; sourceTree = "<group>"; };
@@ -246,13 +251,22 @@
 		BF34E374202F8F5F0065812C /* Chapter8 */ = {
 			isa = PBXGroup;
 			children = (
-				BF34E376202F903C0065812C /* Point.h */,
 				BF34E378202F920E0065812C /* ex8.7.3.cpp */,
-				BF34E379202F920E0065812C /* Point2D.h */,
-				BF34E37C2030805A0065812C /* Point3D.h */,
 				BF34E37E2030BBDD0065812C /* ex8.7.4.cpp */,
+				BF34E3802030C5EA0065812C /* ex8.7.1.cpp */,
 			);
 			name = Chapter8;
+			sourceTree = "<group>";
+		};
+		BF34E38220311A710065812C /* Chapter9_10 */ = {
+			isa = PBXGroup;
+			children = (
+				BF34E38320311ABE0065812C /* ex9.6.2.cpp */,
+				BF34E38520312C800065812C /* Vcr.cpp */,
+				BF34E38620312C800065812C /* Vcr.h */,
+				BF34E38820312D890065812C /* Exception.h */,
+			);
+			name = Chapter9_10;
 			sourceTree = "<group>";
 		};
 		BF4A8D65201FE373002B1B6E /* Chapter7 */ = {
@@ -292,6 +306,7 @@
 		BFC3072A1F6A129500774AA8 = {
 			isa = PBXGroup;
 			children = (
+				BF34E38220311A710065812C /* Chapter9_10 */,
 				BF34E374202F8F5F0065812C /* Chapter8 */,
 				BF4A8D65201FE373002B1B6E /* Chapter7 */,
 				BFC020511FFAF34D00143BF3 /* Chapter6 */,
@@ -532,8 +547,10 @@
 				BF4A8D6C201FFA4C002B1B6E /* Vcr.cpp in Sources */,
 				BFC862A21F8C40B7006F0131 /* StringExample2.cpp in Sources */,
 				BF8C09491F6A3BB8007438AD /* exercise167.cpp in Sources */,
+				BF34E3812030C5EA0065812C /* ex8.7.1.cpp in Sources */,
 				BFC8625A1F857B20006F0131 /* ZeroInitialization.cpp in Sources */,
 				BFC862621F858450006F0131 /* file4.cpp in Sources */,
+				BF34E38720312C800065812C /* Vcr.cpp in Sources */,
 				BFC8624A1F80A13F006F0131 /* NamespaceAlias.cpp in Sources */,
 				BFC862C01F95471A006F0131 /* StreamExample10.cpp in Sources */,
 				BFBA08271F9955E50055DCAB /* NewtonsMethod.cpp in Sources */,
@@ -543,6 +560,7 @@
 				BFBA08291FA1215A0055DCAB /* ex3148.cpp in Sources */,
 				BF8C09451F6A3647007438AD /* exercise165.cpp in Sources */,
 				BFC862141F732497006F0131 /* ex257.cpp in Sources */,
+				BF34E38420311ABE0065812C /* ex9.6.2.cpp in Sources */,
 				BFC862BC1F9541F6006F0131 /* StreamExample9.cpp in Sources */,
 				BFBA08351FA177980055DCAB /* ex31414.cpp in Sources */,
 				BFC862411F7B4AE1006F0131 /* ex3147.cpp in Sources */,
