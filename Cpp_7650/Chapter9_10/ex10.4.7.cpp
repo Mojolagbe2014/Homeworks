@@ -1,6 +1,6 @@
 //  ex10.4.7.cpp
 //  Cpp4Engineers
-#define RUN_SECTION
+//#define RUN_SECTION
 #ifdef RUN_SECTION
 
 #include <iostream>
