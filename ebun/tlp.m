@@ -3,8 +3,8 @@ clear; clc; close all;
 
 %% set parameters
 maxIter = 100;
-n_max = 11;
-K(1) = 08;
+n_max = 10;
+K(1) = 0;
 c_al = 6.6;
 c_0 = 0;
 c_la = 18.3;
@@ -35,7 +35,7 @@ subplot(1,2,2)
 plot(iter,error,'-r')
 xlabel('Number of Iteratons')
 ylabel('Error')
-title('Errors in Newton-Raphson Method')
+title('Plot of Errors vs. iterations')
 grid on
 grid minor
 
