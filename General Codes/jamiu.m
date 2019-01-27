@@ -1,7 +1,7 @@
 clear; close all; clc;
 
 x = 1;
-n = 10;
+n = 5;
 
 X = zeros(n+1,n+1);
 X(1,1) = x;
@@ -26,6 +26,5 @@ feather(X)
 
 figure,
 imagesc(X),
-% colormap
-% hotm,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+colormap hot
 axis square
